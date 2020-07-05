@@ -19,7 +19,8 @@
     "url": "git@github.com:klein0r/ioBroker.comfoairq.git"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.4.0"
+    "@iobroker/adapter-core": "^2.4.0",
+    "node-comfoairq": "^0.5.2"
   },
   "devDependencies": {
     "@iobroker/testing": "^2.2.0",

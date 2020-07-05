@@ -5,41 +5,17 @@
         "news": {
             "0.0.1": {
                 "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
+                "de": "Erstveröffentlichung"
             }
         },
         "title": "ComfoAirQ",
         "titleLang": {
             "en": "ComfoAirQ",
-            "de": "ComfoAirQ",
-            "ru": "ComfoAirQ",
-            "pt": "ComfoAirQ",
-            "nl": "ComfoAirQ",
-            "fr": "ComfoAirQ",
-            "it": "ComfoAirQ",
-            "es": "ComfoAirQ",
-            "pl": "ComfoAirQ",
-            "zh-cn": "康富客"
+            "de": "ComfoAirQ"
         },
         "desc": {
             "en": "Connect your Zehnder ComfoAirQ over ComfoConnect LAN C",
-            "de": "Verbinden Sie Ihren Zehnder ComfoAirQ über ComfoConnect LAN C.",
-            "ru": "Подключите ваш Zehnder ComfoAirQ через ComfoConnect LAN C",
-            "pt": "Conecte seu Zehnder ComfoAirQ através da LAN ComfoConnect",
-            "nl": "Verbind uw Zehnder ComfoAirQ via ComfoConnect LAN C",
-            "fr": "Connectez votre Zehnder ComfoAirQ via ComfoConnect LAN C",
-            "it": "Collega il tuo Zehnder ComfoAirQ tramite ComfoConnect LAN C",
-            "es": "Conecte su Zehnder ComfoAirQ a través de ComfoConnect LAN C",
-            "pl": "Podłącz swój Zehnder ComfoAirQ przez ComfoConnect LAN C",
-            "zh-cn": "通过ComfoConnect LAN C连接您的Zehnder ComfoAirQ"
+            "de": "Verbinden Sie Ihren Zehnder ComfoAirQ über ComfoConnect LAN C"
         },
         "authors": [
             "Matthias Kleine <info@haus-automatisierung.com>"
@@ -54,8 +30,8 @@
         "platform": "Javascript/Node.js",
         "main": "main.js",
         "icon": "comfoairq.png",
-        "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.comfoairq/master/admin/comfoairq.png",
+        "enabled": true,
         "readme": "https://github.com/klein0r/ioBroker.comfoairq/blob/master/README.md",
         "loglevel": "info",
         "mode": "daemon",
