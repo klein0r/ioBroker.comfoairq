@@ -1,0 +1,101 @@
+{
+    "common": {
+        "name": "comfoairq",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "ComfoAirQ",
+        "titleLang": {
+            "en": "ComfoAirQ",
+            "de": "ComfoAirQ",
+            "ru": "ComfoAirQ",
+            "pt": "ComfoAirQ",
+            "nl": "ComfoAirQ",
+            "fr": "ComfoAirQ",
+            "it": "ComfoAirQ",
+            "es": "ComfoAirQ",
+            "pl": "ComfoAirQ",
+            "zh-cn": "康富客"
+        },
+        "desc": {
+            "en": "Connect your Zehnder ComfoAirQ over ComfoConnect LAN C",
+            "de": "Verbinden Sie Ihren Zehnder ComfoAirQ über ComfoConnect LAN C.",
+            "ru": "Подключите ваш Zehnder ComfoAirQ через ComfoConnect LAN C",
+            "pt": "Conecte seu Zehnder ComfoAirQ através da LAN ComfoConnect",
+            "nl": "Verbind uw Zehnder ComfoAirQ via ComfoConnect LAN C",
+            "fr": "Connectez votre Zehnder ComfoAirQ via ComfoConnect LAN C",
+            "it": "Collega il tuo Zehnder ComfoAirQ tramite ComfoConnect LAN C",
+            "es": "Conecte su Zehnder ComfoAirQ a través de ComfoConnect LAN C",
+            "pl": "Podłącz swój Zehnder ComfoAirQ przez ComfoConnect LAN C",
+            "zh-cn": "通过ComfoConnect LAN C连接您的Zehnder ComfoAirQ"
+        },
+        "authors": [
+            "Matthias Kleine <info@haus-automatisierung.com>"
+        ],
+        "keywords": [
+            "KWL",
+            "Zehnder",
+            "Lüftung",
+            "ventilation system"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "comfoairq.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.comfoairq/master/admin/comfoairq.png",
+        "readme": "https://github.com/klein0r/ioBroker.comfoairq/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "climate-control",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "poll",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=1.4.2"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
+}
