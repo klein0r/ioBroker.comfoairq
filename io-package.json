@@ -14,8 +14,8 @@
             "de": "ComfoAirQ"
         },
         "desc": {
-            "en": "Connect your Zehnder ComfoAirQ over ComfoConnect LAN C",
-            "de": "Verbinden Sie Ihren Zehnder ComfoAirQ über ComfoConnect LAN C"
+            "en": "Zehnder ComfoAirQ over ComfoConnect LAN C",
+            "de": "Zehnder ComfoAirQ über ComfoConnect LAN C"
         },
         "authors": [
             "Matthias Kleine <info@haus-automatisierung.com>"
@@ -46,10 +46,7 @@
             }
         ]
     },
-    "native": {
-        "option1": true,
-        "option2": "42"
-    },
+    "native": {},
     "objects": [],
     "instanceObjects": [
         {
