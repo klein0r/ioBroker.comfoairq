@@ -3,10 +3,10 @@
 /* jslint node: true */
 'use strict';
 
-const utils       = require('@iobroker/adapter-core');
-const comfo       = require('node-comfoairq/lib/comfoconnect');
-const adapterName = require('./package.json').name.split('.').pop();
-const util        = require('util');
+const utils        = require('@iobroker/adapter-core');
+const comfoconnect = require('node-comfoairq/lib/comfoconnect');
+const adapterName  = require('./package.json').name.split('.').pop();
+const util         = require('util');
 
 class Comfoairq extends utils.Adapter {
 
@@ -31,23 +31,18 @@ class Comfoairq extends utils.Adapter {
 
         this.setState('info.connection', false, true);
 
-        console.log = function(d) {
-            that.log.debug('console.log: ' + util.format(d));
-        };
-
-        this.zehnder = new comfo();
-        this.zehnder.settings = {
-            "pin": parseInt(this.config.pin),
-            "uuid" : "20200428000000000000000009080408",
-            "device" : "iobroker",
-            "multicast": "192.168.1.255",
-            "comfoair": this.config.host,
-            "debug": true
-        };
-
-        this.zehnder.discover();
-
-        this.log.debug('settings: ' + JSON.stringify(this.zehnder.settings));
+        this.zehnder = new comfoconnect(
+            {
+                "pin": parseInt(this.config.pin),
+                "uuid" : "20200428000000000000000009080408",
+                "device" : "iobroker",
+                "multicast": "192.168.1.255",
+                "comfoair": this.config.host,
+                "comfoUuid": this.config.uuid,
+                "debug": true,
+                "logger": this.log.debug
+            }
+        );
 
         this.log.debug('register receive handler...');
         this.zehnder.on('receive', (data) => {
@@ -65,9 +60,7 @@ class Comfoairq extends utils.Adapter {
         let result = await this.zehnder.RegisterApp();
         this.log.debug('registerAppResult: ' + JSON.stringify(result));
 
-        this.log.debug('version request...');
-        result = await this.zehnder.VersionRequest();
-        this.log.debug(JSON.stringify(result));
+        
     }
 
     onUnload(callback) {
