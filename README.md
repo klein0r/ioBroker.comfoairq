@@ -24,6 +24,10 @@ Development of this ioBroker Adapter was possible on the work performed by:
 
 ## Changelog
 
+### 0.0.2
+
+* (klein0r) First connection
+
 ### 0.0.1
 
 * (klein0r) initial release

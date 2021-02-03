@@ -1,6 +1,6 @@
 {
   "name": "iobroker.comfoairq",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Connect your Zehnder ComfoAirQ over ComfoConnect LAN C",
   "author": {
     "name": "Matthias Kleine",
