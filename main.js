@@ -20,6 +20,7 @@ class Comfoairq extends utils.Adapter {
         });
 
         this.zehnder = null;
+        this.sensors = [];
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -31,42 +32,67 @@ class Comfoairq extends utils.Adapter {
 
         this.setState('info.connection', false, true);
 
-        this.zehnder = new comfoconnect(
-            {
-                "pin": parseInt(this.config.pin),
-                "uuid" : "20200428000000000000000009080408",
-                "device" : "iobroker",
-                "multicast": "192.168.1.255",
-                "comfoair": this.config.host,
-                "comfoUuid": this.config.uuid,
-                "debug": true,
-                "logger": this.log.debug
+        // Get active sensors by configuration
+        for (const key of Object.keys(this.config)) {
+            if (key.indexOf('sensor_') === 0 && this.config[key]) {
+                this.sensors.push(Number(key.slice(7)));
             }
-        );
+        }
 
-        this.log.debug('register receive handler...');
-        this.zehnder.on('receive', (data) => {
-            that.log.debug('received: ' + JSON.stringify(data));
-        });
+        if (this.sensors.length > 0) {
+            this.log.debug('Active sensors by configuration: ' + JSON.stringify(this.sensors));
 
-        this.log.debug('register disconnect handler...');
-        this.zehnder.on('disconnect', (reason) => {
-            if (reason.state == 'OTHER_SESSION') {
-                that.log.warn('Other session started');
+            this.zehnder = new comfoconnect(
+                {
+                    "pin": parseInt(this.config.pin),
+                    "uuid" : "20200428000000000000000009080408",
+                    "device" : "iobroker",
+                    "multicast": "172.16.255.255",
+                    "comfoair": this.config.host,
+                    "comfoUuid": this.config.uuid,
+                    "debug": false,
+                    "logger": this.log.debug
+                }
+            );
+
+            this.log.debug('register receive handler...');
+            this.zehnder.on('receive', (data) => {
+                that.log.debug('received: ' + JSON.stringify(data));
+            });
+
+            this.log.debug('register disconnect handler...');
+            this.zehnder.on('disconnect', (reason) => {
+                if (reason.state == 'OTHER_SESSION') {
+                    that.log.warn('Other session started: ' + JSON.stringify(reason));
+                }
+            });
+
+            //this.log.debug('register the app...');
+            //let registerAppResult = await this.zehnder.RegisterApp();
+            //this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
+
+            // Start the session
+            this.log.debug('startSession');
+            const startSessionResult = await this.zehnder.StartSession(true);
+            this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
+
+            for (let i = 0; i < this.sensors.length; i++) {
+                let registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
+                this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
             }
-        });
 
-        this.log.debug('register the app...');
-        let result = await this.zehnder.RegisterApp();
-        this.log.debug('registerAppResult: ' + JSON.stringify(result));
-
-        
+            this.setState('info.connection', true, true);
+        } else {
+            this.log.error('No active sensors found in configuration - stopping');
+        }
     }
 
     onUnload(callback) {
         try {
-            //await this.zehnder.CloseSession();
+            this.zehnder.CloseSession();
             this.zehnder = null;
+
+            this.setState('info.connection', false, true);
 
             callback();
         } catch (e) {

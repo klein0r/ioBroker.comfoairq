@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "comfoairq",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "news": {
+            "0.0.3": {
+                "en": "Bugfixes",
+                "de": "Bugfixes"
+            },
             "0.0.2": {
                 "en": "First connection",
                 "de": "Erster Verbindungsaufbau möglich"
@@ -50,7 +54,9 @@
             }
         ]
     },
-    "native": {},
+    "native": {
+        "pin": "0000"
+    },
     "objects": [],
     "instanceObjects": [
         {

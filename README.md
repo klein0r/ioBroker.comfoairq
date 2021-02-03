@@ -18,7 +18,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 Development of this ioBroker Adapter was possible on the work performed by:
 
-* herrJones (https://github.com/herrJones/node-comfoairq)
+* Jan Van Belle (https://github.com/herrJones/node-comfoairq)
 * Michael Arnauts (https://github.com/michaelarnauts/comfoconnect)
 * Marco Hoyer (https://github.com/marco-hoyer/zcan) and its forks on github (djwlindenaar, decontamin4t0R)
 
