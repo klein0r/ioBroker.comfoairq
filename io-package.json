@@ -79,6 +79,14 @@
                 "def": false
             },
             "native": {}
+        },
+        {
+          "_id":  "sensor",
+          "type": "channel",
+          "common": {
+            "name": "Sensor"
+          },
+          "native": {}
         }
     ]
 }

@@ -4,7 +4,7 @@
 'use strict';
 
 const utils        = require('@iobroker/adapter-core');
-const comfoconnect = require('node-comfoairq/lib/comfoconnect');
+const comfoconnect = require('node-comfoairq');
 const adapterName  = require('./package.json').name.split('.').pop();
 const util         = require('util');
 
@@ -28,8 +28,6 @@ class Comfoairq extends utils.Adapter {
     }
 
     async onReady() {
-        const that = this;
-
         this.setState('info.connection', false, true);
 
         // Get active sensors by configuration
@@ -49,27 +47,49 @@ class Comfoairq extends utils.Adapter {
                     "device" : "iobroker",
                     "multicast": "172.16.255.255",
                     "comfoair": this.config.host,
-                    "comfoUuid": this.config.uuid,
+                    "comfouuid": this.config.uuid,
                     "debug": false,
                     "logger": this.log.debug
                 }
             );
 
             this.log.debug('register receive handler...');
-            this.zehnder.on('receive', (data) => {
-                that.log.debug('received: ' + JSON.stringify(data));
+            this.zehnder.on('receive', async (data) => {
+                this.log.debug('received: ' + JSON.stringify(data));
+
+                // 40 = CnRpdoNotification
+                if (data && data.kind == 40 && data.result.error == 'OK') {
+                    const sensorId = data.result.data.pdid;
+                    const sensorName = data.result.data.name;
+                    const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
+                    const sensorValue = data.result.data.data;
+
+                    await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
+                        type: 'state',
+                        common: {
+                            name: sensorName + ' (' + sensorId + ')',
+                            type: 'string',
+                            role: 'value',
+                            read: true,
+                            write: false
+                        },
+                        native: {}
+                    });
+                    this.setState('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
+                }
             });
 
             this.log.debug('register disconnect handler...');
             this.zehnder.on('disconnect', (reason) => {
                 if (reason.state == 'OTHER_SESSION') {
-                    that.log.warn('Other session started: ' + JSON.stringify(reason));
+                    this.log.warn('Other session started: ' + JSON.stringify(reason));
+                    this.setState('info.connection', false, true);
                 }
             });
 
-            //this.log.debug('register the app...');
-            //let registerAppResult = await this.zehnder.RegisterApp();
-            //this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
+            this.log.debug('register the app...');
+            let registerAppResult = await this.zehnder.RegisterApp();
+            this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
 
             // Start the session
             this.log.debug('startSession');
@@ -85,6 +105,20 @@ class Comfoairq extends utils.Adapter {
         } else {
             this.log.error('No active sensors found in configuration - stopping');
         }
+    }
+
+    cleanNamespace(id) {
+        return id
+            .trim()
+            .replace(/\s/g, '_') // Replace whitespaces with underscores
+            .replace(/[^\p{Ll}\p{Lu}\p{Nd}]+/gu, '_') // Replace not allowed chars with underscore
+            .replace(/[_]+$/g, '') // Remove underscores end
+            .replace(/^[_]+/g, '') // Remove underscores beginning
+            .replace(/_+/g, '_') // Replace multiple underscores with one
+            .toLowerCase()
+            .replace(/_([a-z])/g, (m, w) => {
+                return w.toUpperCase();
+            });
     }
 
     onUnload(callback) {
