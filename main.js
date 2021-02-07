@@ -6,7 +6,6 @@
 const utils        = require('@iobroker/adapter-core');
 const comfoconnect = require('node-comfoairq');
 const adapterName  = require('./package.json').name.split('.').pop();
-const util         = require('util');
 
 class Comfoairq extends utils.Adapter {
 
@@ -25,7 +24,6 @@ class Comfoairq extends utils.Adapter {
         this.sensorUnits = {
             117: '%',
             118: '%',
-            119: 'm³/h',
             119: 'm³/h',
             120: 'm³/h',
             121: 'rpm',
@@ -93,11 +91,11 @@ class Comfoairq extends utils.Adapter {
                         'logger': this.log.debug
                     }
                 );
-    
+
                 this.log.debug('register receive handler...');
                 this.zehnder.on('receive', async (data) => {
                     this.log.debug('received: ' + JSON.stringify(data));
-    
+
                     if (data && data.result.error == 'OK') {
                         if (data.kind == 40) { // 40 = CnRpdoNotification
                             const sensorId = data.result.data.pdid;
@@ -105,7 +103,7 @@ class Comfoairq extends utils.Adapter {
                             const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
                             const sensorValue = data.result.data.data;
                             const unit = Object.prototype.hasOwnProperty.call(this.sensorUnits, sensorId) ? this.sensorUnits[sensorId] : '';
-        
+
                             await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
                                 type: 'state',
                                 common: {
@@ -126,7 +124,7 @@ class Comfoairq extends utils.Adapter {
                         }
                     }
                 });
-    
+
                 this.log.debug('register disconnect handler...');
                 this.zehnder.on('disconnect', (reason) => {
                     if (reason.state == 'OTHER_SESSION') {
@@ -134,23 +132,23 @@ class Comfoairq extends utils.Adapter {
                         this.setState('info.connection', false, true);
                     }
                 });
-    
+
                 this.log.debug('register the app...');
-                let registerAppResult = await this.zehnder.RegisterApp();
+                const registerAppResult = await this.zehnder.RegisterApp();
                 this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
-    
+
                 // Start the session
                 this.log.debug('startSession');
                 const startSessionResult = await this.zehnder.StartSession(true);
                 this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
-    
+
                 for (let i = 0; i < this.sensors.length; i++) {
-                    let registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
+                    const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
                     this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
                 }
-    
+
                 this.zehnder.VersionRequest();
-    
+
                 this.setState('info.connection', true, true);
                 this.subscribeStates('*');
             } else {
@@ -167,8 +165,8 @@ class Comfoairq extends utils.Adapter {
                     }
                 );
 
-                const discoverResult = await this.zehnder.discover();
-                this.log.debug(`discoverResult ${id} changed: ${state.val} (ack = ${state.ack})`);
+                //const discoverResult = await this.zehnder.discover();
+
             }
         } else {
             this.log.error('No active sensors found in configuration - stopping');
