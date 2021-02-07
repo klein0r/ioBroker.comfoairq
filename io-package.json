@@ -81,6 +81,14 @@
             "native": {}
         },
         {
+          "_id":  "command",
+          "type": "channel",
+          "common": {
+            "name": "Commands"
+          },
+          "native": {}
+        },
+        {
           "_id":  "sensor",
           "type": "channel",
           "common": {

@@ -22,6 +22,38 @@ class Comfoairq extends utils.Adapter {
         this.zehnder = null;
         this.sensors = [];
 
+        this.sensorUnits = {
+            117: '%',
+            118: '%',
+            119: 'm³/h',
+            119: 'm³/h',
+            120: 'm³/h',
+            121: 'rpm',
+            122: 'rpm',
+            128: 'W',
+            129: 'kWh',
+            130: 'kWh',
+            144: 'kWh',
+            145: 'kWh',
+            146: 'W',
+            192: 'days',
+            209: '°C',
+            213: 'W',
+            214: 'kWh',
+            215: 'kWh',
+            216: 'W',
+            217: 'kWh',
+            218: 'kWh',
+            227: '%',
+            274: '°C',
+            275: '°C',
+            276: '°C',
+            290: '%',
+            291: '%',
+            292: '%',
+            294: '%'
+        };
+
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         this.on('unload', this.onUnload.bind(this));
@@ -63,6 +95,7 @@ class Comfoairq extends utils.Adapter {
                     const sensorName = data.result.data.name;
                     const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
                     const sensorValue = data.result.data.data;
+                    const unit = Object.prototype.hasOwnProperty.call(this.sensorUnits, sensorId) ? this.sensorUnits[sensorId] : '';
 
                     await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
                         type: 'state',
@@ -70,6 +103,7 @@ class Comfoairq extends utils.Adapter {
                             name: sensorName + ' (' + sensorId + ')',
                             type: 'string',
                             role: 'value',
+                            unit: unit,
                             read: true,
                             write: false
                         },
