@@ -14,6 +14,8 @@
 
 Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
+*Tested with ComfoAirQ 350*
+
 ## Credits
 
 Development of this ioBroker Adapter was possible on the work performed by:
@@ -27,6 +29,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
 ### 0.0.3
 
 * (klein0r) Subscribe to sensors
+* (klein0r) Units for sensor values
 
 ### 0.0.2
 

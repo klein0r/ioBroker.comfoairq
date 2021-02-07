@@ -81,12 +81,104 @@
             "native": {}
         },
         {
+          "_id":  "version",
+          "type": "channel",
+          "common": {
+            "name": "Version information"
+          },
+          "native": {}
+        },
+        {
+            "_id": "version.comfonet",
+            "type": "state",
+            "common": {
+                "name": "ComfoNET version",
+                "role": "value",
+                "type": "string",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "version.gateway",
+            "type": "state",
+            "common": {
+                "name": "Gateway version",
+                "role": "value",
+                "type": "string",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "version.serial",
+            "type": "state",
+            "common": {
+                "name": "Serial number",
+                "role": "value",
+                "type": "string",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
           "_id":  "command",
           "type": "channel",
           "common": {
             "name": "Commands"
           },
           "native": {}
+        },
+        {
+            "_id": "command.fanModeAway",
+            "type": "state",
+            "common": {
+                "name": "Fan Mode Away",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.fanModeLow",
+            "type": "state",
+            "common": {
+                "name": "Fan Mode Low",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.fanModeMedium",
+            "type": "state",
+            "common": {
+                "name": "Fan Mode Medium",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.fanModeHigh",
+            "type": "state",
+            "common": {
+                "name": "Fan Mode High",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
         },
         {
           "_id":  "sensor",

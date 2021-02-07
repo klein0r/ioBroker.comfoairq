@@ -44,6 +44,7 @@ class Comfoairq extends utils.Adapter {
             216: 'W',
             217: 'kWh',
             218: 'kWh',
+            221: '°C',
             227: '%',
             274: '°C',
             275: '°C',
@@ -89,27 +90,32 @@ class Comfoairq extends utils.Adapter {
             this.zehnder.on('receive', async (data) => {
                 this.log.debug('received: ' + JSON.stringify(data));
 
-                // 40 = CnRpdoNotification
-                if (data && data.kind == 40 && data.result.error == 'OK') {
-                    const sensorId = data.result.data.pdid;
-                    const sensorName = data.result.data.name;
-                    const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
-                    const sensorValue = data.result.data.data;
-                    const unit = Object.prototype.hasOwnProperty.call(this.sensorUnits, sensorId) ? this.sensorUnits[sensorId] : '';
-
-                    await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
-                        type: 'state',
-                        common: {
-                            name: sensorName + ' (' + sensorId + ')',
-                            type: 'string',
-                            role: 'value',
-                            unit: unit,
-                            read: true,
-                            write: false
-                        },
-                        native: {}
-                    });
-                    this.setState('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
+                if (data && data.result.error == 'OK') {
+                    if (data.kind == 40) { // 40 = CnRpdoNotification
+                        const sensorId = data.result.data.pdid;
+                        const sensorName = data.result.data.name;
+                        const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
+                        const sensorValue = data.result.data.data;
+                        const unit = Object.prototype.hasOwnProperty.call(this.sensorUnits, sensorId) ? this.sensorUnits[sensorId] : '';
+    
+                        await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
+                            type: 'state',
+                            common: {
+                                name: sensorName + ' (' + sensorId + ')',
+                                type: 'string',
+                                role: 'value',
+                                unit: unit,
+                                read: true,
+                                write: false
+                            },
+                            native: {}
+                        });
+                        this.setState('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
+                    } else if (data.kind == 68) { // 68 = VersionConfirm
+                        this.setState('version.comfonet', {val: data.result.data.comfoNetVersion, ack: true});
+                        this.setState('version.serial', {val: data.result.data.serialNumber, ack: true});
+                        this.setState('version.gateway', {val: data.result.data.gatewayVersion, ack: true});
+                    }
                 }
             });
 
@@ -135,7 +141,10 @@ class Comfoairq extends utils.Adapter {
                 this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
             }
 
+            this.zehnder.VersionRequest();
+
             this.setState('info.connection', true, true);
+            this.subscribeStates('*');
         } else {
             this.log.error('No active sensors found in configuration - stopping');
         }
@@ -174,12 +183,10 @@ class Comfoairq extends utils.Adapter {
      * @param {ioBroker.State | null | undefined} state
      */
     onStateChange(id, state) {
-        if (state) {
-            // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-        } else {
-            // The state was deleted
-            this.log.info(`state ${id} deleted`);
+        if (id && state && !state.ack) {
+            this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+
+            
         }
     }
 }
