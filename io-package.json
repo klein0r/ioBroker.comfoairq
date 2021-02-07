@@ -55,7 +55,8 @@
         ]
     },
     "native": {
-        "pin": "0000"
+        "pin": "0000",
+        "port": "56747"
     },
     "objects": [],
     "instanceObjects": [

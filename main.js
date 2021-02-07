@@ -73,78 +73,103 @@ class Comfoairq extends utils.Adapter {
         if (this.sensors.length > 0) {
             this.log.debug('Active sensors by configuration: ' + JSON.stringify(this.sensors));
 
-            this.zehnder = new comfoconnect(
-                {
-                    "pin": parseInt(this.config.pin),
-                    "uuid" : "20200428000000000000000009080408",
-                    "device" : "iobroker",
-                    "multicast": "172.16.255.255",
-                    "comfoair": this.config.host,
-                    "comfouuid": this.config.uuid,
-                    "debug": false,
-                    "logger": this.log.debug
-                }
-            );
+            /*
+            this.getForeignObjectAsync('system.adapter.' + this.namespace).then(data => {
+                this.log.debug('Current configuration: ' + JSON.stringify(data));
+            });
+            */
 
-            this.log.debug('register receive handler...');
-            this.zehnder.on('receive', async (data) => {
-                this.log.debug('received: ' + JSON.stringify(data));
-
-                if (data && data.result.error == 'OK') {
-                    if (data.kind == 40) { // 40 = CnRpdoNotification
-                        const sensorId = data.result.data.pdid;
-                        const sensorName = data.result.data.name;
-                        const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
-                        const sensorValue = data.result.data.data;
-                        const unit = Object.prototype.hasOwnProperty.call(this.sensorUnits, sensorId) ? this.sensorUnits[sensorId] : '';
-    
-                        await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
-                            type: 'state',
-                            common: {
-                                name: sensorName + ' (' + sensorId + ')',
-                                type: 'string',
-                                role: 'value',
-                                unit: unit,
-                                read: true,
-                                write: false
-                            },
-                            native: {}
-                        });
-                        this.setState('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
-                    } else if (data.kind == 68) { // 68 = VersionConfirm
-                        this.setState('version.comfonet', {val: data.result.data.comfoNetVersion, ack: true});
-                        this.setState('version.serial', {val: data.result.data.serialNumber, ack: true});
-                        this.setState('version.gateway', {val: data.result.data.gatewayVersion, ack: true});
+            if (this.config.host && this.config.port && this.config.uuid) {
+                this.zehnder = new comfoconnect(
+                    {
+                        'pin': parseInt(this.config.pin),
+                        'uuid' : '20200428000000000000000009080408',
+                        'device' : 'iobroker',
+                        'multicast': '172.16.255.255',
+                        'comfoair': this.config.host,
+                        'port': Number(this.config.port),
+                        'comfouuid': this.config.uuid,
+                        'debug': false,
+                        'logger': this.log.debug
                     }
+                );
+    
+                this.log.debug('register receive handler...');
+                this.zehnder.on('receive', async (data) => {
+                    this.log.debug('received: ' + JSON.stringify(data));
+    
+                    if (data && data.result.error == 'OK') {
+                        if (data.kind == 40) { // 40 = CnRpdoNotification
+                            const sensorId = data.result.data.pdid;
+                            const sensorName = data.result.data.name;
+                            const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
+                            const sensorValue = data.result.data.data;
+                            const unit = Object.prototype.hasOwnProperty.call(this.sensorUnits, sensorId) ? this.sensorUnits[sensorId] : '';
+        
+                            await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
+                                type: 'state',
+                                common: {
+                                    name: sensorName + ' (' + sensorId + ')',
+                                    type: 'string',
+                                    role: 'value',
+                                    unit: unit,
+                                    read: true,
+                                    write: false
+                                },
+                                native: {}
+                            });
+                            this.setState('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
+                        } else if (data.kind == 68) { // 68 = VersionConfirm
+                            this.setState('version.comfonet', {val: data.result.data.comfoNetVersion, ack: true});
+                            this.setState('version.serial', {val: data.result.data.serialNumber, ack: true});
+                            this.setState('version.gateway', {val: data.result.data.gatewayVersion, ack: true});
+                        }
+                    }
+                });
+    
+                this.log.debug('register disconnect handler...');
+                this.zehnder.on('disconnect', (reason) => {
+                    if (reason.state == 'OTHER_SESSION') {
+                        this.log.warn('Other session started: ' + JSON.stringify(reason));
+                        this.setState('info.connection', false, true);
+                    }
+                });
+    
+                this.log.debug('register the app...');
+                let registerAppResult = await this.zehnder.RegisterApp();
+                this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
+    
+                // Start the session
+                this.log.debug('startSession');
+                const startSessionResult = await this.zehnder.StartSession(true);
+                this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
+    
+                for (let i = 0; i < this.sensors.length; i++) {
+                    let registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
+                    this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
                 }
-            });
+    
+                this.zehnder.VersionRequest();
+    
+                this.setState('info.connection', true, true);
+                this.subscribeStates('*');
+            } else {
+                // Dicover Zehnder devices
+                this.log.error('Device information not configured - starting discovery');
 
-            this.log.debug('register disconnect handler...');
-            this.zehnder.on('disconnect', (reason) => {
-                if (reason.state == 'OTHER_SESSION') {
-                    this.log.warn('Other session started: ' + JSON.stringify(reason));
-                    this.setState('info.connection', false, true);
-                }
-            });
+                this.zehnder = new comfoconnect(
+                    {
+                        'uuid' : '20200428000000000000000009080408',
+                        'device' : 'iobroker',
+                        'multicast': '172.16.255.255',
+                        'debug': false,
+                        'logger': this.log.debug
+                    }
+                );
 
-            this.log.debug('register the app...');
-            let registerAppResult = await this.zehnder.RegisterApp();
-            this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
-
-            // Start the session
-            this.log.debug('startSession');
-            const startSessionResult = await this.zehnder.StartSession(true);
-            this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
-
-            for (let i = 0; i < this.sensors.length; i++) {
-                let registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
-                this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
+                const discoverResult = await this.zehnder.discover();
+                this.log.debug(`discoverResult ${id} changed: ${state.val} (ack = ${state.ack})`);
             }
-
-            this.zehnder.VersionRequest();
-
-            this.setState('info.connection', true, true);
-            this.subscribeStates('*');
         } else {
             this.log.error('No active sensors found in configuration - stopping');
         }
