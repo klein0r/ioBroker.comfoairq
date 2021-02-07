@@ -186,7 +186,34 @@ class Comfoairq extends utils.Adapter {
         if (id && state && !state.ack) {
             this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
-            
+            const matches = id.match(new RegExp(this.namespace + '.command.([a-zA-Z0-9]+)'));
+            if (matches) {
+                const command = matches[1];
+
+                switch (command) {
+
+                    case 'fanModeAway':
+                        this.log.debug('Sending command: FAN_MODE_AWAY');
+                        this.zehnder.SendCommand(1, 'FAN_MODE_AWAY');
+                        break;
+
+                    case 'fanModeLow':
+                        this.log.debug('Sending command: FAN_MODE_LOW');
+                        this.zehnder.SendCommand(1, 'FAN_MODE_LOW');
+                        break;
+
+                    case 'fanModeMedium':
+                        this.log.debug('Sending command: FAN_MODE_MEDIUM');
+                        this.zehnder.SendCommand(1, 'FAN_MODE_MEDIUM');
+                        break;
+
+                    case 'fanModeHigh':
+                        this.log.debug('Sending command: FAN_MODE_HIGH');
+                        this.zehnder.SendCommand(1, 'FAN_MODE_HIGH');
+                        break;
+
+                }
+            }
         }
     }
 }

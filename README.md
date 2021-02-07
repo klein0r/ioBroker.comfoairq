@@ -31,6 +31,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
 * (klein0r) Subscribe to sensors
 * (klein0r) Units for sensor values
 * (klein0r) Get version information
+* (klein0r) Control fan speed with command
 
 ### 0.0.2
 
