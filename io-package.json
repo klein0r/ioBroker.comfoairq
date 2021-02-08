@@ -22,8 +22,8 @@
             "de": "ComfoAirQ"
         },
         "desc": {
-            "en": "Zehnder ComfoAirQ over ComfoConnect LAN C",
-            "de": "Zehnder ComfoAirQ über ComfoConnect LAN C"
+            "en": "Zehnder ComfoAirQ over ComfoConnect LAN C (e.g. Q350)",
+            "de": "Zehnder ComfoAirQ über ComfoConnect LAN C (z.B. Q350)"
         },
         "authors": [
             "Matthias Kleine <info@haus-automatisierung.com>"
@@ -174,6 +174,54 @@
             "type": "state",
             "common": {
                 "name": "Fan Mode High",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.fanBoost10m",
+            "type": "state",
+            "common": {
+                "name": "Fan Boost 10 minutes",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.fanBoost20m",
+            "type": "state",
+            "common": {
+                "name": "Fan Boost 20 minutes",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.fanBoost30m",
+            "type": "state",
+            "common": {
+                "name": "Fan Boost 30 minutes",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.fanBoostEnd",
+            "type": "state",
+            "common": {
+                "name": "Fan Boost end",
                 "role": "button",
                 "type": "boolean",
                 "read": false,

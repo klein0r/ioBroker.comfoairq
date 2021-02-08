@@ -235,6 +235,26 @@ class Comfoairq extends utils.Adapter {
                         this.zehnder.SendCommand(1, 'FAN_MODE_HIGH');
                         break;
 
+                    case 'fanBoost10m':
+                        this.log.debug('Sending command: FAN_BOOST_10M');
+                        this.zehnder.SendCommand(1, 'FAN_BOOST_10M');
+                        break;
+
+                    case 'fanBoost20m':
+                        this.log.debug('Sending command: FAN_BOOST_20M');
+                        this.zehnder.SendCommand(1, 'FAN_BOOST_20M');
+                        break;
+
+                    case 'fanBoost30m':
+                        this.log.debug('Sending command: FAN_BOOST_30M');
+                        this.zehnder.SendCommand(1, 'FAN_BOOST_30M');
+                        break;
+
+                    case 'fanBoostEnd':
+                        this.log.debug('Sending command: FAN_BOOST_END');
+                        this.zehnder.SendCommand(1, 'FAN_BOOST_END');
+                        break;
+
                 }
             }
         }

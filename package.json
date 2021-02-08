@@ -1,7 +1,7 @@
 {
   "name": "iobroker.comfoairq",
   "version": "0.0.3",
-  "description": "Connect your Zehnder ComfoAirQ over ComfoConnect LAN C",
+  "description": "ioBroker ComfoAirQ Adapter",
   "author": {
     "name": "Matthias Kleine",
     "email": "info@haus-automatisierung.com"
@@ -9,6 +9,9 @@
   "homepage": "https://github.com/klein0r/ioBroker.comfoairq",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
+    "Smart Home",
+    "home automation",
     "KWL",
     "Zehnder",
     "Lüftung",
@@ -16,11 +19,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:klein0r/ioBroker.comfoairq.git"
+    "url": "https://github.com/klein0r/ioBroker.comfoairq"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0",
-    "node-comfoairq": "^0.5.5"
+    "comfoairq": "^0.6.0"
   },
   "devDependencies": {
     "@iobroker/testing": "^2.2.0",
