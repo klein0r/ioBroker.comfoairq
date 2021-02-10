@@ -314,6 +314,42 @@
             "native": {}
         },
         {
+            "_id": "command.bypassOn",
+            "type": "state",
+            "common": {
+                "name": "Bypass on",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.bypassOff",
+            "type": "state",
+            "common": {
+                "name": "Bypass off",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.bypassAuto",
+            "type": "state",
+            "common": {
+                "name": "Bypass auto",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
           "_id":  "sensor",
           "type": "channel",
           "common": {

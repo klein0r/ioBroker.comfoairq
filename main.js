@@ -290,6 +290,21 @@ class Comfoairq extends utils.Adapter {
                         this.zehnder.SendCommand(1, 'TEMPPROF_WARM');
                         break;
 
+                    case 'bypassOn':
+                        this.log.debug('Sending command: BYPASS_ON');
+                        this.zehnder.SendCommand(1, 'BYPASS_ON');
+                        break;
+
+                    case 'bypassOff':
+                        this.log.debug('Sending command: BYPASS_OFF');
+                        this.zehnder.SendCommand(1, 'BYPASS_OFF');
+                        break;
+
+                    case 'bypassAuto':
+                        this.log.debug('Sending command: BYPASS_AUTO');
+                        this.zehnder.SendCommand(1, 'BYPASS_AUTO');
+                        break;
+
                 }
             }
         }
