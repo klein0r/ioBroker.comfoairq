@@ -74,7 +74,6 @@ class Comfoairq extends utils.Adapter {
         });
         */
 
-
         if (this.config.host && this.config.port && this.config.uuid) {
             if (this.sensors.length > 0) {
                 this.log.debug('Active sensors by configuration: ' + JSON.stringify(this.sensors));
@@ -153,11 +152,11 @@ class Comfoairq extends utils.Adapter {
                 this.setState('info.connection', true, true);
                 this.subscribeStates('*');
             } else {
-                this.log.error('No active sensors found in configuration - stopping');
+                this.log.warn('No active sensors found in configuration - stopping');
             }
         } else {
             // Dicover Zehnder devices
-            this.log.error('Device information not configured - starting discovery');
+            this.log.warn('Device information not configured - starting discovery');
 
             this.zehnder = new comfoconnect(
                 {
