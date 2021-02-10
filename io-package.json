@@ -278,6 +278,42 @@
             "native": {}
         },
         {
+            "_id": "command.tempprofNormal",
+            "type": "state",
+            "common": {
+                "name": "Temperature profile normal",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.tempprofCool",
+            "type": "state",
+            "common": {
+                "name": "Temperature profile cool",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.tempprofWarm",
+            "type": "state",
+            "common": {
+                "name": "Temperature profile warm",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
           "_id":  "sensor",
           "type": "channel",
           "common": {

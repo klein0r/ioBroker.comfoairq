@@ -275,6 +275,21 @@ class Comfoairq extends utils.Adapter {
                         this.zehnder.SendCommand(1, 'VENTMODE_BALANCE');
                         break;
 
+                    case 'tempprofNormal':
+                        this.log.debug('Sending command: TEMPPROF_NORMAL');
+                        this.zehnder.SendCommand(1, 'TEMPPROF_NORMAL');
+                        break;
+
+                    case 'tempprofCool':
+                        this.log.debug('Sending command: TEMPPROF_COOL');
+                        this.zehnder.SendCommand(1, 'TEMPPROF_COOL');
+                        break;
+
+                    case 'tempprofWarm':
+                        this.log.debug('Sending command: TEMPPROF_WARM');
+                        this.zehnder.SendCommand(1, 'TEMPPROF_WARM');
+                        break;
+
                 }
             }
         }
