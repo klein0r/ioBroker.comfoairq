@@ -68,16 +68,17 @@ class Comfoairq extends utils.Adapter {
             }
         }
 
-        if (this.sensors.length > 0) {
-            this.log.debug('Active sensors by configuration: ' + JSON.stringify(this.sensors));
+        /*
+        this.getForeignObjectAsync('system.adapter.' + this.namespace).then(data => {
+            this.log.debug('Current configuration: ' + JSON.stringify(data));
+        });
+        */
 
-            /*
-            this.getForeignObjectAsync('system.adapter.' + this.namespace).then(data => {
-                this.log.debug('Current configuration: ' + JSON.stringify(data));
-            });
-            */
 
-            if (this.config.host && this.config.port && this.config.uuid) {
+        if (this.config.host && this.config.port && this.config.uuid) {
+            if (this.sensors.length > 0) {
+                this.log.debug('Active sensors by configuration: ' + JSON.stringify(this.sensors));
+
                 this.zehnder = new comfoconnect(
                     {
                         'pin': parseInt(this.config.pin),
@@ -152,24 +153,23 @@ class Comfoairq extends utils.Adapter {
                 this.setState('info.connection', true, true);
                 this.subscribeStates('*');
             } else {
-                // Dicover Zehnder devices
-                this.log.error('Device information not configured - starting discovery');
-
-                this.zehnder = new comfoconnect(
-                    {
-                        'uuid' : '20200428000000000000000009080408',
-                        'device' : 'iobroker',
-                        'multicast': '172.16.255.255',
-                        'debug': false,
-                        'logger': this.log.debug
-                    }
-                );
-
-                //const discoverResult = await this.zehnder.discover();
-
+                this.log.error('No active sensors found in configuration - stopping');
             }
         } else {
-            this.log.error('No active sensors found in configuration - stopping');
+            // Dicover Zehnder devices
+            this.log.error('Device information not configured - starting discovery');
+
+            this.zehnder = new comfoconnect(
+                {
+                    'uuid' : '20200428000000000000000009080408',
+                    'device' : 'iobroker',
+                    'multicast': '172.16.255.255',
+                    'debug': false,
+                    'logger': this.log.debug
+                }
+            );
+
+            //const discoverResult = await this.zehnder.discover();
         }
     }
 
@@ -253,6 +253,26 @@ class Comfoairq extends utils.Adapter {
                     case 'fanBoostEnd':
                         this.log.debug('Sending command: FAN_BOOST_END');
                         this.zehnder.SendCommand(1, 'FAN_BOOST_END');
+                        break;
+
+                    case 'modeAuto':
+                        this.log.debug('Sending command: MODE_AUTO');
+                        this.zehnder.SendCommand(1, 'MODE_AUTO');
+                        break;
+
+                    case 'modeManual':
+                        this.log.debug('Sending command: MODE_MANUAL');
+                        this.zehnder.SendCommand(1, 'MODE_MANUAL');
+                        break;
+
+                    case 'ventmodeSupply':
+                        this.log.debug('Sending command: VENTMODE_SUPPLY');
+                        this.zehnder.SendCommand(1, 'VENTMODE_SUPPLY');
+                        break;
+
+                    case 'ventmodeBalance':
+                        this.log.debug('Sending command: VENTMODE_BALANCE');
+                        this.zehnder.SendCommand(1, 'VENTMODE_BALANCE');
                         break;
 
                 }

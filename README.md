@@ -16,6 +16,8 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 *Tested with ComfoAirQ 350*
 
+**Important:** ComfoConnect LAN C supports just 1 single client. You cannot use the ComfoControl App and the ioBroker adapter at the same time!
+
 ## Credits
 
 Development of this ioBroker Adapter was possible on the work performed by:
@@ -31,7 +33,8 @@ Development of this ioBroker Adapter was possible on the work performed by:
 * (klein0r) Subscribe to sensors
 * (klein0r) Units for sensor values
 * (klein0r) Get version information
-* (klein0r) Control fan speed with command
+* (klein0r) Control fan speed
+* (klein0r) Control fan boost
 
 ### 0.0.2
 

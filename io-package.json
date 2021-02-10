@@ -230,6 +230,54 @@
             "native": {}
         },
         {
+            "_id": "command.modeAuto",
+            "type": "state",
+            "common": {
+                "name": "Mode Auto",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.modeManual",
+            "type": "state",
+            "common": {
+                "name": "Mode Auto",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.ventmodeSupply",
+            "type": "state",
+            "common": {
+                "name": "Vent mode Supply",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "command.ventmodeBalance",
+            "type": "state",
+            "common": {
+                "name": "Vent mode Balance",
+                "role": "button",
+                "type": "boolean",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
           "_id":  "sensor",
           "type": "channel",
           "common": {
