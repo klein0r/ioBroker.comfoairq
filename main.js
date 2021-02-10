@@ -4,7 +4,7 @@
 'use strict';
 
 const utils        = require('@iobroker/adapter-core');
-const comfoconnect = require('node-comfoairq');
+const comfoconnect = require('comfoairq');
 const adapterName  = require('./package.json').name.split('.').pop();
 
 class Comfoairq extends utils.Adapter {
