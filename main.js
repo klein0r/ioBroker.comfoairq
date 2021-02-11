@@ -18,6 +18,11 @@ class Comfoairq extends utils.Adapter {
             name: adapterName,
         });
 
+        this.connected = false;
+
+        this.uuid = '20200428000000000000000009080408';
+        this.deviceName = 'iobroker';
+
         this.zehnder = null;
         this.sensors = [];
 
@@ -80,13 +85,14 @@ class Comfoairq extends utils.Adapter {
 
                 this.zehnder = new comfoconnect(
                     {
-                        'pin': parseInt(this.config.pin),
-                        'uuid' : '20200428000000000000000009080408',
-                        'device' : 'iobroker',
-                        'multicast': '172.16.255.255',
+                        'uuid' : this.uuid,
+                        'device' : this.deviceName,
+
                         'comfoair': this.config.host,
                         'port': Number(this.config.port),
                         'comfouuid': this.config.uuid,
+                        'pin': parseInt(this.config.pin),
+
                         'debug': false,
                         'logger': this.log.debug
                     }
@@ -117,6 +123,7 @@ class Comfoairq extends utils.Adapter {
                                 native: {}
                             });
                             this.setState('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
+
                         } else if (data.kind == 68) { // 68 = VersionConfirm
                             this.setState('version.comfonet', {val: data.result.data.comfoNetVersion, ack: true});
                             this.setState('version.serial', {val: data.result.data.serialNumber, ack: true});
@@ -129,8 +136,9 @@ class Comfoairq extends utils.Adapter {
                 this.zehnder.on('disconnect', (reason) => {
                     if (reason.state == 'OTHER_SESSION') {
                         this.log.warn('Other session started: ' + JSON.stringify(reason));
-                        this.setState('info.connection', false, true);
                     }
+
+                    this.setState('info.connection', false, true);
                 });
 
                 this.log.debug('register the app...');
@@ -150,6 +158,7 @@ class Comfoairq extends utils.Adapter {
                 this.zehnder.VersionRequest();
 
                 this.setState('info.connection', true, true);
+                this.connected = true;
                 this.subscribeStates('*');
             } else {
                 this.log.warn('No active sensors found in configuration - stopping');
@@ -160,15 +169,20 @@ class Comfoairq extends utils.Adapter {
 
             this.zehnder = new comfoconnect(
                 {
-                    'uuid' : '20200428000000000000000009080408',
-                    'device' : 'iobroker',
-                    'multicast': '172.16.255.255',
+                    'uuid' : this.uuid,
+                    'device' : this.deviceName,
+                    'port': Number(this.config.port),
                     'debug': false,
                     'logger': this.log.debug
                 }
             );
 
-            //const discoverResult = await this.zehnder.discover();
+            try {
+                const discoverResult = await this.zehnder.discover('172.16.255.255');
+                this.log.info('Device discovery finished: ' + JSON.stringify(discoverResult));
+            } catch (ex) {
+                this.log.error('error while discovery: ' + JSON.stringify(ex));
+            }
         }
     }
 
@@ -208,102 +222,104 @@ class Comfoairq extends utils.Adapter {
         if (id && state && !state.ack) {
             this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
-            const matches = id.match(new RegExp(this.namespace + '.command.([a-zA-Z0-9]+)'));
-            if (matches) {
-                const command = matches[1];
+            if (this.connected) {
+                const matches = id.match(new RegExp(this.namespace + '.command.([a-zA-Z0-9]+)'));
+                if (matches) {
+                    const command = matches[1];
 
-                switch (command) {
+                    switch (command) {
 
-                    case 'fanModeAway':
-                        this.log.debug('Sending command: FAN_MODE_AWAY');
-                        this.zehnder.SendCommand(1, 'FAN_MODE_AWAY');
-                        break;
+                        case 'fanModeAway':
+                            this.log.debug('Sending command: FAN_MODE_AWAY');
+                            this.zehnder.SendCommand(1, 'FAN_MODE_AWAY');
+                            break;
 
-                    case 'fanModeLow':
-                        this.log.debug('Sending command: FAN_MODE_LOW');
-                        this.zehnder.SendCommand(1, 'FAN_MODE_LOW');
-                        break;
+                        case 'fanModeLow':
+                            this.log.debug('Sending command: FAN_MODE_LOW');
+                            this.zehnder.SendCommand(1, 'FAN_MODE_LOW');
+                            break;
 
-                    case 'fanModeMedium':
-                        this.log.debug('Sending command: FAN_MODE_MEDIUM');
-                        this.zehnder.SendCommand(1, 'FAN_MODE_MEDIUM');
-                        break;
+                        case 'fanModeMedium':
+                            this.log.debug('Sending command: FAN_MODE_MEDIUM');
+                            this.zehnder.SendCommand(1, 'FAN_MODE_MEDIUM');
+                            break;
 
-                    case 'fanModeHigh':
-                        this.log.debug('Sending command: FAN_MODE_HIGH');
-                        this.zehnder.SendCommand(1, 'FAN_MODE_HIGH');
-                        break;
+                        case 'fanModeHigh':
+                            this.log.debug('Sending command: FAN_MODE_HIGH');
+                            this.zehnder.SendCommand(1, 'FAN_MODE_HIGH');
+                            break;
 
-                    case 'fanBoost10m':
-                        this.log.debug('Sending command: FAN_BOOST_10M');
-                        this.zehnder.SendCommand(1, 'FAN_BOOST_10M');
-                        break;
+                        case 'fanBoost10m':
+                            this.log.debug('Sending command: FAN_BOOST_10M');
+                            this.zehnder.SendCommand(1, 'FAN_BOOST_10M');
+                            break;
 
-                    case 'fanBoost20m':
-                        this.log.debug('Sending command: FAN_BOOST_20M');
-                        this.zehnder.SendCommand(1, 'FAN_BOOST_20M');
-                        break;
+                        case 'fanBoost20m':
+                            this.log.debug('Sending command: FAN_BOOST_20M');
+                            this.zehnder.SendCommand(1, 'FAN_BOOST_20M');
+                            break;
 
-                    case 'fanBoost30m':
-                        this.log.debug('Sending command: FAN_BOOST_30M');
-                        this.zehnder.SendCommand(1, 'FAN_BOOST_30M');
-                        break;
+                        case 'fanBoost30m':
+                            this.log.debug('Sending command: FAN_BOOST_30M');
+                            this.zehnder.SendCommand(1, 'FAN_BOOST_30M');
+                            break;
 
-                    case 'fanBoostEnd':
-                        this.log.debug('Sending command: FAN_BOOST_END');
-                        this.zehnder.SendCommand(1, 'FAN_BOOST_END');
-                        break;
+                        case 'fanBoostEnd':
+                            this.log.debug('Sending command: FAN_BOOST_END');
+                            this.zehnder.SendCommand(1, 'FAN_BOOST_END');
+                            break;
 
-                    case 'modeAuto':
-                        this.log.debug('Sending command: MODE_AUTO');
-                        this.zehnder.SendCommand(1, 'MODE_AUTO');
-                        break;
+                        case 'modeAuto':
+                            this.log.debug('Sending command: MODE_AUTO');
+                            this.zehnder.SendCommand(1, 'MODE_AUTO');
+                            break;
 
-                    case 'modeManual':
-                        this.log.debug('Sending command: MODE_MANUAL');
-                        this.zehnder.SendCommand(1, 'MODE_MANUAL');
-                        break;
+                        case 'modeManual':
+                            this.log.debug('Sending command: MODE_MANUAL');
+                            this.zehnder.SendCommand(1, 'MODE_MANUAL');
+                            break;
 
-                    case 'ventmodeSupply':
-                        this.log.debug('Sending command: VENTMODE_SUPPLY');
-                        this.zehnder.SendCommand(1, 'VENTMODE_SUPPLY');
-                        break;
+                        case 'ventmodeSupply':
+                            this.log.debug('Sending command: VENTMODE_SUPPLY');
+                            this.zehnder.SendCommand(1, 'VENTMODE_SUPPLY');
+                            break;
 
-                    case 'ventmodeBalance':
-                        this.log.debug('Sending command: VENTMODE_BALANCE');
-                        this.zehnder.SendCommand(1, 'VENTMODE_BALANCE');
-                        break;
+                        case 'ventmodeBalance':
+                            this.log.debug('Sending command: VENTMODE_BALANCE');
+                            this.zehnder.SendCommand(1, 'VENTMODE_BALANCE');
+                            break;
 
-                    case 'tempprofNormal':
-                        this.log.debug('Sending command: TEMPPROF_NORMAL');
-                        this.zehnder.SendCommand(1, 'TEMPPROF_NORMAL');
-                        break;
+                        case 'tempprofNormal':
+                            this.log.debug('Sending command: TEMPPROF_NORMAL');
+                            this.zehnder.SendCommand(1, 'TEMPPROF_NORMAL');
+                            break;
 
-                    case 'tempprofCool':
-                        this.log.debug('Sending command: TEMPPROF_COOL');
-                        this.zehnder.SendCommand(1, 'TEMPPROF_COOL');
-                        break;
+                        case 'tempprofCool':
+                            this.log.debug('Sending command: TEMPPROF_COOL');
+                            this.zehnder.SendCommand(1, 'TEMPPROF_COOL');
+                            break;
 
-                    case 'tempprofWarm':
-                        this.log.debug('Sending command: TEMPPROF_WARM');
-                        this.zehnder.SendCommand(1, 'TEMPPROF_WARM');
-                        break;
+                        case 'tempprofWarm':
+                            this.log.debug('Sending command: TEMPPROF_WARM');
+                            this.zehnder.SendCommand(1, 'TEMPPROF_WARM');
+                            break;
 
-                    case 'bypassOn':
-                        this.log.debug('Sending command: BYPASS_ON');
-                        this.zehnder.SendCommand(1, 'BYPASS_ON');
-                        break;
+                        case 'bypassOn':
+                            this.log.debug('Sending command: BYPASS_ON');
+                            this.zehnder.SendCommand(1, 'BYPASS_ON');
+                            break;
 
-                    case 'bypassOff':
-                        this.log.debug('Sending command: BYPASS_OFF');
-                        this.zehnder.SendCommand(1, 'BYPASS_OFF');
-                        break;
+                        case 'bypassOff':
+                            this.log.debug('Sending command: BYPASS_OFF');
+                            this.zehnder.SendCommand(1, 'BYPASS_OFF');
+                            break;
 
-                    case 'bypassAuto':
-                        this.log.debug('Sending command: BYPASS_AUTO');
-                        this.zehnder.SendCommand(1, 'BYPASS_AUTO');
-                        break;
+                        case 'bypassAuto':
+                            this.log.debug('Sending command: BYPASS_AUTO');
+                            this.zehnder.SendCommand(1, 'BYPASS_AUTO');
+                            break;
 
+                    }
                 }
             }
         }

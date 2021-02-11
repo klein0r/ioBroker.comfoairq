@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0",
-    "comfoairq": "^0.6.0"
+    "comfoairq": "^0.6.1"
   },
   "devDependencies": {
     "@iobroker/testing": "^2.2.0",
