@@ -18,15 +18,11 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 **Important:** ComfoConnect LAN C supports just 1 single client. You cannot use the ComfoControl App and the ioBroker adapter at the same time!
 
-## Credits
-
-Development of this ioBroker Adapter was possible on the work performed by:
-
-* Jan Van Belle (https://github.com/herrJones/node-comfoairq)
-* Michael Arnauts (https://github.com/michaelarnauts/comfoconnect)
-* Marco Hoyer (https://github.com/marco-hoyer/zcan) and its forks on github (djwlindenaar, decontamin4t0R)
-
 ## Changelog
+
+### 0.0.4
+
+* (klein0r) Improved discovery of comfoairq devices
 
 ### 0.0.3
 
@@ -43,6 +39,14 @@ Development of this ioBroker Adapter was possible on the work performed by:
 ### 0.0.1
 
 * (klein0r) initial release
+
+## Credits
+
+Development of this ioBroker Adapter was possible on the work performed by:
+
+* Jan Van Belle (https://github.com/herrJones/node-comfoairq)
+* Michael Arnauts (https://github.com/michaelarnauts/comfoconnect)
+* Marco Hoyer (https://github.com/marco-hoyer/zcan) and its forks on github (djwlindenaar, decontamin4t0R)
 
 ## License
 

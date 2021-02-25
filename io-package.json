@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "comfoairq",
-        "version": "0.0.3",
+        "version": "0.0.4",
         "news": {
+            "0.0.4": {
+                "en": "Improved discovery of comfoairq devices",
+                "de": "Finden von ComfoAirQ Geräten verbessert"
+            },
             "0.0.3": {
                 "en": "Bugfixes",
                 "de": "Bugfixes"
@@ -56,7 +60,8 @@
     },
     "native": {
         "pin": "0000",
-        "port": "56747"
+        "port": "56747",
+        "multicastAddr": "192.168.1.255"
     },
     "objects": [],
     "instanceObjects": [

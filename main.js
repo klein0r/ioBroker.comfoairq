@@ -85,16 +85,16 @@ class Comfoairq extends utils.Adapter {
 
                 this.zehnder = new comfoconnect(
                     {
-                        'uuid' : this.uuid,
-                        'device' : this.deviceName,
+                        uuid: this.uuid,
+                        device: this.deviceName,
 
-                        'comfoair': this.config.host,
-                        'port': Number(this.config.port),
-                        'comfouuid': this.config.uuid,
-                        'pin': parseInt(this.config.pin),
+                        comfoair: this.config.host,
+                        port: Number(this.config.port),
+                        comfouuid: this.config.uuid,
+                        pin: parseInt(this.config.pin),
 
-                        'debug': false,
-                        'logger': this.log.debug
+                        debug: false,
+                        logger: this.log.debug
                     }
                 );
 
@@ -163,26 +163,30 @@ class Comfoairq extends utils.Adapter {
             } else {
                 this.log.warn('No active sensors found in configuration - stopping');
             }
-        } else {
+        } else if (this.config.multicastAddr && this.config.port) {
             // Dicover Zehnder devices
-            this.log.warn('Device information not configured - starting discovery');
+            this.log.warn('Device information not configured - starting discovery on ' + this.config.multicastAddr);
 
             this.zehnder = new comfoconnect(
                 {
-                    'uuid' : this.uuid,
-                    'device' : this.deviceName,
-                    'port': Number(this.config.port),
-                    'debug': false,
-                    'logger': this.log.debug
+                    uuid: this.uuid,
+                    device: this.deviceName,
+
+                    port: Number(this.config.port),
+
+                    debug: false,
+                    logger: this.log.debug
                 }
             );
 
             try {
-                const discoverResult = await this.zehnder.discover('172.16.255.255');
-                this.log.info('Device discovery finished: ' + JSON.stringify(discoverResult));
+                const discoverResult = await this.zehnder.discover(this.config.multicastAddr);
+                this.log.info('Device discovery finished - use these information for instance configuration: ' + JSON.stringify(discoverResult));
             } catch (ex) {
                 this.log.error('error while discovery: ' + JSON.stringify(ex));
             }
+        } else {
+            this.log.error('Instance configuration invalid');
         }
     }
 
