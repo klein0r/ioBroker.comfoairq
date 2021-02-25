@@ -79,7 +79,7 @@ class Comfoairq extends utils.Adapter {
         });
         */
 
-        if (this.config.host && this.config.port && this.config.uuid) {
+        if (this.config.host && this.config.port && this.config.uuid && this.config.pin) {
             if (this.sensors.length > 0) {
                 this.log.debug('Active sensors by configuration: ' + JSON.stringify(this.sensors));
 
