@@ -58,6 +58,12 @@
             }
         ]
     },
+    "protectedNative": [
+        "pin"
+    ],
+    "encryptedNative": [
+        "pin"
+    ],
     "native": {
         "pin": "0000",
         "port": "56747",
