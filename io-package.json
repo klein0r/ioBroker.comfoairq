@@ -54,7 +54,12 @@
         "materialize": true,
         "dependencies": [
             {
-                "js-controller": ">=2.0.0"
+                "js-controller": ">=3.3.0"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.19"
             }
         ]
     },
