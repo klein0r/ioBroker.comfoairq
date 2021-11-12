@@ -64,7 +64,7 @@ class Comfoairq extends utils.Adapter {
     }
 
     async onReady() {
-        this.setState('info.connection', false, true);
+        await this.setStateAsync('info.connection', false, true);
 
         // Get active sensors by configuration
         for (const key of Object.keys(this.config)) {
@@ -120,14 +120,17 @@ class Comfoairq extends utils.Adapter {
                                     read: true,
                                     write: false
                                 },
-                                native: {}
+                                native: {
+                                    sensorId: sensorId
+                                }
                             });
-                            this.setState('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
+
+                            await this.setStateAsync('sensor.' + sensorNameClean, sensorValue, true);
 
                         } else if (data.kind == 68) { // 68 = VersionConfirm
-                            this.setState('version.comfonet', {val: data.result.data.comfoNetVersion, ack: true});
-                            this.setState('version.serial', {val: data.result.data.serialNumber, ack: true});
-                            this.setState('version.gateway', {val: data.result.data.gatewayVersion, ack: true});
+                            await this.setStateAsync('version.comfonet', data.result.data.comfoNetVersion, true);
+                            await this.setStateAsync('version.serial', data.result.data.serialNumber, true);
+                            await this.setStateAsync('version.gateway', data.result.data.gatewayVersion, true);
                         }
                     }
                 });
@@ -138,7 +141,7 @@ class Comfoairq extends utils.Adapter {
                         this.log.warn('Other session started: ' + JSON.stringify(reason));
                     }
 
-                    this.setState('info.connection', false, true);
+                    this.setStateAsync('info.connection', false, true);
                 });
 
                 this.log.debug('register the app...');
@@ -157,7 +160,7 @@ class Comfoairq extends utils.Adapter {
 
                 this.zehnder.VersionRequest();
 
-                this.setState('info.connection', true, true);
+                await this.setStateAsync('info.connection', true, true);
                 this.connected = true;
                 this.subscribeStates('*');
             } else {
@@ -209,7 +212,7 @@ class Comfoairq extends utils.Adapter {
             this.zehnder.CloseSession();
             this.zehnder = null;
 
-            this.setState('info.connection', false, true);
+            this.setStateAsync('info.connection', false, true);
 
             callback();
         } catch (e) {
