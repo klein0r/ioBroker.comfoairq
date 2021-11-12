@@ -114,7 +114,7 @@ class Comfoairq extends utils.Adapter {
                                 type: 'state',
                                 common: {
                                     name: sensorName + ' (' + sensorId + ')',
-                                    type: 'string',
+                                    type: 'number',
                                     role: 'value',
                                     unit: unit,
                                     read: true,
