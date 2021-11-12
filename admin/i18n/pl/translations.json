@@ -1,5 +1,17 @@
 {
     "comfoairq adapter settings": "Ustawienia adaptera dla comfoairq",
     "option1": "opcja 1",
-    "option2": "Opcja 2"
+    "option2": "Opcja 2",
+    "Options": "Opcje",
+    "Sensors": "Czujniki",
+    "Broadcast Address": "Adres transmisji",
+    "Broadcast address of your network": "Adres rozgłoszeniowy Twojej sieci",
+    "Port": "Port",
+    "Default Port is 56747": "Domyślny port to 56747",
+    "IP-Adress / Hostname": "Adres IP / nazwa hosta",
+    "IP or hostname of your Zehnder ComfoConnect LAN C": "IP lub nazwa hosta Zehnder ComfoConnect LAN C",
+    "UUID": "UUID",
+    "UUID of your Zehnder ComfoConnect LAN C": "UUID Twojego Zehnder ComfoConnect LAN C",
+    "PIN": "SZPILKA",
+    "Default PIN is 0000 (can be changed in the app)": "Domyślny PIN to 0000 (można zmienić w aplikacji)"
 }

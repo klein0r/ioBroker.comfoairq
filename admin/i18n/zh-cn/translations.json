@@ -1,5 +1,17 @@
 {
     "comfoairq adapter settings": "comfoairq的适配器设置",
     "option1": "选项1",
-    "option2": "选项2"
+    "option2": "选项2",
+    "Options": "选项",
+    "Sensors": "传感器",
+    "Broadcast Address": "广播地址",
+    "Broadcast address of your network": "您网络的广播地址",
+    "Port": "港口",
+    "Default Port is 56747": "默认端口为 56747",
+    "IP-Adress / Hostname": "IP地址/主机名",
+    "IP or hostname of your Zehnder ComfoConnect LAN C": "您的 Zehnder ComfoConnect LAN C 的 IP 或主机名",
+    "UUID": "UUID",
+    "UUID of your Zehnder ComfoConnect LAN C": "您的 Zehnder ComfoConnect LAN C 的 UUID",
+    "PIN": "别针",
+    "Default PIN is 0000 (can be changed in the app)": "默认 PIN 为 0000（可在应用程序中更改）"
 }

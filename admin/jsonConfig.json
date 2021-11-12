@@ -4,7 +4,7 @@
     "items": {
         "_options": {
             "type": "panel",
-            "label": "main settings",
+            "label": "Options",
             "items": {
                 "multicastAddr": {
                     "type": "text",
@@ -61,7 +61,7 @@
         },
         "_advanced": {
             "type": "panel",
-            "label": "sensors",
+            "label": "Sensors",
             "items": {
                 "sensor_16": {
                     "type": "checkbox",
