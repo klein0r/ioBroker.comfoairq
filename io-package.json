@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "comfoairq",
-        "version": "0.0.4",
+        "version": "0.1.0",
         "news": {
+            "0.1.0": {
+                "en": "Admin 5 UI",
+                "de": "Admin 5-Benutzeroberfläche",
+                "ru": "Админ 5 UI",
+                "pt": "Admin 5 UI",
+                "nl": "Admin 5 gebruikersinterface",
+                "fr": "Interface utilisateur d'administration 5",
+                "it": "Admin 5 UI",
+                "es": "Interfaz de usuario de administrador 5",
+                "pl": "Interfejs administratora 5",
+                "zh-cn": "管理 5 用户界面"
+            },
             "0.0.4": {
                 "en": "Improved discovery of comfoairq devices",
                 "de": "Finden von ComfoAirQ Geräten verbessert",
