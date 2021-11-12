@@ -40,7 +40,6 @@
         ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "comfoairq.png",
         "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.comfoairq/master/admin/comfoairq.png",
         "enabled": true,
@@ -51,7 +50,6 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "poll",
-        "materialize": true,
         "dependencies": [
             {
                 "js-controller": ">=3.3.0"
