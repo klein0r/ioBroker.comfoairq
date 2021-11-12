@@ -50,6 +50,9 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "poll",
+        "adminUI": {
+            "config": "json"
+        },
         "dependencies": [
             {
                 "js-controller": ">=3.3.0"
@@ -70,7 +73,43 @@
     "native": {
         "pin": "0000",
         "port": "56747",
-        "multicastAddr": "192.168.1.255"
+        "multicastAddr": "192.168.1.255",
+        "sensor_16": false,
+        "sensor_49": false,
+        "sensor_56": false,
+        "sensor_65": false,
+        "sensor_66": false,
+        "sensor_67": false,
+        "sensor_81": false,
+        "sensor_117": false,
+        "sensor_118": false,
+        "sensor_119": false,
+        "sensor_120": false,
+        "sensor_121": false,
+        "sensor_122": false,
+        "sensor_128": false,
+        "sensor_129": false,
+        "sensor_130": false,
+        "sensor_144": false,
+        "sensor_145": false,
+        "sensor_146": false,
+        "sensor_192": false,
+        "sensor_209": false,
+        "sensor_213": false,
+        "sensor_214": false,
+        "sensor_215": false,
+        "sensor_216": false,
+        "sensor_217": false,
+        "sensor_218": false,
+        "sensor_221": false,
+        "sensor_227": false,
+        "sensor_274": false,
+        "sensor_275": false,
+        "sensor_276": false,
+        "sensor_290": false,
+        "sensor_291": false,
+        "sensor_292": false,
+        "sensor_294": false
     },
     "objects": [],
     "instanceObjects": [
