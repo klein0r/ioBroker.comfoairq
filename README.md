@@ -18,6 +18,10 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 **Important:** ComfoConnect LAN C supports just 1 single client. You cannot use the ComfoControl App and the ioBroker adapter at the same time!
 
+## Sponsored by
+
+[![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png)](https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-comfoairq)
+
 ## Changelog
 
 <!--
