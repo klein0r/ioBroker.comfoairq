@@ -8,7 +8,7 @@
 [![installed](http://iobroker.live/badges/comfoairq-installed.svg)](http://iobroker.live/badges/comfoairq-installed.svg)
 [![Dependency Status](https://img.shields.io/david/klein0r/iobroker.comfoairq.svg)](https://david-dm.org/klein0r/iobroker.comfoairq)
 [![Known Vulnerabilities](https://snyk.io/test/github/klein0r/ioBroker.comfoairq/badge.svg)](https://snyk.io/test/github/klein0r/ioBroker.comfoairq)
-[![Build Status](http://img.shields.io/travis/klein0r/ioBroker.comfoairq.svg)](https://travis-ci.com/klein0r/ioBroker.comfoairq)
+![Test and Release](https://github.com/klein0r/ioBroker.comfoairq/workflows/Test%20and%20Release/badge.svg)
 
 [![NPM](https://nodei.co/npm/iobroker.comfoairq.png?downloads=true)](https://nodei.co/npm/iobroker.comfoairq/)
 
