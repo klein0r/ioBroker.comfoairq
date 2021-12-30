@@ -115,12 +115,12 @@
         },
         "dependencies": [
             {
-                "js-controller": ">=3.3.0"
+                "js-controller": ">=3.3.19"
             }
         ],
         "globalDependencies": [
             {
-                "admin": ">=5.1.19"
+                "admin": ">=5.1.28"
             }
         ]
     },

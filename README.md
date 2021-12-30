@@ -29,6 +29,11 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
   ### **WORK IN PROGRESS**
 -->
 
+### **WORK IN PROGRESS**
+
+* (klein0r) Translated all objects
+* (klein0r) Updated dependencies
+
 ### 0.1.0
 
 * (klein0r) Admin 5 UI
