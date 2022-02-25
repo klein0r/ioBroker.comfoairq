@@ -12,6 +12,6 @@
     "IP or hostname of your Zehnder ComfoConnect LAN C": "IP o nome host del tuo Zehnder ComfoConnect LAN C",
     "UUID": "UUID",
     "UUID of your Zehnder ComfoConnect LAN C": "UUID del tuo Zehnder ComfoConnect LAN C",
-    "PIN": "SPILLO",
+    "PIN": "Codice PIN",
     "Default PIN is 0000 (can be changed in the app)": "Il PIN predefinito è 0000 (può essere modificato nell'app)"
 }

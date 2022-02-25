@@ -12,6 +12,6 @@
     "IP or hostname of your Zehnder ComfoConnect LAN C": "IP of hostnaam van uw Zehnder ComfoConnect LAN C",
     "UUID": "UUID",
     "UUID of your Zehnder ComfoConnect LAN C": "UUID van uw Zehnder ComfoConnect LAN C",
-    "PIN": "PIN",
+    "PIN": "Pincode",
     "Default PIN is 0000 (can be changed in the app)": "Standaard pincode is 0000 (kan worden gewijzigd in de app)"
 }
