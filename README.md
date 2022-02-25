@@ -34,6 +34,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 * (klein0r) Translated all objects
 * (klein0r) Updated dependencies
 * (klein0r) Added hint for Admin 4 configuration
+* (klein0r) Translated all objects
 
 ### 0.1.0
 
