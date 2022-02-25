@@ -119,12 +119,12 @@ class Comfoairq extends utils.Adapter {
                                 }
                             });
 
-                            await this.setStateAsync('sensor.' + sensorNameClean, sensorValue, true);
+                            await this.setStateAsync('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
 
                         } else if (data.kind == 68) { // 68 = VersionConfirm
-                            await this.setStateAsync('version.comfonet', data.result.data.comfoNetVersion, true);
-                            await this.setStateAsync('version.serial', data.result.data.serialNumber, true);
-                            await this.setStateAsync('version.gateway', data.result.data.gatewayVersion, true);
+                            await this.setStateAsync('version.comfonet', {val: data.result.data.comfoNetVersion.toString(), ack: true});
+                            await this.setStateAsync('version.serial', {val: data.result.data.serialNumber.toString(), ack: true});
+                            await this.setStateAsync('version.gateway', {val: data.result.data.gatewayVersion.toString(), ack: true});
                         }
                     }
                 });
