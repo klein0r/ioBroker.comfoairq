@@ -66,253 +66,253 @@
                 "sensor_16": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_AWAY_INDICATOR (16)"
                 },
                 "sensor_49": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_OPERATING_MODE_BIS (49)"
                 },
                 "sensor_56": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_OPERATING_MODE (56)"
                 },
                 "sensor_65": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_SPEED_MODE (65)"
                 },
                 "sensor_66": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_BYPASS_ACTIVATION_MODE (66)"
                 },
                 "sensor_67": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_TEMPERATURE_PROFILE (67)"
                 },
                 "sensor_81": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_NEXT_CHANGE (81)"
                 },
                 "sensor_117": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_EXHAUST_DUTY (117)"
                 },
                 "sensor_118": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_SUPPLY_DUTY (118)"
                 },
                 "sensor_119": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_EXHAUST_FLOW (119)"
                 },
                 "sensor_120": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_SUPPLY_FLOW (120)"
                 },
                 "sensor_121": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_EXHAUST_SPEED (121)"
                 },
                 "sensor_122": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_FAN_SUPPLY_SPEED (122)"
                 },
                 "sensor_128": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_POWER_CURRENT (128)"
                 },
                 "sensor_129": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_POWER_TOTAL_YEAR (129)"
                 },
                 "sensor_130": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_POWER_TOTAL (130)"
                 },
                 "sensor_144": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_PREHEATER_POWER_TOTAL_YEAR (144)"
                 },
                 "sensor_145": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_PREHEATER_POWER_TOTAL (145)"
                 },
                 "sensor_146": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_PREHEATER_POWER_CURRENT (146)"
                 },
                 "sensor_192": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_DAYS_TO_REPLACE_FILTER (192)"
                 },
                 "sensor_209": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_CURRENT_RMOT (209)"
                 },
                 "sensor_213": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_AVOIDED_HEATING_CURRENT (213)"
                 },
                 "sensor_214": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_AVOIDED_HEATING_TOTAL_YEAR (214)"
                 },
                 "sensor_215": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_AVOIDED_HEATING_TOTAL (215)"
                 },
                 "sensor_216": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_AVOIDED_COOLING_CURRENT (216)"
                 },
                 "sensor_217": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_AVOIDED_COOLING_TOTAL_YEAR (217)"
                 },
                 "sensor_218": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_AVOIDED_COOLING_TOTAL (218)"
                 },
                 "sensor_221": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_TEMPERATURE_SUPPLY (221)"
                 },
                 "sensor_227": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_BYPASS_STATE (227)"
                 },
                 "sensor_274": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_TEMPERATURE_EXTRACT (274)"
                 },
                 "sensor_275": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_TEMPERATURE_EXHAUST (275)"
                 },
                 "sensor_276": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_TEMPERATURE_OUTDOOR (276)"
                 },
                 "sensor_290": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_HUMIDITY_EXTRACT (290)"
                 },
                 "sensor_291": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_HUMIDITY_EXHAUST (291)"
                 },
                 "sensor_292": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_HUMIDITY_OUTDOOR (292)"
                 },
                 "sensor_294": {
                     "type": "checkbox",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 3,
+                    "md": 6,
+                    "lg": 4,
                     "label": "SENSOR_HUMIDITY_SUPPLY (294)"
                 }
             }
