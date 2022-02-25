@@ -73,15 +73,9 @@ class Comfoairq extends utils.Adapter {
             }
         }
 
-        /*
-        this.getForeignObjectAsync('system.adapter.' + this.namespace).then(data => {
-            this.log.debug('Current configuration: ' + JSON.stringify(data));
-        });
-        */
-
         if (this.config.host && this.config.port && this.config.uuid && this.config.pin) {
             if (this.sensors.length > 0) {
-                this.log.debug('Active sensors by configuration: ' + JSON.stringify(this.sensors));
+                this.log.debug(`Active sensors by configuration: ${JSON.stringify(this.sensors)}`);
 
                 this.zehnder = new comfoconnect(
                     {
@@ -100,7 +94,7 @@ class Comfoairq extends utils.Adapter {
 
                 this.log.debug('register receive handler...');
                 this.zehnder.on('receive', async (data) => {
-                    this.log.debug('received: ' + JSON.stringify(data));
+                    this.log.debug(`received: ${JSON.stringify(data)}`);
 
                     if (data && data.result.error == 'OK') {
                         if (data.kind == 40) { // 40 = CnRpdoNotification
@@ -138,7 +132,7 @@ class Comfoairq extends utils.Adapter {
                 this.log.debug('register disconnect handler...');
                 this.zehnder.on('disconnect', (reason) => {
                     if (reason.state == 'OTHER_SESSION') {
-                        this.log.warn('Other session started: ' + JSON.stringify(reason));
+                        this.log.warn(`Other session started: ${JSON.stringify(reason)}`);
                     }
 
                     this.setStateAsync('info.connection', false, true);
@@ -146,16 +140,16 @@ class Comfoairq extends utils.Adapter {
 
                 this.log.debug('register the app...');
                 const registerAppResult = await this.zehnder.RegisterApp();
-                this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
+                this.log.debug(`registerAppResult: ${JSON.stringify(registerAppResult)}`);
 
                 // Start the session
                 this.log.debug('startSession');
                 const startSessionResult = await this.zehnder.StartSession(true);
-                this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
+                this.log.debug(`startSessionResult: ${JSON.stringify(startSessionResult)}`);
 
                 for (let i = 0; i < this.sensors.length; i++) {
                     const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
-                    this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
+                    this.log.debug(`Registered sensor "${this.sensors[i]}" with result: ${JSON.stringify(registerResult)}`);
                 }
 
                 this.zehnder.VersionRequest();
@@ -168,7 +162,7 @@ class Comfoairq extends utils.Adapter {
             }
         } else if (this.config.multicastAddr && this.config.port) {
             // Dicover Zehnder devices
-            this.log.warn('Device information not configured - starting discovery on ' + this.config.multicastAddr);
+            this.log.info(`[discovery] Device information not configured - starting discovery on ${this.config.multicastAddr}`);
 
             this.zehnder = new comfoconnect(
                 {
@@ -184,9 +178,9 @@ class Comfoairq extends utils.Adapter {
 
             try {
                 const discoverResult = await this.zehnder.discover(this.config.multicastAddr);
-                this.log.info('Device discovery finished - use these information for instance configuration: ' + JSON.stringify(discoverResult));
+                this.log.info(`[discovery] Device discovery finished - use these information for instance configuration: ${JSON.stringify(discoverResult)}`);
             } catch (ex) {
-                this.log.error('error while discovery: ' + JSON.stringify(ex));
+                this.log.error(`[discovery] error: ${JSON.stringify(ex)}`);
             }
         } else {
             this.log.error('Instance configuration invalid');
