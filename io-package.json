@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "comfoairq",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "news": {
+      "0.2.0": {
+        "en": "Translated all objects\nUpdated dependencies\nAdded hint for Admin 4 configuration\nUpdated state roles\nUpdated dependencies",
+        "de": "Alle Objekte übersetzt\nAktualisierte Abhängigkeiten\nHinweis für die Konfiguration von Admin 4 hinzugefügt\nStatusrollen aktualisiert\nAktualisierte Abhängigkeiten",
+        "ru": "Переведены все объекты\nОбновленные зависимости\nДобавлена подсказка для конфигурации Admin 4\nОбновлены роли состояния\nОбновленные зависимости",
+        "pt": "Traduziu todos os objetos\nDependências atualizadas\nAdicionada dica para configuração do Admin 4\nFunções de estado atualizadas\nDependências atualizadas",
+        "nl": "Alle objecten vertaald\nBijgewerkte afhankelijkheden\nHint toegevoegd voor configuratie van Admin 4\nBijgewerkte statusrollen\nBijgewerkte afhankelijkheden",
+        "fr": "Traduit tous les objets\nDépendances mises à jour\nAjout d'un indice pour la configuration d'Admin 4\nRôles d'état mis à jour\nDépendances mises à jour",
+        "it": "Tradotto tutti gli oggetti\nDipendenze aggiornate\nAggiunto suggerimento per la configurazione dell'amministratore 4\nRuoli statali aggiornati\nDipendenze aggiornate",
+        "es": "Tradujo todos los objetos\nDependencias actualizadas\nSugerencia agregada para la configuración de Admin 4\nRoles de estado actualizados\nDependencias actualizadas",
+        "pl": "Przetłumaczono wszystkie obiekty\nZaktualizowane zależności\nDodano wskazówkę dotyczącą konfiguracji Admin 4\nZaktualizowane role stanowe\nZaktualizowane zależności",
+        "zh-cn": "翻译所有对象\n更新的依赖项\n添加了 Admin 4 配置的提示\n更新了状态角色\n更新的依赖项"
+      },
       "0.1.0": {
         "en": "Admin 5 UI",
         "de": "Admin 5-Benutzeroberfläche",
