@@ -64,7 +64,6 @@
                 "zh-cn": "初始发行"
             }
         },
-        "title": "ComfoAirQ",
         "titleLang": {
             "en": "ComfoAirQ",
             "de": "ComfoAirQ",
@@ -102,7 +101,7 @@
         "platform": "Javascript/Node.js",
         "icon": "comfoairq.png",
         "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.comfoairq/master/admin/comfoairq.png",
-        "enabled": true,
+        "enabled": false,
         "readme": "https://github.com/klein0r/ioBroker.comfoairq/blob/master/README.md",
         "loglevel": "info",
         "mode": "daemon",
@@ -185,9 +184,9 @@
             "_id": "info.connection",
             "type": "state",
             "common": {
-                "role": "indicator.connected",
                 "name": "Device or service connected",
                 "type": "boolean",
+                "role": "indicator.connected",
                 "read": true,
                 "write": false,
                 "def": false
@@ -207,8 +206,8 @@
             "type": "state",
             "common": {
                 "name": "ComfoNET version",
-                "role": "value",
                 "type": "string",
+                "role": "text",
                 "read": true,
                 "write": false
             },
@@ -219,8 +218,8 @@
             "type": "state",
             "common": {
                 "name": "Gateway version",
-                "role": "value",
                 "type": "string",
+                "role": "text",
                 "read": true,
                 "write": false
             },
@@ -231,8 +230,8 @@
             "type": "state",
             "common": {
                 "name": "Serial number",
-                "role": "value",
                 "type": "string",
+                "role": "text",
                 "read": true,
                 "write": false
             },
@@ -251,8 +250,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Mode Away",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -263,8 +262,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Mode Low",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -275,8 +274,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Mode Medium",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -287,8 +286,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Mode High",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -299,8 +298,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Boost 10 minutes",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -311,8 +310,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Boost 20 minutes",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -323,8 +322,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Boost 30 minutes",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -335,8 +334,8 @@
             "type": "state",
             "common": {
                 "name": "Fan Boost end",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -347,8 +346,8 @@
             "type": "state",
             "common": {
                 "name": "Mode Auto",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -359,8 +358,8 @@
             "type": "state",
             "common": {
                 "name": "Mode Auto",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -371,8 +370,8 @@
             "type": "state",
             "common": {
                 "name": "Vent mode Supply",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -383,8 +382,8 @@
             "type": "state",
             "common": {
                 "name": "Vent mode Balance",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -395,8 +394,8 @@
             "type": "state",
             "common": {
                 "name": "Temperature profile normal",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -407,8 +406,8 @@
             "type": "state",
             "common": {
                 "name": "Temperature profile cool",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -419,8 +418,8 @@
             "type": "state",
             "common": {
                 "name": "Temperature profile warm",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -431,8 +430,8 @@
             "type": "state",
             "common": {
                 "name": "Bypass on",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -443,8 +442,8 @@
             "type": "state",
             "common": {
                 "name": "Bypass off",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
@@ -455,8 +454,8 @@
             "type": "state",
             "common": {
                 "name": "Bypass auto",
-                "role": "button",
                 "type": "boolean",
+                "role": "button",
                 "read": false,
                 "write": true
             },
