@@ -109,6 +109,7 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "poll",
+        "materialize": true,
         "adminUI": {
             "config": "json"
         },
