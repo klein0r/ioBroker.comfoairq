@@ -5,8 +5,7 @@
 [![NPM version](http://img.shields.io/npm/v/iobroker.comfoairq.svg)](https://www.npmjs.com/package/iobroker.comfoairq)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.comfoairq.svg)](https://www.npmjs.com/package/iobroker.comfoairq)
 [![Stable](http://iobroker.live/badges/comfoairq-stable.svg)](http://iobroker.live/badges/comfoairq-stable.svg)
-[![installed](http://iobroker.live/badges/comfoairq-installed.svg)](http://iobroker.live/badges/comfoairq-installed.svg)
-[![Dependency Status](https://img.shields.io/david/klein0r/iobroker.comfoairq.svg)](https://david-dm.org/klein0r/iobroker.comfoairq)
+[![Installed](http://iobroker.live/badges/comfoairq-installed.svg)](http://iobroker.live/badges/comfoairq-installed.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/klein0r/ioBroker.comfoairq/badge.svg)](https://snyk.io/test/github/klein0r/ioBroker.comfoairq)
 ![Test and Release](https://github.com/klein0r/ioBroker.comfoairq/workflows/Test%20and%20Release/badge.svg)
 
