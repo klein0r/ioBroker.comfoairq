@@ -3,12 +3,11 @@
 /* jslint node: true */
 'use strict';
 
-const utils        = require('@iobroker/adapter-core');
+const utils = require('@iobroker/adapter-core');
 const comfoconnect = require('comfoairq');
-const adapterName  = require('./package.json').name.split('.').pop();
+const adapterName = require('./package.json').name.split('.').pop();
 
 class Comfoairq extends utils.Adapter {
-
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
      */
@@ -55,7 +54,7 @@ class Comfoairq extends utils.Adapter {
             290: '%',
             291: '%',
             292: '%',
-            294: '%'
+            294: '%',
         };
 
         this.on('ready', this.onReady.bind(this));
@@ -77,27 +76,26 @@ class Comfoairq extends utils.Adapter {
             if (this.sensors.length > 0) {
                 this.log.debug(`Active sensors by configuration: ${JSON.stringify(this.sensors)}`);
 
-                this.zehnder = new comfoconnect(
-                    {
-                        uuid: this.uuid,
-                        device: this.deviceName,
+                this.zehnder = new comfoconnect({
+                    uuid: this.uuid,
+                    device: this.deviceName,
 
-                        comfoair: this.config.host,
-                        port: Number(this.config.port),
-                        comfouuid: this.config.uuid,
-                        pin: parseInt(this.config.pin),
+                    comfoair: this.config.host,
+                    port: Number(this.config.port),
+                    comfouuid: this.config.uuid,
+                    pin: parseInt(this.config.pin),
 
-                        debug: false,
-                        logger: this.log.debug
-                    }
-                );
+                    debug: false,
+                    logger: this.log.debug,
+                });
 
                 this.log.debug('register receive handler...');
                 this.zehnder.on('receive', async (data) => {
                     this.log.debug(`received: ${JSON.stringify(data)}`);
 
                     if (data && data.result.error == 'OK') {
-                        if (data.kind == 40) { // 40 = CnRpdoNotification
+                        if (data.kind == 40) {
+                            // 40 = CnRpdoNotification
                             const sensorId = data.result.data.pdid;
                             const sensorName = data.result.data.name;
                             const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
@@ -112,19 +110,19 @@ class Comfoairq extends utils.Adapter {
                                     role: 'value',
                                     unit: unit,
                                     read: true,
-                                    write: false
+                                    write: false,
                                 },
                                 native: {
-                                    sensorId: sensorId
-                                }
+                                    sensorId: sensorId,
+                                },
                             });
 
-                            await this.setStateAsync('sensor.' + sensorNameClean, {val: sensorValue, ack: true});
-
-                        } else if (data.kind == 68) { // 68 = VersionConfirm
-                            await this.setStateAsync('version.comfonet', {val: data.result.data.comfoNetVersion.toString(), ack: true});
-                            await this.setStateAsync('version.serial', {val: data.result.data.serialNumber.toString(), ack: true});
-                            await this.setStateAsync('version.gateway', {val: data.result.data.gatewayVersion.toString(), ack: true});
+                            await this.setStateAsync('sensor.' + sensorNameClean, { val: sensorValue, ack: true });
+                        } else if (data.kind == 68) {
+                            // 68 = VersionConfirm
+                            await this.setStateAsync('version.comfonet', { val: data.result.data.comfoNetVersion.toString(), ack: true });
+                            await this.setStateAsync('version.serial', { val: data.result.data.serialNumber.toString(), ack: true });
+                            await this.setStateAsync('version.gateway', { val: data.result.data.gatewayVersion.toString(), ack: true });
                         }
                     }
                 });
@@ -164,17 +162,15 @@ class Comfoairq extends utils.Adapter {
             // Dicover Zehnder devices
             this.log.info(`[discovery] Device information not configured - starting discovery on ${this.config.multicastAddr}`);
 
-            this.zehnder = new comfoconnect(
-                {
-                    uuid: this.uuid,
-                    device: this.deviceName,
+            this.zehnder = new comfoconnect({
+                uuid: this.uuid,
+                device: this.deviceName,
 
-                    port: Number(this.config.port),
+                port: Number(this.config.port),
 
-                    debug: false,
-                    logger: this.log.debug
-                }
-            );
+                debug: false,
+                logger: this.log.debug,
+            });
 
             try {
                 const discoverResult = await this.zehnder.discover(this.config.multicastAddr);
@@ -229,7 +225,6 @@ class Comfoairq extends utils.Adapter {
                     const command = matches[1];
 
                     switch (command) {
-
                         case 'fanModeAway':
                             this.log.debug('Sending command: FAN_MODE_AWAY');
                             this.zehnder.SendCommand(1, 'FAN_MODE_AWAY');
@@ -319,7 +314,6 @@ class Comfoairq extends utils.Adapter {
                             this.log.debug('Sending command: BYPASS_AUTO');
                             this.zehnder.SendCommand(1, 'BYPASS_AUTO');
                             break;
-
                     }
                 }
             }
