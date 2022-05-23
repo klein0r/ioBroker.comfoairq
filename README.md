@@ -2,14 +2,25 @@
 
 # ioBroker.comfoairq
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.comfoairq.svg)](https://www.npmjs.com/package/iobroker.comfoairq)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.comfoairq.svg)](https://www.npmjs.com/package/iobroker.comfoairq)
-[![Stable](http://iobroker.live/badges/comfoairq-stable.svg)](http://iobroker.live/badges/comfoairq-stable.svg)
-[![Installed](http://iobroker.live/badges/comfoairq-installed.svg)](http://iobroker.live/badges/comfoairq-installed.svg)
-[![Known Vulnerabilities](https://snyk.io/test/github/klein0r/ioBroker.comfoairq/badge.svg)](https://snyk.io/test/github/klein0r/ioBroker.comfoairq)
-![Test and Release](https://github.com/klein0r/ioBroker.comfoairq/workflows/Test%20and%20Release/badge.svg)
+[![NPM version](https://img.shields.io/npm/v/iobroker.comfoairq?style=flat-square)](https://www.npmjs.com/package/iobroker.comfoairq)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.comfoairq?label=npm%20downloads&style=flat-square)](https://www.npmjs.com/package/iobroker.comfoairq)
+![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/iobroker.comfoairq?label=npm%20vulnerabilities&style=flat-square)
+![node-lts](https://img.shields.io/node/v-lts/iobroker.comfoairq?style=flat-square)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/iobroker.comfoairq?label=npm%20dependencies&style=flat-square)
 
-[![NPM](https://nodei.co/npm/iobroker.comfoairq.png?downloads=true)](https://nodei.co/npm/iobroker.comfoairq/)
+![GitHub](https://img.shields.io/github/license/klein0r/iobroker.comfoairq?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/klein0r/iobroker.comfoairq?logo=github&style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/klein0r/iobroker.comfoairq?logo=github&style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/klein0r/iobroker.comfoairq?logo=github&style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/klein0r/iobroker.comfoairq?logo=github&style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/klein0r/iobroker.comfoairq/Test%20and%20Release?label=Test%20and%20Release&logo=github&style=flat-square)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/klein0r/iobroker.comfoairq?label=repo%20vulnerabilities&logo=github&style=flat-square)
+
+## Versions
+
+![Beta](https://img.shields.io/npm/v/iobroker.comfoairq.svg?color=red&label=beta)
+![Stable](http://iobroker.live/badges/comfoairq-stable.svg)
+![Installed](http://iobroker.live/badges/comfoairq-installed.svg)
 
 Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
