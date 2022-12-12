@@ -44,6 +44,7 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 
 * (klein0r) Updated depedency for js-controller to 4.0.15
 * (klein0r) Dropped Admin 5 support
+* (klein0r) Added Ukrainian language
 
 ### 0.2.0 (2022-02-25)
 
