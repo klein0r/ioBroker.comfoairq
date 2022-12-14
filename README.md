@@ -38,7 +38,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.3.0 (2022-12-14)
 
 NodeJS 14.x is required (NodeJS 12.x is EOL)
 
@@ -69,14 +69,6 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 * (klein0r) Get version information
 * (klein0r) Control fan speed
 * (klein0r) Control fan boost
-
-### 0.0.2
-
-* (klein0r) First connection
-
-### 0.0.1
-
-* (klein0r) initial release
 
 ## Credits
 
