@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-check@v1
         with:
-          node-version: '16.x'
+          node-version: '18.x'
           lint: true
           lint-command: 'npm run lint .'
 
@@ -38,7 +38,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
@@ -61,6 +61,16 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-deploy@v1
         with:
-          node-version: '16.x'
+          node-version: '18.x'
           npm-token: ${{ secrets.NPM_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+          # When using Sentry for error reporting, Sentry can be informed about new releases
+          # To enable create a API-Token in Sentry (User settings, API keys)
+          # Enter this token as a GitHub secret (with name SENTRY_AUTH_TOKEN) in the repository options
+          # Then uncomment and customize the following block:
+          #sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          #sentry-project: "iobroker-comfoairq"
+          #sentry-version-prefix: "iobroker.comfoairq"
+          # If your sentry project is linked to a GitHub repository, you can enable the following option
+          # sentry-github-integration: true
