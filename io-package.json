@@ -163,7 +163,7 @@
     "pin"
   ],
   "native": {
-    "pin": "0000",
+    "pin": "",
     "port": "56747",
     "multicastAddr": "192.168.1.255",
     "sensor_16": false,

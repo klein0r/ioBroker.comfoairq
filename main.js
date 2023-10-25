@@ -1,6 +1,3 @@
-/* jshint -W097 */
-/* jshint strict: false */
-/* jslint node: true */
 'use strict';
 
 const utils = require('@iobroker/adapter-core');
@@ -67,8 +64,8 @@ class Comfoairq extends utils.Adapter {
 
         // Get active sensors by configuration
         for (const key of Object.keys(this.config)) {
-            if (key.indexOf('sensor_') === 0 && this.config[key]) {
-                this.sensors.push(Number(key.slice(7)));
+            if (key.startsWith('sensor_') && this.config[key]) {
+                this.sensors.push(Number(key.substring(7)));
             }
         }
 
@@ -117,12 +114,12 @@ class Comfoairq extends utils.Adapter {
                                 },
                             });
 
-                            await this.setStateAsync('sensor.' + sensorNameClean, { val: sensorValue, ack: true });
+                            await this.setStateChangedAsync('sensor.' + sensorNameClean, { val: sensorValue, ack: true });
                         } else if (data.kind == 68) {
                             // 68 = VersionConfirm
-                            await this.setStateAsync('version.comfonet', { val: data.result.data.comfoNetVersion.toString(), ack: true });
-                            await this.setStateAsync('version.serial', { val: data.result.data.serialNumber.toString(), ack: true });
-                            await this.setStateAsync('version.gateway', { val: data.result.data.gatewayVersion.toString(), ack: true });
+                            await this.setStateChangedAsync('version.comfonet', { val: data.result.data.comfoNetVersion.toString(), ack: true });
+                            await this.setStateChangedAsync('version.serial', { val: data.result.data.serialNumber.toString(), ack: true });
+                            await this.setStateChangedAsync('version.gateway', { val: data.result.data.gatewayVersion.toString(), ack: true });
                         }
                     }
                 });
@@ -133,7 +130,8 @@ class Comfoairq extends utils.Adapter {
                         this.log.warn(`Other session started: ${JSON.stringify(reason)}`);
                     }
 
-                    this.setStateAsync('info.connection', false, true);
+                    this.setState('info.connection', { val: false, ack: true} );
+                    this.connected = false;
                 });
 
                 this.log.debug('register the app...');
@@ -152,8 +150,9 @@ class Comfoairq extends utils.Adapter {
 
                 this.zehnder.VersionRequest();
 
-                await this.setStateAsync('info.connection', true, true);
+                await this.setStateAsync('info.connection', { val: true, ack: true });
                 this.connected = true;
+
                 this.subscribeStates('*');
             } else {
                 this.log.warn('No active sensors found in configuration - stopping');
@@ -175,8 +174,8 @@ class Comfoairq extends utils.Adapter {
             try {
                 const discoverResult = await this.zehnder.discover(this.config.multicastAddr);
                 this.log.info(`[discovery] Device discovery finished - use these information for instance configuration: ${JSON.stringify(discoverResult)}`);
-            } catch (ex) {
-                this.log.error(`[discovery] error: ${JSON.stringify(ex)}`);
+            } catch (err) {
+                this.log.error(`[discovery] error: ${JSON.stringify(err)}`);
             }
         } else {
             this.log.error('Instance configuration invalid');
@@ -205,7 +204,7 @@ class Comfoairq extends utils.Adapter {
             this.setStateAsync('info.connection', false, true);
 
             callback();
-        } catch (e) {
+        } catch (err) {
             callback();
         }
     }
