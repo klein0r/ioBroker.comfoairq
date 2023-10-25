@@ -22,36 +22,37 @@ class Comfoairq extends utils.Adapter {
         this.zehnder = null;
         this.sensors = [];
 
-        this.sensorUnits = {
-            117: '%',
-            118: '%',
-            119: 'm³/h',
-            120: 'm³/h',
-            121: 'rpm',
-            122: 'rpm',
-            128: 'W',
-            129: 'kWh',
-            130: 'kWh',
-            144: 'kWh',
-            145: 'kWh',
-            146: 'W',
-            192: 'days',
-            209: '°C',
-            213: 'W',
-            214: 'kWh',
-            215: 'kWh',
-            216: 'W',
-            217: 'kWh',
-            218: 'kWh',
-            221: '°C',
-            227: '%',
-            274: '°C',
-            275: '°C',
-            276: '°C',
-            290: '%',
-            291: '%',
-            292: '%',
-            294: '%',
+        this.sensorMeta = {
+            81: { type: 'object' },
+            117: { type: 'number', unit: '%' },
+            118: { type: 'number', unit: '%' },
+            119: { type: 'number', unit: 'm³/h' },
+            120: { type: 'number', unit: 'm³/h' },
+            121: { type: 'number', unit: 'rpm' },
+            122: { type: 'number', unit: 'rpm' },
+            128: { type: 'number', unit: 'W' },
+            129: { type: 'number', unit: 'kWh' },
+            130: { type: 'number', unit: 'kWh' },
+            144: { type: 'number', unit: 'kWh' },
+            145: { type: 'number', unit: 'kWh' },
+            146: { type: 'number', unit: 'W' },
+            192: { type: 'number', unit: 'days' },
+            209: { type: 'number', unit: '°C' },
+            213: { type: 'number', unit: 'W' },
+            214: { type: 'number', unit: 'kWh' },
+            215: { type: 'number', unit: 'kWh' },
+            216: { type: 'number', unit: 'W' },
+            217: { type: 'number', unit: 'kWh' },
+            218: { type: 'number', unit: 'kWh' },
+            221: { type: 'number', unit: '°C' },
+            227: { type: 'number', unit: '%' },
+            274: { type: 'number', unit: '°C' },
+            275: { type: 'number', unit: '°C' },
+            276: { type: 'number', unit: '°C' },
+            290: { type: 'number', unit: '%' },
+            291: { type: 'number', unit: '%' },
+            292: { type: 'number', unit: '%' },
+            294: { type: 'number', unit: '%' },
         };
 
         this.on('ready', this.onReady.bind(this));
@@ -97,15 +98,14 @@ class Comfoairq extends utils.Adapter {
                             const sensorName = data.result.data.name;
                             const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
                             const sensorValue = data.result.data.data;
-                            const unit = Object.prototype.hasOwnProperty.call(this.sensorUnits, sensorId) ? this.sensorUnits[sensorId] : '';
 
-                            await this.setObjectNotExistsAsync('sensor.' + sensorNameClean, {
+                            await this.extendObjectAsync(`sensor.${sensorNameClean}`, {
                                 type: 'state',
                                 common: {
-                                    name: sensorName + ' (' + sensorId + ')',
-                                    type: 'number',
+                                    name: `${sensorName} (${sensorId})`,
+                                    type: this.sensorMeta?.[sensorId]?.type ?? 'number',
                                     role: 'value',
-                                    unit: unit,
+                                    unit: this.sensorMeta?.[sensorId]?.unit,
                                     read: true,
                                     write: false,
                                 },
@@ -114,7 +114,11 @@ class Comfoairq extends utils.Adapter {
                                 },
                             });
 
-                            await this.setStateChangedAsync('sensor.' + sensorNameClean, { val: sensorValue, ack: true });
+                            if (typeof sensorValue === 'object') {
+                                await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: JSON.stringify(sensorValue), ack: true });
+                            } else {
+                                await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: sensorValue, ack: true });
+                            }
                         } else if (data.kind == 68) {
                             // 68 = VersionConfirm
                             await this.setStateChangedAsync('version.comfonet', { val: data.result.data.comfoNetVersion.toString(), ack: true });
@@ -143,9 +147,9 @@ class Comfoairq extends utils.Adapter {
                 const startSessionResult = await this.zehnder.StartSession(true);
                 this.log.debug(`startSessionResult: ${JSON.stringify(startSessionResult)}`);
 
-                for (let i = 0; i < this.sensors.length; i++) {
-                    const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
-                    this.log.debug(`Registered sensor "${this.sensors[i]}" with result: ${JSON.stringify(registerResult)}`);
+                for (const sensor of this.sensors) {
+                    const registerResult = await this.zehnder.RegisterSensor(sensor);
+                    this.log.debug(`Registered sensor "${sensor}" with result: ${JSON.stringify(registerResult)}`);
                 }
 
                 this.zehnder.VersionRequest();
@@ -201,7 +205,8 @@ class Comfoairq extends utils.Adapter {
             this.zehnder.CloseSession();
             this.zehnder = null;
 
-            this.setStateAsync('info.connection', false, true);
+            this.setStateAsync('info.connection', { val: false, ack: true });
+            this.connected = false;
 
             callback();
         } catch (err) {

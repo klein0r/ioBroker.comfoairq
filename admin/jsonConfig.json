@@ -66,7 +66,7 @@
             "label": "Sensors",
             "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuNC4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIzIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNMTc2IDI0YzAtMTMuMy0xMC43LTI0LTI0LTI0cy0yNCAxMC43LTI0IDI0VjY0Yy0zNS4zIDAtNjQgMjguNy02NCA2NEgyNGMtMTMuMyAwLTI0IDEwLjctMjQgMjRzMTAuNyAyNCAyNCAyNEg2NHY1NkgyNGMtMTMuMyAwLTI0IDEwLjctMjQgMjRzMTAuNyAyNCAyNCAyNEg2NHY1NkgyNGMtMTMuMyAwLTI0IDEwLjctMjQgMjRzMTAuNyAyNCAyNCAyNEg2NGMwIDM1LjMgMjguNyA2NCA2NCA2NHY0MGMwIDEzLjMgMTAuNyAyNCAyNCAyNHMyNC0xMC43IDI0LTI0VjQ0OGg1NnY0MGMwIDEzLjMgMTAuNyAyNCAyNCAyNHMyNC0xMC43IDI0LTI0VjQ0OGg1NnY0MGMwIDEzLjMgMTAuNyAyNCAyNCAyNHMyNC0xMC43IDI0LTI0VjQ0OGMzNS4zIDAgNjQtMjguNyA2NC02NGg0MGMxMy4zIDAgMjQtMTAuNyAyNC0yNHMtMTAuNy0yNC0yNC0yNEg0NDhWMjgwaDQwYzEzLjMgMCAyNC0xMC43IDI0LTI0cy0xMC43LTI0LTI0LTI0SDQ0OFYxNzZoNDBjMTMuMyAwIDI0LTEwLjcgMjQtMjRzLTEwLjctMjQtMjQtMjRINDQ4YzAtMzUuMy0yOC43LTY0LTY0LTY0VjI0YzAtMTMuMy0xMC43LTI0LTI0LTI0cy0yNCAxMC43LTI0IDI0VjY0SDI4MFYyNGMwLTEzLjMtMTAuNy0yNC0yNC0yNHMtMjQgMTAuNy0yNCAyNFY2NEgxNzZWMjR6TTE2MCAxMjhIMzUyYzE3LjcgMCAzMiAxNC4zIDMyIDMyVjM1MmMwIDE3LjctMTQuMyAzMi0zMiAzMkgxNjBjLTE3LjcgMC0zMi0xNC4zLTMyLTMyVjE2MGMwLTE3LjcgMTQuMy0zMiAzMi0zMnptMTkyIDMySDE2MFYzNTJIMzUyVjE2MHoiLz48L3N2Zz4=",
             "items": {
-                "_headerOptionsOperation": {
+                "_headerSensorsOperation": {
                     "newLine": true,
                     "type": "header",
                     "text": "Operation",
@@ -89,7 +89,7 @@
                     "lg": 4,
                     "label": "SENSOR_OPERATING_MODE (56)"
                 },
-                "_headerOptionsFans": {
+                "_headerSensorsFans": {
                     "newLine": true,
                     "type": "header",
                     "text": "Fans",
@@ -154,7 +154,7 @@
                     "lg": 4,
                     "label": "SENSOR_FAN_SUPPLY_SPEED (122)"
                 },
-                "_headerOptionsTemperatures": {
+                "_headerSensorsTemperatures": {
                     "newLine": true,
                     "type": "header",
                     "text": "Temperatures",
@@ -191,7 +191,7 @@
                     "lg": 4,
                     "label": "SENSOR_TEMPERATURE_OUTDOOR (276)"
                 },
-                "_headerOptionsHumidities": {
+                "_headerSensorsHumidities": {
                     "newLine": true,
                     "type": "header",
                     "text": "Humidities",
@@ -228,7 +228,7 @@
                     "lg": 4,
                     "label": "SENSOR_HUMIDITY_SUPPLY (294)"
                 },
-                "_headerOptionsPower": {
+                "_headerSensorsPower": {
                     "newLine": true,
                     "type": "header",
                     "text": "Power",
@@ -321,7 +321,7 @@
                     "lg": 4,
                     "label": "SENSOR_AVOIDED_COOLING_TOTAL (218)"
                 },
-                "_headerOptionsOther": {
+                "_headerSensorsOther": {
                     "newLine": true,
                     "type": "header",
                     "text": "Other",
