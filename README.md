@@ -40,6 +40,8 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 NodeJS 16.x is required
 
+* (klein0r) Added icons to admin tabs
+
 ### 0.3.0 (2022-12-14)
 
 NodeJS 14.x is required (NodeJS 12.x is EOL)
