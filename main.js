@@ -22,6 +22,8 @@ class Comfoairq extends utils.Adapter {
         this.zehnder = null;
         this.sensors = [];
 
+        this.pausedSensorValues = {};
+        this.lastSensorValues = {};
         this.sensorMeta = {
             117: { unit: '%' },
             118: { unit: '%' },
@@ -114,7 +116,21 @@ class Comfoairq extends utils.Adapter {
                                     },
                                 });
 
-                                await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: sensorValue, ack: true });
+                                if (!Object.keys(this.pausedSensorValues).includes(sensorId)) {
+                                    await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: sensorValue, ack: true });
+
+                                    this.pausedSensorValues[sensorId] = this.setTimeout(() => {
+                                        if (this.lastSensorValues?.[sensorId]) {
+                                            this.log.debug(`updating sensor value ${sensorId} from cache: ${this.lastSensorValues[sensorId]}`);
+
+                                            this.setStateChanged(`sensor.${sensorNameClean}`, { val: this.lastSensorValues[sensorId], ack: true, c: 'cached' });
+                                            delete this.lastSensorValues[sensorId];
+                                        }
+                                        delete this.pausedSensorValues[sensorId];
+                                    }, 2000);
+                                } else {
+                                    this.lastSensorValues[sensorId] = sensorValue;
+                                }
                             }
                         } else if (data.kind == 68) {
                             // 68 = VersionConfirm
