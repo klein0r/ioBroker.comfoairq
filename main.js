@@ -23,7 +23,6 @@ class Comfoairq extends utils.Adapter {
         this.sensors = [];
 
         this.pausedSensorValues = {};
-        this.lastSensorValues = {};
         this.sensorMeta = {
             117: { unit: '%' },
             118: { unit: '%' },
@@ -116,20 +115,13 @@ class Comfoairq extends utils.Adapter {
                                     },
                                 });
 
-                                if (!Object.keys(this.pausedSensorValues).includes(sensorId)) {
+                                if (!Object.prototype.hasOwnProperty.call(this.pausedSensorValues, sensorId)) {
                                     await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: sensorValue, ack: true });
 
                                     this.pausedSensorValues[sensorId] = this.setTimeout(() => {
-                                        if (this.lastSensorValues?.[sensorId]) {
-                                            this.log.debug(`updating sensor value ${sensorId} from cache: ${this.lastSensorValues[sensorId]}`);
-
-                                            this.setStateChanged(`sensor.${sensorNameClean}`, { val: this.lastSensorValues[sensorId], ack: true, c: 'cached' });
-                                            delete this.lastSensorValues[sensorId];
-                                        }
+                                        //this.log.debug(``);
                                         delete this.pausedSensorValues[sensorId];
                                     }, 2000);
-                                } else {
-                                    this.lastSensorValues[sensorId] = sensorValue;
                                 }
                             }
                         } else if (data.kind == 68) {
@@ -211,20 +203,6 @@ class Comfoairq extends utils.Adapter {
             .replace(/_([a-z])/g, (m, w) => {
                 return w.toUpperCase();
             });
-    }
-
-    onUnload(callback) {
-        try {
-            this.zehnder.CloseSession();
-            this.zehnder = null;
-
-            this.setStateAsync('info.connection', { val: false, ack: true });
-            this.connected = false;
-
-            callback();
-        } catch (err) {
-            callback();
-        }
     }
 
     /**
@@ -334,6 +312,25 @@ class Comfoairq extends utils.Adapter {
                     }
                 }
             }
+        }
+    }
+
+    onUnload(callback) {
+        try {
+            this.zehnder.CloseSession();
+            this.zehnder = null;
+
+            for (const [sensorId, timeout] of Object.entries(this.pausedSensorValues)) {
+                this.log.debug(`Removing timeout for sensor ${sensorId}`);
+                this.clearTimeout(timeout);
+            }
+
+            this.setStateAsync('info.connection', { val: false, ack: true });
+            this.connected = false;
+
+            callback();
+        } catch (err) {
+            callback();
         }
     }
 }
