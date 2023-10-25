@@ -23,36 +23,35 @@ class Comfoairq extends utils.Adapter {
         this.sensors = [];
 
         this.sensorMeta = {
-            81: { type: 'object' },
-            117: { type: 'number', unit: '%' },
-            118: { type: 'number', unit: '%' },
-            119: { type: 'number', unit: 'm³/h' },
-            120: { type: 'number', unit: 'm³/h' },
-            121: { type: 'number', unit: 'rpm' },
-            122: { type: 'number', unit: 'rpm' },
-            128: { type: 'number', unit: 'W' },
-            129: { type: 'number', unit: 'kWh' },
-            130: { type: 'number', unit: 'kWh' },
-            144: { type: 'number', unit: 'kWh' },
-            145: { type: 'number', unit: 'kWh' },
-            146: { type: 'number', unit: 'W' },
-            192: { type: 'number', unit: 'days' },
-            209: { type: 'number', unit: '°C' },
-            213: { type: 'number', unit: 'W' },
-            214: { type: 'number', unit: 'kWh' },
-            215: { type: 'number', unit: 'kWh' },
-            216: { type: 'number', unit: 'W' },
-            217: { type: 'number', unit: 'kWh' },
-            218: { type: 'number', unit: 'kWh' },
-            221: { type: 'number', unit: '°C' },
-            227: { type: 'number', unit: '%' },
-            274: { type: 'number', unit: '°C' },
-            275: { type: 'number', unit: '°C' },
-            276: { type: 'number', unit: '°C' },
-            290: { type: 'number', unit: '%' },
-            291: { type: 'number', unit: '%' },
-            292: { type: 'number', unit: '%' },
-            294: { type: 'number', unit: '%' },
+            117: { unit: '%' },
+            118: { unit: '%' },
+            119: { unit: 'm³/h' },
+            120: { unit: 'm³/h' },
+            121: { unit: 'rpm' },
+            122: { unit: 'rpm' },
+            128: { unit: 'W' },
+            129: { unit: 'kWh' },
+            130: { unit: 'kWh' },
+            144: { unit: 'kWh' },
+            145: { unit: 'kWh' },
+            146: { unit: 'W' },
+            192: { unit: 'days' },
+            209: { unit: '°C' },
+            213: { unit: 'W' },
+            214: { unit: 'kWh' },
+            215: { unit: 'kWh' },
+            216: { unit: 'W' },
+            217: { unit: 'kWh' },
+            218: { unit: 'kWh' },
+            221: { unit: '°C' },
+            227: { unit: '%' },
+            274: { unit: '°C' },
+            275: { unit: '°C' },
+            276: { unit: '°C' },
+            290: { unit: '%' },
+            291: { unit: '%' },
+            292: { unit: '%' },
+            294: { unit: '%' },
         };
 
         this.on('ready', this.onReady.bind(this));
@@ -99,24 +98,22 @@ class Comfoairq extends utils.Adapter {
                             const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
                             const sensorValue = data.result.data.data;
 
-                            await this.extendObjectAsync(`sensor.${sensorNameClean}`, {
-                                type: 'state',
-                                common: {
-                                    name: `${sensorName} (${sensorId})`,
-                                    type: this.sensorMeta?.[sensorId]?.type ?? 'number',
-                                    role: 'value',
-                                    unit: this.sensorMeta?.[sensorId]?.unit,
-                                    read: true,
-                                    write: false,
-                                },
-                                native: {
-                                    sensorId: sensorId,
-                                },
-                            });
+                            if (!isNaN(sensorValue)) {
+                                await this.extendObjectAsync(`sensor.${sensorNameClean}`, {
+                                    type: 'state',
+                                    common: {
+                                        name: `${sensorName} (${sensorId})`,
+                                        type: 'number',
+                                        role: 'value',
+                                        unit: this.sensorMeta?.[sensorId]?.unit,
+                                        read: true,
+                                        write: false,
+                                    },
+                                    native: {
+                                        sensorId: sensorId,
+                                    },
+                                });
 
-                            if (typeof sensorValue === 'object') {
-                                await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: JSON.stringify(sensorValue), ack: true });
-                            } else {
                                 await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: sensorValue, ack: true });
                             }
                         } else if (data.kind == 68) {
