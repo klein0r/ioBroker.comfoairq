@@ -139,7 +139,7 @@ class Comfoairq extends utils.Adapter {
                         this.log.warn(`Other session started: ${JSON.stringify(reason)}`);
                     }
 
-                    this.setState('info.connection', { val: false, ack: true} );
+                    this.setState('info.connection', { val: false, ack: true });
                     this.connected = false;
                 });
 
