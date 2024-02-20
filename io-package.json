@@ -130,7 +130,12 @@
       "Lüftung",
       "ventilation system"
     ],
-    "license": "MIT",
+    "tier": 3,
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "automaticUpgrade": "patch",
     "platform": "Javascript/Node.js",
     "icon": "comfoairq.png",
     "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.comfoairq/master/admin/comfoairq.png",
