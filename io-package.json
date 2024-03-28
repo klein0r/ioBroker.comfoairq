@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "comfoairq",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "news": {
+      "0.4.0": {
+        "en": "NodeJS >= 18.x and js-controller >= 5 is required\n\n* Added icons to admin tabs\n* Group sensors in admin config\n* Limit sensor value refresh interval",
+        "de": "NodeJS >= 18.x und js-Controller >= 5 ist erforderlich\n\n* Icons zu Admin-Tabs hinzugefügt\n* Gruppensensoren in admin config\n* Grenzwert-Sensorwert-Erfrischungsintervall",
+        "ru": "NodeJS >= 18.x и js-контроллер >= 5 требуется\n\n* Добавлены иконки в вкладки администратора\n* Групповые датчики в конфигурации администратора\n* Интервал обновления предельного значения датчика",
+        "pt": "NodeJS >= 18.x e js-controller >= 5 é necessário\n\n* Ícones adicionados para guias de administrador\n* Sensores de grupo em admin config\n* Limitar o intervalo de atualização do valor do sensor",
+        "nl": "Voor de toepassing van de onderverdelingen 870190 tot en met 870290 wordt onder post 8702 verstaan: 5 is vereist\n\n* Pictogrammen toegevoegd aan admintabbladen\n* Groep sensoren in admin configuratie\n* Beperk sensorwaarde herhalingsinterval",
+        "fr": "NodeJS >= 18.x et js-controller >= 5 est nécessaire\n\n* Ajout d'icônes aux onglets admin\n* Capteurs de groupe en configuration admin\n* Limiter l'intervalle de rafraîchissement de la valeur du capteur",
+        "it": "NodeJS >= 18.x e js-controller 5 è richiesto\n\n* Aggiunte icone a schede di amministrazione\n* Sensori di gruppo nella configurazione di admin\n* Intervallo di aggiornamento del valore del sensore di limite",
+        "es": "NodeJS >= 18.x y js-controller Se requiere 5\n\n* iconos añadidos a pestañas de administración\n* Sensores de grupo en configuración de administración\n* intervalo de actualización del valor del sensor límite",
+        "pl": "NodeJS > = 18.x i kontroler js- > = 5 jest wymagane\n\n* Dodano ikony do kart admin\n* Czujniki grupowe w konfiguracji admin\n* Limit wartości czujnika odświeżania interwał",
+        "uk": "NodeJS >= 18.x та js-controller >= 5 обов'язково\n\n* Додано іконки для вкладок адміністратора\n* Датчики групи в налаштуваннях адміністратора\n* інтервал оновлення значення датчика",
+        "zh-cn": "节点JS18x和js控制器QQ 需要5个\n\n* 添加到管理标签的图标\n* 管理员配置中的组传感器\n* 限制传感器值刷新间隔"
+      },
       "0.3.0": {
         "en": "NodeJS 14.x is required (NodeJS 12.x is EOL)\n\n* Updated depedency for js-controller to 4.0.15\n* Dropped Admin 5 support\n* Added Ukrainian language",
         "de": "NodeJS 14.x ist erforderlich (NodeJS 12.x ist EOL)\n\n* Aktualisierte Depedanz für js-Controller auf 4.0.15\n* Dropped Admin 5 Unterstützung\n* Hinzugefügt Ukrainische Sprache",
@@ -80,19 +93,6 @@
         "pl": "Pierwsze połączenie",
         "zh-cn": "第一次连接",
         "uk": "Перше підключення"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Первый выпуск",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "zh-cn": "初始发行",
-        "uk": "початковий випуск"
       }
     },
     "titleLang": {
