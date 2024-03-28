@@ -38,7 +38,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 -->
 ### **WORK IN PROGRESS**
 
-NodeJS 16.x is required
+NodeJS >= 18.x and js-controller >= 5 is required
 
 * (klein0r) Added icons to admin tabs
 * (klein0r) Group sensors in admin config
