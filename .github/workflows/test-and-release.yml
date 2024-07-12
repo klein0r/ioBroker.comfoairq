@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ioBroker/testing-action-check@v1
+      - uses: ioBroker/testing-action-check@52f69d4bbaf791d8ffdc79a2d81602c21b42c62f # v1
         with:
           node-version: '20.x'
           lint: true
@@ -42,7 +42,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - uses: ioBroker/testing-action-adapter@v1
+      - uses: ioBroker/testing-action-adapter@6c665d40fd4300c3a67769cc22877fa5243a327f # v1
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ioBroker/testing-action-deploy@v1
+      - uses: ioBroker/testing-action-deploy@fe46ae1f940278ce28ae5a2d1356a31f79454827 # v1
         with:
           node-version: '20.x'
           npm-token: ${{ secrets.NPM_TOKEN }}
