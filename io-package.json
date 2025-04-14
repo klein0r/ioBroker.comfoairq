@@ -170,9 +170,11 @@
     "pin"
   ],
   "native": {
-    "pin": "0000",
-    "port": "56747",
     "multicastAddr": "192.168.1.255",
+    "port": "56747",
+    "host": "",
+    "uuid": "",
+    "pin": "0000",
     "sensor_16": false,
     "sensor_49": false,
     "sensor_56": false,
