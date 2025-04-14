@@ -36,7 +36,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.5.0 (2025-04-14)
 
 NodeJS >= 20.x and js-controller >= 6 is required
 
@@ -70,10 +70,6 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 ### 0.1.0
 
 * (klein0r) Admin 5 UI
-
-### 0.0.4
-
-* (klein0r) Improved discovery of comfoairq devices
 
 ## Credits
 

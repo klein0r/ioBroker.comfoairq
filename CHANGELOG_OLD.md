@@ -1,4 +1,8 @@
 # Older changes
+## 0.0.4
+
+* (klein0r) Improved discovery of comfoairq devices
+
 ## 0.0.3
 
 * (klein0r) Subscribe to sensors

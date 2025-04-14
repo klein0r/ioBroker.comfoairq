@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "comfoairq",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "news": {
+      "0.5.0": {
+        "en": "NodeJS >= 20.x and js-controller >= 6 is required\n\n* Added messagebox for device discovery via admin\n* Added responsive admin layout",
+        "de": "NodeJS >= 20.x und js-Controller >= 6 ist erforderlich\n\n* Nachrichtbox für Geräteentdeckung über Admin hinzugefügt\n* Hinzugefügt responsive admin layout",
+        "ru": "NodeJS >= 20.x и js-контроллер >= 6 Требуется\n\n* Добавлен почтовый ящик для обнаружения устройства через админ\n* Добавлена адаптивная админ-версия",
+        "pt": "NodeJS >= 20.x e js-controller >= 6 é necessário\n\n* Caixa de mensagem adicionada para a descoberta do dispositivo via admin\n* Adicionado layout de administração responsivo",
+        "nl": "Van niet-gelegeerd staal 6 is vereist\n\n* Toegevoegd messagebox voor apparaat ontdekking via admin\n* Toegevoegd responsieve admin layout",
+        "fr": "NodeJS >= 20.x et js-controller >= 6 est nécessaire\n\n* Ajout de la boîte de message pour la découverte de périphérique via admin\n* Ajout de la mise en page d'administration réactive",
+        "it": "NodeJS >= 20.x e js-controller >= 6 è richiesto\n\n* Aggiunto la casella di messaggio per la scoperta del dispositivo tramite admin\n* Aggiunto il layout di amministratore reattivo",
+        "es": "NodeJS ю= 20.x y js-controller Se requiere 6\n\n* Caja de mensaje adicional para el descubrimiento del dispositivo a través de admin\n* Añadido diseño de administración sensible",
+        "pl": "NodeJS > = 20 x i kontroler js- > = 6 jest wymagane\n\n* Dodano wiadomość do wyszukiwania urządzeń przez admin\n* Dodano układ adaptacyjny admin",
+        "uk": "NodeJS >= 20.x та js-controller >= 6 обов'язковий\n\n* Додано повідомленнябокс для відкриття пристрою через адмін\n* Додано чуйний макет адміністратора",
+        "zh-cn": "节点JS20x和js控制器QQ 需要6个\n\n* 为设备通过管理员发现而添加的信息框\n* 添加的响应管理布局"
+      },
       "0.4.0": {
         "en": "NodeJS >= 18.x and js-controller >= 5 is required\n\n* Added icons to admin tabs\n* Group sensors in admin config\n* Limit sensor value refresh interval",
         "de": "NodeJS >= 18.x und js-Controller >= 5 ist erforderlich\n\n* Icons zu Admin-Tabs hinzugefügt\n* Gruppensensoren in admin config\n* Grenzwert-Sensorwert-Erfrischungsintervall",
@@ -80,19 +93,6 @@
         "pl": "Poprawki",
         "zh-cn": "Bug修复",
         "uk": "Виправлення помилок"
-      },
-      "0.0.2": {
-        "en": "First connection",
-        "de": "Erster Verbindungsaufbau möglich",
-        "ru": "Первое подключение",
-        "pt": "Primeira conexão",
-        "nl": "Eerste verbinding",
-        "fr": "Première connexion",
-        "it": "Prima connessione",
-        "es": "Primera conexión",
-        "pl": "Pierwsze połączenie",
-        "zh-cn": "第一次连接",
-        "uk": "Перше підключення"
       }
     },
     "titleLang": {
