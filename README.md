@@ -36,7 +36,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.5.1 (2025-04-14)
 
 * (@klein0r) Updated dependencies
 
@@ -70,10 +70,6 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 * (klein0r) Added hint for Admin 4 configuration
 * (klein0r) Updated state roles
 * (klein0r) Updated dependencies
-
-### 0.1.0
-
-* (klein0r) Admin 5 UI
 
 ## Credits
 

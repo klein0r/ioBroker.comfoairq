@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "comfoairq",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "news": {
+      "0.5.1": {
+        "en": "Updated dependencies",
+        "de": "Aktualisierte Abhängigkeiten",
+        "ru": "Обновленные зависимости",
+        "pt": "Dependências atualizadas",
+        "nl": "Bijgewerkte afhankelijkheden",
+        "fr": "Dépendances actualisées",
+        "it": "Dipendenze aggiornate",
+        "es": "Dependencias actualizadas",
+        "pl": "Aktualizacja zależności",
+        "uk": "Оновлені залежності",
+        "zh-cn": "更新的依赖关系"
+      },
       "0.5.0": {
         "en": "NodeJS >= 20.x and js-controller >= 6 is required\n\n* Added messagebox for device discovery via admin\n* Added responsive admin layout",
         "de": "NodeJS >= 20.x und js-Controller >= 6 ist erforderlich\n\n* Nachrichtbox für Geräteentdeckung über Admin hinzugefügt\n* Hinzugefügt responsive admin layout",
@@ -80,19 +93,6 @@
         "pl": "Ulepszone wykrywanie urządzeń comfoairq",
         "zh-cn": "改进了对 comfoairq 设备的发现",
         "uk": "Покращено виявлення пристроїв comfoairq"
-      },
-      "0.0.3": {
-        "en": "Bugfixes",
-        "de": "Bugfixes",
-        "ru": "Исправление ошибок",
-        "pt": "Correções de bugs",
-        "nl": "Bugfixes",
-        "fr": "Corrections de bugs",
-        "it": "Correzioni di bug",
-        "es": "Corrección de errores",
-        "pl": "Poprawki",
-        "zh-cn": "Bug修复",
-        "uk": "Виправлення помилок"
       }
     },
     "titleLang": {

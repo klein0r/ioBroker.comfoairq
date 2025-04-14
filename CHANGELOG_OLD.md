@@ -1,4 +1,8 @@
 # Older changes
+## 0.1.0
+
+* (klein0r) Admin 5 UI
+
 ## 0.0.4
 
 * (klein0r) Improved discovery of comfoairq devices
