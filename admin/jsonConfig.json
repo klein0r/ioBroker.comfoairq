@@ -16,7 +16,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "multicastAddr": {
                     "type": "text",
@@ -24,6 +25,7 @@
                     "sm": 12,
                     "md": 5,
                     "lg": 5,
+                    "xl": 5,
                     "label": "Broadcast Address",
                     "help": "Broadcast address of your network"
                 },
@@ -33,6 +35,7 @@
                     "sm": 12,
                     "md": 5,
                     "lg": 5,
+                    "xl": 5,
                     "label": "Port",
                     "help": "Default Port is 56747"
                 },
@@ -44,10 +47,11 @@
                     "variant": "contained",
                     "showProcess": true,
                     "useNative": true,
-                    "xs": 2,
+                    "xs": 12,
                     "sm": 2,
                     "md": 2,
                     "lg": 2,
+                    "xl": 2,
                     "label": "Search devices"
                 },
                 "_headerOptionsConnection": {
@@ -58,7 +62,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "host": {
                     "newLine": true,
@@ -67,6 +72,7 @@
                     "sm": 12,
                     "md": 5,
                     "lg": 5,
+                    "xl": 5,
                     "label": "IP-Adress / Hostname",
                     "help": "IP or hostname of your Zehnder ComfoConnect LAN C"
                 },
@@ -76,6 +82,7 @@
                     "sm": 12,
                     "md": 5,
                     "lg": 5,
+                    "xl": 5,
                     "label": "UUID",
                     "help": "UUID of your Zehnder ComfoConnect LAN C"
                 },
@@ -85,6 +92,7 @@
                     "sm": 12,
                     "md": 2,
                     "lg": 2,
+                    "xl": 2,
                     "label": "PIN",
                     "help": "Default PIN is 0000 (can be changed in the app)"
                 },
@@ -96,7 +104,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "_ioBrokerKursBanner": {
                     "newLine": true,
@@ -105,6 +114,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "href": "https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-comfoairq",
                     "src": "https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png"
                 }
@@ -123,7 +133,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "sensor_49": {
                     "type": "checkbox",
@@ -131,6 +142,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_OPERATING_MODE_BIS (49)"
                 },
                 "sensor_56": {
@@ -139,6 +151,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_OPERATING_MODE (56)"
                 },
                 "_headerSensorsFans": {
@@ -149,7 +162,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "sensor_65": {
                     "type": "checkbox",
@@ -157,6 +171,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_SPEED_MODE (65)"
                 },
                 "sensor_81": {
@@ -165,6 +180,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_NEXT_CHANGE (81)"
                 },
                 "sensor_117": {
@@ -173,6 +189,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_EXHAUST_DUTY (117)"
                 },
                 "sensor_118": {
@@ -181,6 +198,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_SUPPLY_DUTY (118)"
                 },
                 "sensor_119": {
@@ -189,6 +207,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_EXHAUST_FLOW (119)"
                 },
                 "sensor_120": {
@@ -197,6 +216,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_SUPPLY_FLOW (120)"
                 },
                 "sensor_121": {
@@ -205,6 +225,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_EXHAUST_SPEED (121)"
                 },
                 "sensor_122": {
@@ -213,6 +234,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_FAN_SUPPLY_SPEED (122)"
                 },
                 "_headerSensorsTemperatures": {
@@ -223,7 +245,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "sensor_221": {
                     "type": "checkbox",
@@ -231,6 +254,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_TEMPERATURE_SUPPLY (221)"
                 },
                 "sensor_274": {
@@ -239,6 +263,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_TEMPERATURE_EXTRACT (274)"
                 },
                 "sensor_275": {
@@ -247,6 +272,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_TEMPERATURE_EXHAUST (275)"
                 },
                 "sensor_276": {
@@ -255,6 +281,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_TEMPERATURE_OUTDOOR (276)"
                 },
                 "_headerSensorsHumidities": {
@@ -265,7 +292,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "sensor_290": {
                     "type": "checkbox",
@@ -273,6 +301,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_HUMIDITY_EXTRACT (290)"
                 },
                 "sensor_291": {
@@ -281,6 +310,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_HUMIDITY_EXHAUST (291)"
                 },
                 "sensor_292": {
@@ -289,6 +319,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_HUMIDITY_OUTDOOR (292)"
                 },
                 "sensor_294": {
@@ -297,6 +328,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_HUMIDITY_SUPPLY (294)"
                 },
                 "_headerSensorsPower": {
@@ -307,7 +339,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "sensor_128": {
                     "type": "checkbox",
@@ -315,6 +348,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_POWER_CURRENT (128)"
                 },
                 "sensor_129": {
@@ -323,6 +357,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_POWER_TOTAL_YEAR (129)"
                 },
                 "sensor_130": {
@@ -331,6 +366,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_POWER_TOTAL (130)"
                 },
                 "sensor_144": {
@@ -339,6 +375,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_PREHEATER_POWER_TOTAL_YEAR (144)"
                 },
                 "sensor_145": {
@@ -347,6 +384,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_PREHEATER_POWER_TOTAL (145)"
                 },
                 "sensor_146": {
@@ -355,6 +393,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_PREHEATER_POWER_CURRENT (146)"
                 },
                 "sensor_213": {
@@ -363,6 +402,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_AVOIDED_HEATING_CURRENT (213)"
                 },
                 "sensor_214": {
@@ -371,6 +411,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_AVOIDED_HEATING_TOTAL_YEAR (214)"
                 },
                 "sensor_215": {
@@ -379,6 +420,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_AVOIDED_HEATING_TOTAL (215)"
                 },
                 "sensor_216": {
@@ -387,6 +429,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_AVOIDED_COOLING_CURRENT (216)"
                 },
                 "sensor_217": {
@@ -395,6 +438,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_AVOIDED_COOLING_TOTAL_YEAR (217)"
                 },
                 "sensor_218": {
@@ -403,6 +447,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_AVOIDED_COOLING_TOTAL (218)"
                 },
                 "_headerSensorsOther": {
@@ -413,7 +458,8 @@
                     "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "sensor_16": {
                     "type": "checkbox",
@@ -421,6 +467,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_AWAY_INDICATOR (16)"
                 },
 
@@ -430,6 +477,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_BYPASS_ACTIVATION_MODE (66)"
                 },
                 "sensor_67": {
@@ -438,6 +486,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_TEMPERATURE_PROFILE (67)"
                 },
 
@@ -447,6 +496,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_DAYS_TO_REPLACE_FILTER (192)"
                 },
                 "sensor_209": {
@@ -455,6 +505,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_CURRENT_RMOT (209)"
                 },
                 "sensor_227": {
@@ -463,6 +514,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
+                    "xl": 3,
                     "label": "SENSOR_BYPASS_STATE (227)"
                 }
             }
