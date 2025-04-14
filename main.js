@@ -5,7 +5,7 @@ const comfoconnect = require('comfoairq');
 
 class Comfoairq extends utils.Adapter {
     /**
-     * @param {Partial<utils.AdapterOptions>} [options={}]
+     * @param {Partial<utils.AdapterOptions>} [options]
      */
     constructor(options) {
         super({
@@ -88,7 +88,7 @@ class Comfoairq extends utils.Adapter {
                 });
 
                 this.log.debug('register receive handler...');
-                this.zehnder.on('receive', async (data) => {
+                this.zehnder.on('receive', async data => {
                     this.log.debug(`received: ${JSON.stringify(data)}`);
 
                     if (data && data.result.error == 'OK') {
@@ -116,7 +116,10 @@ class Comfoairq extends utils.Adapter {
                                 });
 
                                 if (!Object.prototype.hasOwnProperty.call(this.pausedSensorValues, sensorId)) {
-                                    await this.setStateChangedAsync(`sensor.${sensorNameClean}`, { val: sensorValue, ack: true });
+                                    await this.setStateChangedAsync(`sensor.${sensorNameClean}`, {
+                                        val: sensorValue,
+                                        ack: true,
+                                    });
 
                                     this.pausedSensorValues[sensorId] = this.setTimeout(() => {
                                         //this.log.debug(``);
@@ -126,15 +129,24 @@ class Comfoairq extends utils.Adapter {
                             }
                         } else if (data.kind == 68) {
                             // 68 = VersionConfirm
-                            await this.setStateChangedAsync('version.comfonet', { val: data.result.data.comfoNetVersion.toString(), ack: true });
-                            await this.setStateChangedAsync('version.serial', { val: data.result.data.serialNumber.toString(), ack: true });
-                            await this.setStateChangedAsync('version.gateway', { val: data.result.data.gatewayVersion.toString(), ack: true });
+                            await this.setStateChangedAsync('version.comfonet', {
+                                val: data.result.data.comfoNetVersion.toString(),
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('version.serial', {
+                                val: data.result.data.serialNumber.toString(),
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('version.gateway', {
+                                val: data.result.data.gatewayVersion.toString(),
+                                ack: true,
+                            });
                         }
                     }
                 });
 
                 this.log.debug('register disconnect handler...');
-                this.zehnder.on('disconnect', (reason) => {
+                this.zehnder.on('disconnect', reason => {
                     if (reason.state == 'OTHER_SESSION') {
                         this.log.warn(`Other session started: ${JSON.stringify(reason)}`);
                     }
@@ -187,6 +199,7 @@ class Comfoairq extends utils.Adapter {
 
     /**
      * Is called if a subscribed state changes
+     *
      * @param {string} id
      * @param {ioBroker.State | null | undefined} state
      */
@@ -195,7 +208,7 @@ class Comfoairq extends utils.Adapter {
             this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
             if (this.connected) {
-                const matches = id.match(new RegExp(this.namespace + '.command.([a-zA-Z0-9]+)'));
+                const matches = id.match(new RegExp(`${this.namespace}.command.([a-zA-Z0-9]+)`));
                 if (matches) {
                     const command = matches[1];
 
@@ -298,7 +311,9 @@ class Comfoairq extends utils.Adapter {
     async onMessage(msg) {
         if (typeof msg === 'object' && msg.message) {
             if (msg.command === 'wizard') {
-                this.log.debug(`[onMessage] wizard started on ${msg.message.multicastAddr}:${msg.message.port} -> ${JSON.stringify(msg)}`);
+                this.log.debug(
+                    `[onMessage] wizard started on ${msg.message.multicastAddr}:${msg.message.port} -> ${JSON.stringify(msg)}`,
+                );
 
                 this.zehnder = new comfoconnect({
                     uuid: this.uuid,
@@ -328,7 +343,9 @@ class Comfoairq extends utils.Adapter {
 
                 try {
                     const discoverResult = await this.zehnder.discover(msg.message.multicastAddr);
-                    this.log.info(`[discovery] Device discovery finished - use these information for instance configuration: ${JSON.stringify(discoverResult)}`);
+                    this.log.info(
+                        `[discovery] Device discovery finished - use these information for instance configuration: ${JSON.stringify(discoverResult)}`,
+                    );
 
                     this.sendTo(
                         msg.from,
@@ -368,19 +385,18 @@ class Comfoairq extends utils.Adapter {
             this.connected = false;
 
             callback();
-        } catch (err) {
+        } catch {
             callback();
         }
     }
 }
 
-// @ts-ignore parent is a valid property on module
 if (module.parent) {
     // Export the constructor in compact mode
     /**
-     * @param {Partial<utils.AdapterOptions>} [options={}]
+     * @param {Partial<utils.AdapterOptions>} [options]
      */
-    module.exports = (options) => new Comfoairq(options);
+    module.exports = options => new Comfoairq(options);
 } else {
     // otherwise start the instance directly
     new Comfoairq();
