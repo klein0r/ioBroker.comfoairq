@@ -61,7 +61,7 @@ class Comfoairq extends utils.Adapter {
     }
 
     async onReady() {
-        await this.setStateAsync('info.connection', false, true);
+        await this.setState('info.connection', false, true);
 
         // Get active sensors by configuration
         for (const key of Object.keys(this.config)) {
@@ -100,7 +100,7 @@ class Comfoairq extends utils.Adapter {
                             const sensorValue = data.result.data.data;
 
                             if (!isNaN(sensorValue)) {
-                                await this.extendObjectAsync(`sensor.${sensorNameClean}`, {
+                                await this.extendObject(`sensor.${sensorNameClean}`, {
                                     type: 'state',
                                     common: {
                                         name: `${sensorName} (${sensorId})`,
@@ -116,7 +116,7 @@ class Comfoairq extends utils.Adapter {
                                 });
 
                                 if (!Object.prototype.hasOwnProperty.call(this.pausedSensorValues, sensorId)) {
-                                    await this.setStateChangedAsync(`sensor.${sensorNameClean}`, {
+                                    await this.setState(`sensor.${sensorNameClean}`, {
                                         val: sensorValue,
                                         ack: true,
                                     });
@@ -129,15 +129,15 @@ class Comfoairq extends utils.Adapter {
                             }
                         } else if (data.kind == 68) {
                             // 68 = VersionConfirm
-                            await this.setStateChangedAsync('version.comfonet', {
+                            await this.setState('version.comfonet', {
                                 val: data.result.data.comfoNetVersion.toString(),
                                 ack: true,
                             });
-                            await this.setStateChangedAsync('version.serial', {
+                            await this.setState('version.serial', {
                                 val: data.result.data.serialNumber.toString(),
                                 ack: true,
                             });
-                            await this.setStateChangedAsync('version.gateway', {
+                            await this.setState('version.gateway', {
                                 val: data.result.data.gatewayVersion.toString(),
                                 ack: true,
                             });
@@ -171,7 +171,7 @@ class Comfoairq extends utils.Adapter {
 
                 this.zehnder.VersionRequest();
 
-                await this.setStateAsync('info.connection', { val: true, ack: true });
+                await this.setState('info.connection', { val: true, ack: true });
                 this.connected = true;
 
                 this.subscribeStates('*');
@@ -381,7 +381,7 @@ class Comfoairq extends utils.Adapter {
                 this.clearTimeout(timeout);
             }
 
-            this.setStateAsync('info.connection', { val: false, ack: true });
+            this.setState('info.connection', { val: false, ack: true });
             this.connected = false;
 
             callback();
