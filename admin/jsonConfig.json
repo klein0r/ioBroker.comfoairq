@@ -8,51 +8,100 @@
             "label": "Options",
             "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuNC4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIzIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNNDk1LjkgMTY2LjZjMy4yIDguNyAuNSAxOC40LTYuNCAyNC42bC00My4zIDM5LjRjMS4xIDguMyAxLjcgMTYuOCAxLjcgMjUuNHMtLjYgMTcuMS0xLjcgMjUuNGw0My4zIDM5LjRjNi45IDYuMiA5LjYgMTUuOSA2LjQgMjQuNmMtNC40IDExLjktOS43IDIzLjMtMTUuOCAzNC4zbC00LjcgOC4xYy02LjYgMTEtMTQgMjEuNC0yMi4xIDMxLjJjLTUuOSA3LjItMTUuNyA5LjYtMjQuNSA2LjhsLTU1LjctMTcuN2MtMTMuNCAxMC4zLTI4LjIgMTguOS00NCAyNS40bC0xMi41IDU3LjFjLTIgOS4xLTkgMTYuMy0xOC4yIDE3LjhjLTEzLjggMi4zLTI4IDMuNS00Mi41IDMuNXMtMjguNy0xLjItNDIuNS0zLjVjLTkuMi0xLjUtMTYuMi04LjctMTguMi0xNy44bC0xMi41LTU3LjFjLTE1LjgtNi41LTMwLjYtMTUuMS00NC0yNS40TDgzLjEgNDI1LjljLTguOCAyLjgtMTguNiAuMy0yNC41LTYuOGMtOC4xLTkuOC0xNS41LTIwLjItMjIuMS0zMS4ybC00LjctOC4xYy02LjEtMTEtMTEuNC0yMi40LTE1LjgtMzQuM2MtMy4yLTguNy0uNS0xOC40IDYuNC0yNC42bDQzLjMtMzkuNEM2NC42IDI3My4xIDY0IDI2NC42IDY0IDI1NnMuNi0xNy4xIDEuNy0yNS40TDIyLjQgMTkxLjJjLTYuOS02LjItOS42LTE1LjktNi40LTI0LjZjNC40LTExLjkgOS43LTIzLjMgMTUuOC0zNC4zbDQuNy04LjFjNi42LTExIDE0LTIxLjQgMjIuMS0zMS4yYzUuOS03LjIgMTUuNy05LjYgMjQuNS02LjhsNTUuNyAxNy43YzEzLjQtMTAuMyAyOC4yLTE4LjkgNDQtMjUuNGwxMi41LTU3LjFjMi05LjEgOS0xNi4zIDE4LjItMTcuOEMyMjcuMyAxLjIgMjQxLjUgMCAyNTYgMHMyOC43IDEuMiA0Mi41IDMuNWM5LjIgMS41IDE2LjIgOC43IDE4LjIgMTcuOGwxMi41IDU3LjFjMTUuOCA2LjUgMzAuNiAxNS4xIDQ0IDI1LjRsNTUuNy0xNy43YzguOC0yLjggMTguNi0uMyAyNC41IDYuOGM4LjEgOS44IDE1LjUgMjAuMiAyMi4xIDMxLjJsNC43IDguMWM2LjEgMTEgMTEuNCAyMi40IDE1LjggMzQuM3pNMjU2IDMzNmE4MCA4MCAwIDEgMCAwLTE2MCA4MCA4MCAwIDEgMCAwIDE2MHoiLz48L3N2Zz4=",
             "items": {
+                "_headerOptionsDiscovery": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Device discovery",
+                    "size": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
                 "multicastAddr": {
                     "type": "text",
+                    "xs": 12,
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 5,
+                    "lg": 5,
                     "label": "Broadcast Address",
                     "help": "Broadcast address of your network"
                 },
                 "port": {
                     "type": "number",
+                    "xs": 12,
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 5,
+                    "lg": 5,
                     "label": "Port",
                     "help": "Default Port is 56747"
+                },
+                "_startWizard": {
+                    "type": "sendTo",
+                    "command": "wizard",
+                    "jsonData": "{\"multicastAddr\": \"${data.multicastAddr}\", \"port\": ${data.port}}",
+                    "icon": "search",
+                    "variant": "contained",
+                    "showProcess": true,
+                    "useNative": true,
+                    "xs": 2,
+                    "sm": 2,
+                    "md": 2,
+                    "lg": 2,
+                    "label": "Search devices"
+                },
+                "_headerOptionsConnection": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Device connection",
+                    "size": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
                 },
                 "host": {
                     "newLine": true,
                     "type": "text",
+                    "xs": 12,
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 5,
+                    "lg": 5,
                     "label": "IP-Adress / Hostname",
                     "help": "IP or hostname of your Zehnder ComfoConnect LAN C"
                 },
                 "uuid": {
-                    "newLine": true,
                     "type": "text",
+                    "xs": 12,
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 5,
+                    "lg": 5,
                     "label": "UUID",
                     "help": "UUID of your Zehnder ComfoConnect LAN C"
                 },
                 "pin": {
                     "type": "text",
+                    "xs": 12,
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 2,
+                    "lg": 2,
                     "label": "PIN",
                     "help": "Default PIN is 0000 (can be changed in the app)"
+                },
+                "_headerOptionsSupport": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Support this project",
+                    "size": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
                 },
                 "_ioBrokerKursBanner": {
                     "newLine": true,
                     "type": "staticImage",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
@@ -71,12 +120,14 @@
                     "type": "header",
                     "text": "Operation",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12
                 },
                 "sensor_49": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -84,6 +135,7 @@
                 },
                 "sensor_56": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -94,12 +146,14 @@
                     "type": "header",
                     "text": "Fans",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12
                 },
                 "sensor_65": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -107,6 +161,7 @@
                 },
                 "sensor_81": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -114,6 +169,7 @@
                 },
                 "sensor_117": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -121,6 +177,7 @@
                 },
                 "sensor_118": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -128,6 +185,7 @@
                 },
                 "sensor_119": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -135,6 +193,7 @@
                 },
                 "sensor_120": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -142,6 +201,7 @@
                 },
                 "sensor_121": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -149,6 +209,7 @@
                 },
                 "sensor_122": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -159,12 +220,14 @@
                     "type": "header",
                     "text": "Temperatures",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12
                 },
                 "sensor_221": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -172,6 +235,7 @@
                 },
                 "sensor_274": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -179,6 +243,7 @@
                 },
                 "sensor_275": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -186,6 +251,7 @@
                 },
                 "sensor_276": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -196,12 +262,14 @@
                     "type": "header",
                     "text": "Humidities",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12
                 },
                 "sensor_290": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -209,6 +277,7 @@
                 },
                 "sensor_291": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -216,6 +285,7 @@
                 },
                 "sensor_292": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -223,6 +293,7 @@
                 },
                 "sensor_294": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -233,12 +304,14 @@
                     "type": "header",
                     "text": "Power",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12
                 },
                 "sensor_128": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -246,6 +319,7 @@
                 },
                 "sensor_129": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -253,6 +327,7 @@
                 },
                 "sensor_130": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -260,6 +335,7 @@
                 },
                 "sensor_144": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -267,6 +343,7 @@
                 },
                 "sensor_145": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -274,6 +351,7 @@
                 },
                 "sensor_146": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -281,6 +359,7 @@
                 },
                 "sensor_213": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -288,6 +367,7 @@
                 },
                 "sensor_214": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -295,6 +375,7 @@
                 },
                 "sensor_215": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -302,6 +383,7 @@
                 },
                 "sensor_216": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -309,6 +391,7 @@
                 },
                 "sensor_217": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -316,6 +399,7 @@
                 },
                 "sensor_218": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -326,20 +410,23 @@
                     "type": "header",
                     "text": "Other",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12
                 },
                 "sensor_16": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
                     "label": "SENSOR_AWAY_INDICATOR (16)"
                 },
-                
+
                 "sensor_66": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -347,14 +434,16 @@
                 },
                 "sensor_67": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
                     "label": "SENSOR_TEMPERATURE_PROFILE (67)"
                 },
-                
+
                 "sensor_192": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -362,6 +451,7 @@
                 },
                 "sensor_209": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,
@@ -369,6 +459,7 @@
                 },
                 "sensor_227": {
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 4,

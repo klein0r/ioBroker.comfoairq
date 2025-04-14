@@ -2,7 +2,6 @@
 
 const utils = require('@iobroker/adapter-core');
 const comfoconnect = require('comfoairq');
-const adapterName = require('./package.json').name.split('.').pop();
 
 class Comfoairq extends utils.Adapter {
     /**
@@ -11,7 +10,7 @@ class Comfoairq extends utils.Adapter {
     constructor(options) {
         super({
             ...options,
-            name: adapterName,
+            name: 'comfoairq',
         });
 
         this.connected = false;
@@ -57,6 +56,7 @@ class Comfoairq extends utils.Adapter {
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
+        this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
 
@@ -166,28 +166,8 @@ class Comfoairq extends utils.Adapter {
             } else {
                 this.log.warn('No active sensors found in configuration - stopping');
             }
-        } else if (this.config.multicastAddr && this.config.port) {
-            // Dicover Zehnder devices
-            this.log.info(`[discovery] Device information not configured - starting discovery on ${this.config.multicastAddr}`);
-
-            this.zehnder = new comfoconnect({
-                uuid: this.uuid,
-                device: this.deviceName,
-
-                port: Number(this.config.port),
-
-                debug: false,
-                logger: this.log.debug,
-            });
-
-            try {
-                const discoverResult = await this.zehnder.discover(this.config.multicastAddr);
-                this.log.info(`[discovery] Device discovery finished - use these information for instance configuration: ${JSON.stringify(discoverResult)}`);
-            } catch (err) {
-                this.log.error(`[discovery] error: ${JSON.stringify(err)}`);
-            }
         } else {
-            this.log.error('Instance configuration invalid');
+            this.log.warn('Instance configuration incomplete - please check configuration and restart instance');
         }
     }
 
@@ -310,6 +290,65 @@ class Comfoairq extends utils.Adapter {
                             this.zehnder.SendCommand(1, 'BYPASS_AUTO');
                             break;
                     }
+                }
+            }
+        }
+    }
+
+    async onMessage(msg) {
+        if (typeof msg === 'object' && msg.message) {
+            if (msg.command === 'wizard') {
+                this.log.debug(`[onMessage] wizard started on ${msg.message.multicastAddr}:${msg.message.port} -> ${JSON.stringify(msg)}`);
+
+                this.zehnder = new comfoconnect({
+                    uuid: this.uuid,
+                    device: this.deviceName,
+
+                    port: Number(msg.message.port),
+
+                    debug: false,
+                    logger: this.log.debug,
+                });
+
+                const discoveryTimeout = this.setTimeout(() => {
+                    this.wizard = false;
+
+                    this.sendTo(
+                        msg.from,
+                        msg.command,
+                        {
+                            saveConfig: false,
+                            error: 'timeout',
+                        },
+                        msg.callback,
+                    );
+
+                    this.log.debug('[onMessage] wizard timeout!');
+                }, 20000);
+
+                try {
+                    const discoverResult = await this.zehnder.discover(msg.message.multicastAddr);
+                    this.log.info(`[discovery] Device discovery finished - use these information for instance configuration: ${JSON.stringify(discoverResult)}`);
+
+                    this.sendTo(
+                        msg.from,
+                        msg.command,
+                        {
+                            native: {
+                                host: discoverResult.comfoair,
+                                uuid: discoverResult.comfouuid,
+                            },
+                            saveConfig: false,
+                            error: null,
+                        },
+                        msg.callback,
+                    );
+
+                    if (discoveryTimeout) {
+                        this.clearTimeout(discoveryTimeout);
+                    }
+                } catch (err) {
+                    this.log.error(`[discovery] error: ${JSON.stringify(err)}`);
                 }
             }
         }

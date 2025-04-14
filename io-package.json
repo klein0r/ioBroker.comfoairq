@@ -146,6 +146,9 @@
     "compact": true,
     "connectionType": "local",
     "dataSource": "poll",
+    "supportedMessages": {
+      "custom": true
+    },
     "adminUI": {
       "config": "json"
     },
@@ -167,7 +170,7 @@
     "pin"
   ],
   "native": {
-    "pin": "",
+    "pin": "0000",
     "port": "56747",
     "multicastAddr": "192.168.1.255",
     "sensor_16": false,

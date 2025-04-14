@@ -40,6 +40,8 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 NodeJS >= 20.x and js-controller >= 6 is required
 
+* (klein0r) Added messagebox for device discovery via admin
+
 ### 0.4.0 (2024-03-28)
 
 NodeJS >= 18.x and js-controller >= 5 is required
