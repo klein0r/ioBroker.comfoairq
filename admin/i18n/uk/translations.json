@@ -10,5 +10,8 @@
     "UUID": "UUID",
     "UUID of your Zehnder ComfoConnect LAN C": "UUID вашого Zehnder ComfoConnect LAN C",
     "PIN": "PIN-код",
-    "Default PIN is 0000 (can be changed in the app)": "PIN-код за умовчанням 0000 (можна змінити в додатку)"
+    "Default PIN is 0000 (can be changed in the app)": "PIN-код за умовчанням 0000 (можна змінити в додатку)",
+    "Device discovery": "Відкриття пристрою",
+    "Device connection": "Підключення пристрою",
+    "Support this project": "Підтримайте цей проект"
 }
