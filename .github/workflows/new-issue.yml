@@ -22,12 +22,12 @@ jobs:
 
       - name: Setup node
         id: setup_node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
         with:
           node-version: 20
       - name: Get package name
         id: get_package_name
-        uses: ASzc/change-string-case-action@v6
+        uses: ASzc/change-string-case-action@d0603cd0a7dd490be678164909f65c7737470a7f # v6
         with:
           string: ${{ github.event.repository.name }}
       - name: Get NPM version
@@ -36,7 +36,7 @@ jobs:
       - name: Create comment
         id: create_comment_ok
         if: ${{ contains(github.event.issue.body, steps.get_npm_version.outputs.LATEST_VERSION) }}
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
@@ -51,7 +51,7 @@ jobs:
       - name: Create comment (not beta version)
         id: create_comment_version
         if: ${{ !contains(github.event.issue.body, steps.get_npm_version.outputs.LATEST_VERSION) }}
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
