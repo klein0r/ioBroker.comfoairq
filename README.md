@@ -76,6 +76,8 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 * (klein0r) Updated state roles
 * (klein0r) Updated dependencies
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## Credits
 
 Development of this ioBroker Adapter was possible on the work performed by:
