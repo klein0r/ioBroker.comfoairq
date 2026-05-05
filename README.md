@@ -38,7 +38,8 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 -->
 ### **WORK IN PROGRESS**
 
-* (@klein0r) admin 7.6.17 and js-controller 6.0.11 (or later) are required
+* (copilot) Adapter requires node.js >= 22 now
+* (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
 * (@klein0r) Updated dependencies
 
 ### 0.5.1 (2025-04-14)
@@ -75,6 +76,8 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 * (klein0r) Added hint for Admin 4 configuration
 * (klein0r) Updated state roles
 * (klein0r) Updated dependencies
+
+[Older changelogs can be found there](CHANGELOG_OLD.md)
 
 ## Credits
 
