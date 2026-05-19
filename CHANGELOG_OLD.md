@@ -1,4 +1,12 @@
 # Older changes
+## 0.2.0 (2022-02-25)
+
+* (klein0r) Translated all objects
+* (klein0r) Updated dependencies
+* (klein0r) Added hint for Admin 4 configuration
+* (klein0r) Updated state roles
+* (klein0r) Updated dependencies
+
 ## 0.1.0
 
 * (klein0r) Admin 5 UI
