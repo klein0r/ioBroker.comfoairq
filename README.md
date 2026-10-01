@@ -24,7 +24,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 *Tested with ComfoAirQ 350*
 
-**Important:** ComfoConnect LAN C supports just 1 single client. You cannot use the ComfoControl App and the ioBroker adapter at the same time!
+**Important:** ComfoConnect LAN C firmware versions before U1.2.6 support just 1 single client - you cannot use the ComfoControl App and the ioBroker adapter at the same time. Since firmware U1.2.6, multiple simultaneous connections are supported.
 
 ## Sponsored by
 
@@ -35,7 +35,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 Development of this ioBroker Adapter was possible on the work performed by:
 
 * Jan Van Belle (https://github.com/herrJones/node-comfoairq)
-* Michael Arnauts (https://github.com/michaelarnauts/comfoconnect)
+* Michael Arnauts (https://github.com/michaelarnauts/aiocomfoconnect)
 * Marco Hoyer (https://github.com/marco-hoyer/zcan) and its forks on github (djwlindenaar, decontamin4t0R)
 
 ## Changelog
@@ -44,6 +44,29 @@ Development of this ioBroker Adapter was possible on the work performed by:
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Updated README: multiple simultaneous connections are supported since LAN C firmware U1.2.6
+* (@klein0r) Updated comfoairq library to 1.0.0
+* (@klein0r) Device discovery searches on all network interfaces (and directly on the configured IP address) - removed broadcast address option
+* (@klein0r) Added commands: boost 60 / 90 minutes / unlimited, boost and away mode with custom duration, end away mode, extract only ventilation mode, filter change
+* (@klein0r) Added settings (`property.*`): filter lifetime / warning, fan flow per level, RMOT heating / cooling limit, sensor based ventilation - and device information (model name, article number, country)
+* (@klein0r) Added new sensors (e.g. outdoor air temperature, supply air temperature, filter change state, seconds until next change)
+* (@klein0r) Connection state is restored after an automatic reconnect
+* (@klein0r) Fixed crash (ERR_OUT_OF_RANGE) when a message from the gateway is split across multiple TCP packets (comfoairq library 1.0.1)
+* (@klein0r) Connection state is set again when sensor values are received
+* (@klein0r) Sensor values received within the 2 second update limit are no longer dropped - the latest value is written afterwards
+* (@klein0r) Updated comfoairq library to 2.0.0
+* (@klein0r) Added connected devices of the ComfoNet bus (`node.*`) with product, zone, mode - and serial number, firmware version and active errors (alarms)
+* (@klein0r) Added command to reset errors
+* (@klein0r) Added device name, serial number and firmware version of the ventilation unit (`property.*`)
+* (@klein0r) Gateway and ComfoNet version are shown as readable version (e.g. R1.5.1)
+* (@klein0r) Commands and settings are sent to the ventilation unit announced by the device (e.g. ComfoAir Flex)
+* (@klein0r) Added sensors: heating / cooling season, airflow constraints, analog inputs, subsoil heat exchanger present, ComfoCool state
+* (@klein0r) Added ground heat exchanger sensors 416 / 417 / 418 (fixes #28)
+* (@klein0r) Added duration (1 - 24 hours) for supply only / extract only ventilation mode (fixes #45)
+* (@klein0r) Retry to start the session every minute if the LAN C is not reachable on startup
+
 ### 0.6.1 (2026-10-01)
 
 * (@klein0r) Updated dependencies
