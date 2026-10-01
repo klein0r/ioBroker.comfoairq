@@ -1,4 +1,12 @@
 # Older changes
+## 0.4.0 (2024-03-28)
+
+NodeJS >= 18.x and js-controller >= 5 is required
+
+* (klein0r) Added icons to admin tabs
+* (klein0r) Group sensors in admin config
+* (klein0r) Limit sensor value refresh interval
+
 ## 0.3.0 (2022-12-14)
 
 NodeJS 14.x is required (NodeJS 12.x is EOL)

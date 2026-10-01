@@ -44,7 +44,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0 (2026-10-01)
 
 * (@klein0r) Updated comfoairq library to 2.1.0
 * (@klein0r) Updated README: multiple simultaneous connections are supported since LAN C firmware U1.2.6
@@ -88,14 +88,6 @@ NodeJS >= 20.x and js-controller >= 6 is required
 
 * (@klein0r) Added messagebox for device discovery via admin
 * (@klein0r) Added responsive admin layout
-
-### 0.4.0 (2024-03-28)
-
-NodeJS >= 18.x and js-controller >= 5 is required
-
-* (klein0r) Added icons to admin tabs
-* (klein0r) Group sensors in admin config
-* (klein0r) Limit sensor value refresh interval
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
