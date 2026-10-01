@@ -30,12 +30,25 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 [![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png?2024)](https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-comfoairq)
 
+## Credits
+
+Development of this ioBroker Adapter was possible on the work performed by:
+
+* Jan Van Belle (https://github.com/herrJones/node-comfoairq)
+* Michael Arnauts (https://github.com/michaelarnauts/comfoconnect)
+* Marco Hoyer (https://github.com/marco-hoyer/zcan) and its forks on github (djwlindenaar, decontamin4t0R)
+
 ## Changelog
 
 <!--
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Updated dependencies
+* (@klein0r) admin 7.8.23 and js-controller 6.0.11 (or later) are required
+
 ### 0.6.0 (2026-05-19)
 
 * (copilot) Adapter requires node.js >= 22 now
@@ -69,13 +82,7 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 * (klein0r) Dropped Admin 5 support
 * (klein0r) Added Ukrainian language
 
-[Older changelogs can be found there](CHANGELOG_OLD.md)## Credits
-
-Development of this ioBroker Adapter was possible on the work performed by:
-
-* Jan Van Belle (https://github.com/herrJones/node-comfoairq)
-* Michael Arnauts (https://github.com/michaelarnauts/comfoconnect)
-* Marco Hoyer (https://github.com/marco-hoyer/zcan) and its forks on github (djwlindenaar, decontamin4t0R)
+[Older changelogs can be found there](CHANGELOG_OLD.md)
 
 ## License
 
