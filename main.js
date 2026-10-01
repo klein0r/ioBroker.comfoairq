@@ -169,6 +169,12 @@ class Comfoairq extends utils.Adapter {
                     if (data && data.result.error == 'OK') {
                         if (data.kind == 40) {
                             // 40 = CnRpdoNotification
+                            // receiving sensor values means the session is active (e.g. after a disconnect event without a new StartSessionConfirm)
+                            if (!this.connected) {
+                                await this.setState('info.connection', { val: true, ack: true });
+                                this.connected = true;
+                            }
+
                             const sensorId = data.result.data.pdid;
                             const sensorName = data.result.data.name;
                             const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
