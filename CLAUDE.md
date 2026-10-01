@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-ioBroker adapter (`iobroker.comfoairq`) that connects a Zehnder ComfoAirQ ventilation unit via the ComfoConnect LAN C gateway. Plain JavaScript (CommonJS, no build step), Node >= 22. All protocol work is delegated to the `comfoairq` npm package; this repo only maps it onto ioBroker states. The LAN C gateway accepts only one client at a time, so the ComfoControl app and the adapter can't be connected simultaneously.
+ioBroker adapter (`iobroker.comfoairq`) that connects a Zehnder ComfoAirQ ventilation unit via the ComfoConnect LAN C gateway. Plain JavaScript (CommonJS, no build step), Node >= 22. All protocol work is delegated to the `comfoairq` npm package; this repo only maps it onto ioBroker states. LAN C gateways with firmware before U1.2.6 accept only one client at a time (ComfoControl app and adapter can't be connected simultaneously); since U1.2.6 multiple connections are supported.
 
 ## Commands
 

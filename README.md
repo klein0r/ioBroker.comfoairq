@@ -24,7 +24,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 *Tested with ComfoAirQ 350*
 
-**Important:** ComfoConnect LAN C supports just 1 single client. You cannot use the ComfoControl App and the ioBroker adapter at the same time!
+**Important:** ComfoConnect LAN C firmware versions before U1.2.6 support just 1 single client - you cannot use the ComfoControl App and the ioBroker adapter at the same time. Since firmware U1.2.6, multiple simultaneous connections are supported.
 
 ## Sponsored by
 
@@ -46,6 +46,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
 -->
 ### **WORK IN PROGRESS**
 
+* (@klein0r) Updated README: multiple simultaneous connections are supported since LAN C firmware U1.2.6
 * (@klein0r) Updated comfoairq library to 1.0.0
 * (@klein0r) Device discovery searches on all network interfaces (and directly on the configured IP address) - removed broadcast address option
 * (@klein0r) Added commands: boost 60 / 90 minutes / unlimited, boost and away mode with custom duration, end away mode, extract only ventilation mode, filter change
