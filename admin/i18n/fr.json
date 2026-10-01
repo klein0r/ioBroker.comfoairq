@@ -1,0 +1,18 @@
+{
+    "Broadcast Address": "Adresse de diffusion",
+    "Broadcast address of your network": "Adresse de diffusion de votre réseau",
+    "Default PIN is 0000 (can be changed in the app)": "Le code PIN par défaut est 0000 (peut être modifié dans l'application)",
+    "Default Port is 56747": "Le port par défaut est 56747",
+    "Device connection": "Connexion de l'appareil",
+    "Device discovery": "Découverte de l'appareil",
+    "IP or hostname of your Zehnder ComfoConnect LAN C": "IP ou nom d'hôte de votre Zehnder ComfoConnect LAN C",
+    "IP-Adress / Hostname": "Adresse IP / Nom d'hôte",
+    "Options": "Options",
+    "PIN": "Code PIN",
+    "Port": "Port",
+    "Sensors": "Capteurs",
+    "Support this project": "Soutenir ce projet",
+    "UUID": "UUID",
+    "UUID of your Zehnder ComfoConnect LAN C": "UUID de votre Zehnder ComfoConnect LAN C",
+    "comfoairq adapter settings": "Paramètres d'adaptateur pour comfoairq"
+}
