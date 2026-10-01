@@ -822,6 +822,40 @@
       "native": {}
     },
     {
+      "_id": "command.ventmodeSupplyDuration",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Supply only (extract fan off) - duration in minutes",
+          "de": "Nur Zuluft (Abluftlüfter aus) - Dauer in Minuten",
+          "ru": "Только приток (вытяжной вентилятор выкл.) - длительность в минутах",
+          "pt": "Apenas insuflação (ventilador de extração desligado) - duração em minutos",
+          "nl": "Alleen toevoer (afvoerventilator uit) - duur in minuten",
+          "fr": "Soufflage uniquement (ventilateur d'extraction arrêté) - durée en minutes",
+          "it": "Solo mandata (ventola di estrazione spenta) - durata in minuti",
+          "es": "Solo impulsión (ventilador de extracción apagado) - duración en minutos",
+          "pl": "Tylko nawiew (wentylator wywiewny wył.) - czas w minutach",
+          "uk": "Лише приплив (витяжний вентилятор вимк.) - тривалість у хвилинах",
+          "zh-cn": "仅送风（排风风扇关闭）- 持续时间（分钟）"
+        },
+        "type": "number",
+        "role": "level.timer",
+        "unit": "min",
+        "min": 1,
+        "max": 1440,
+        "states": {
+          "60": "1 h",
+          "120": "2 h",
+          "240": "4 h",
+          "720": "12 h",
+          "1440": "24 h"
+        },
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
       "_id": "command.ventmodeExtract",
       "type": "state",
       "common": {
@@ -865,6 +899,40 @@
         "type": "boolean",
         "role": "button",
         "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.ventmodeExtractDuration",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Extract only (supply fan off) - duration in minutes",
+          "de": "Nur Abluft (Zuluftlüfter aus) - Dauer in Minuten",
+          "ru": "Только вытяжка (приточный вентилятор выкл.) - длительность в минутах",
+          "pt": "Apenas extração (ventilador de insuflação desligado) - duração em minutos",
+          "nl": "Alleen afvoer (toevoerventilator uit) - duur in minuten",
+          "fr": "Extraction uniquement (ventilateur de soufflage arrêté) - durée en minutes",
+          "it": "Solo estrazione (ventola di mandata spenta) - durata in minuti",
+          "es": "Solo extracción (ventilador de impulsión apagado) - duración en minutos",
+          "pl": "Tylko wywiew (wentylator nawiewny wył.) - czas w minutach",
+          "uk": "Лише витяжка (приточний вентилятор вимк.) - тривалість у хвилинах",
+          "zh-cn": "仅排风（送风风扇关闭）- 持续时间（分钟）"
+        },
+        "type": "number",
+        "role": "level.timer",
+        "unit": "min",
+        "min": 1,
+        "max": 1440,
+        "states": {
+          "60": "1 h",
+          "120": "2 h",
+          "240": "4 h",
+          "720": "12 h",
+          "1440": "24 h"
+        },
+        "read": true,
         "write": true
       },
       "native": {}

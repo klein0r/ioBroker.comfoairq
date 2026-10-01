@@ -28,6 +28,7 @@ class Comfoairq extends utils.Adapter {
         this.pendingSensorValues = {};
         this.refreshPropertiesInterval = null;
         this.connectTimeout = null;
+        this.stateChangeQueue = Promise.resolve();
 
         this.sensorMeta = {
             81: { unit: 's' },
@@ -97,9 +98,7 @@ class Comfoairq extends utils.Adapter {
             awayEnd: 'AWAY_END',
             modeAuto: 'MODE_AUTO',
             modeManual: 'MODE_MANUAL',
-            ventmodeSupply: 'VENTMODE_SUPPLY',
             ventmodeBalance: 'VENTMODE_BALANCE',
-            ventmodeExtract: 'VENTMODE_EXTRACT',
             ventmodeExtractOff: 'VENTMODE_EXTRACT_OFF',
             tempprofNormal: 'TEMPPROF_NORMAL',
             tempprofCool: 'TEMPPROF_COOL',
@@ -111,6 +110,14 @@ class Comfoairq extends utils.Adapter {
             filterChangeComplete: 'FILTER_CHANGE_COMPLETE',
             filterChangeAbort: 'FILTER_CHANGE_ABORT',
             errorsReset: 'ERRORS_RESET',
+        };
+
+        // command.<state> -> SetVentMode (buttons with fixed duration of 1 hour, as before)
+        this.ventModes = {
+            ventmodeSupply: { mode: 'supply', minutes: 60 },
+            ventmodeSupplyDuration: { mode: 'supply' },
+            ventmodeExtract: { mode: 'extract', minutes: 60 },
+            ventmodeExtractDuration: { mode: 'extract' },
         };
 
         // property name of the library -> state definition (created as property.<camelCaseName>)
@@ -514,44 +521,80 @@ class Comfoairq extends utils.Adapter {
                 return;
             }
 
-            const idNoNamespace = this.removeNamespace(id);
+            // one after another - e.g. SetVentMode consists of several requests which must not interleave
+            await this.enqueue(() => this.processStateChange(this.removeNamespace(id), state));
+        }
+    }
 
-            try {
-                if (idNoNamespace.startsWith('command.')) {
-                    const command = idNoNamespace.substring(8);
+    /**
+     * Runs the task after all previously queued tasks
+     *
+     * @param {() => Promise<void>} task task to run
+     */
+    enqueue(task) {
+        const run = this.stateChangeQueue.then(task);
+        this.stateChangeQueue = run.catch(() => {});
+        return run;
+    }
 
-                    if (command === 'boostDuration' || command === 'awayDuration') {
-                        // duration in minutes, < 0 = unlimited
-                        const minutes = Number(state.val);
-                        const seconds = minutes < 0 ? -1 : Math.round(minutes * 60);
+    /**
+     * Sends a command / setting to the device
+     *
+     * @param {string} idNoNamespace state id without namespace
+     * @param {ioBroker.State} state new state
+     */
+    async processStateChange(idNoNamespace, state) {
+        try {
+            if (idNoNamespace.startsWith('command.')) {
+                const command = idNoNamespace.substring(8);
 
-                        if (command === 'boostDuration') {
-                            this.log.debug(`Sending boost for ${seconds} seconds`);
-                            await this.zehnder.SetBoost(VENTILATION_NODE, seconds);
-                        } else {
-                            this.log.debug(`Sending away for ${seconds} seconds`);
-                            await this.zehnder.SetAway(VENTILATION_NODE, seconds);
-                        }
+                if (command === 'boostDuration' || command === 'awayDuration') {
+                    // duration in minutes, < 0 = unlimited
+                    const minutes = Number(state.val);
+                    const seconds = minutes < 0 ? -1 : Math.round(minutes * 60);
 
+                    if (command === 'boostDuration') {
+                        this.log.debug(`Sending boost for ${seconds} seconds`);
+                        await this.zehnder.SetBoost(VENTILATION_NODE, seconds);
+                    } else {
+                        this.log.debug(`Sending away for ${seconds} seconds`);
+                        await this.zehnder.SetAway(VENTILATION_NODE, seconds);
+                    }
+
+                    await this.setState(idNoNamespace, { val: minutes, ack: true });
+                } else if (this.ventModes[command]) {
+                    // supply only / extract only - SetVentMode ends the opposite mode first, so both fans are never off
+                    // duration in minutes - limited to 24 hours like on the device (no unlimited mode)
+                    const { mode, minutes: fixedMinutes } = this.ventModes[command];
+                    const minutes = fixedMinutes ?? Number(state.val);
+                    if (!(minutes >= 1 && minutes <= 1440)) {
+                        this.log.warn(`Invalid duration for ${command}: ${state.val} (allowed: 1 - 1440 minutes)`);
+                        return;
+                    }
+
+                    this.log.debug(`Sending vent mode ${mode} for ${Math.round(minutes * 60)} seconds`);
+                    await this.zehnder.SetVentMode(VENTILATION_NODE, mode, Math.round(minutes * 60));
+
+                    if (!fixedMinutes) {
                         await this.setState(idNoNamespace, { val: minutes, ack: true });
-                    } else if (this.commands[command]) {
-                        this.log.debug(`Sending command: ${this.commands[command]}`);
-                        await this.zehnder.SendCommand(VENTILATION_NODE, this.commands[command]);
                     }
-                } else if (idNoNamespace.startsWith('property.')) {
-                    const obj = await this.getObjectAsync(idNoNamespace);
-                    const name = obj?.native?.property;
-
-                    if (name && this.propertyMeta[name]?.write) {
-                        this.log.debug(`Setting property ${name} to ${state.val}`);
-                        await this.zehnder.SetProperty(VENTILATION_NODE, name, Number(state.val));
-                        await this.delay(1000);
-                        await this.readProperty(name, 3);
-                    }
+                } else if (this.commands[command]) {
+                    this.log.debug(`Sending command: ${this.commands[command]}`);
+                    await this.zehnder.SendCommand(VENTILATION_NODE, this.commands[command]);
                 }
-            } catch (err) {
-                this.log.warn(`Unable to process ${idNoNamespace}: ${err}`);
+            } else if (idNoNamespace.startsWith('property.')) {
+                const obj = await this.getObjectAsync(idNoNamespace);
+                const name = obj?.native?.property;
+
+                if (name && this.propertyMeta[name]?.write) {
+                    this.log.debug(`Setting property ${name} to ${state.val}`);
+                    await this.zehnder.SetProperty(VENTILATION_NODE, name, Number(state.val));
+                    await this.delay(1000);
+                    await this.readProperty(name, 3);
+                }
             }
+        } catch (err) {
+            this.log.warn(`Unable to process ${idNoNamespace}: ${err}`);
         }
     }
 
