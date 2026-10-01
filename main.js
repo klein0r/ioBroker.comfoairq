@@ -3,8 +3,8 @@
 const utils = require('@iobroker/adapter-core');
 const comfoconnect = require('comfoairq');
 
-// ComfoAir Q is always node 1
-const COMFOAIR_NODE = 1;
+// null = the ventilation unit announced by the device (node 1 on most setups, but e.g. 45 for a ComfoAir Flex)
+const VENTILATION_NODE = null;
 
 class Comfoairq extends utils.Adapter {
     /**
@@ -27,6 +27,7 @@ class Comfoairq extends utils.Adapter {
         this.pausedSensorValues = {};
         this.pendingSensorValues = {};
         this.refreshPropertiesInterval = null;
+        this.connectTimeout = null;
 
         this.sensorMeta = {
             81: { unit: 's' },
@@ -68,6 +69,10 @@ class Comfoairq extends utils.Adapter {
             292: { unit: '%' },
             293: { unit: '%' },
             294: { unit: '%' },
+            369: { unit: 'V', factor: 0.1 },
+            370: { unit: 'V', factor: 0.1 },
+            371: { unit: 'V', factor: 0.1 },
+            372: { unit: 'V', factor: 0.1 },
             384: { unit: '°C' },
             400: { unit: '°C' },
             416: { unit: '°C' },
@@ -104,12 +109,16 @@ class Comfoairq extends utils.Adapter {
             filterChangeStart: 'FILTER_CHANGE_START',
             filterChangeComplete: 'FILTER_CHANGE_COMPLETE',
             filterChangeAbort: 'FILTER_CHANGE_ABORT',
+            errorsReset: 'ERRORS_RESET',
         };
 
         // property name of the library -> state definition (created as property.<camelCaseName>)
         const offAutoOn = { 0: 'off', 1: 'auto', 2: 'on' };
         this.propertyMeta = {
+            DEVICE_NAME: { type: 'string', role: 'info.name' },
             MODEL_NAME: { type: 'string', role: 'info.model' },
+            SERIAL_NUMBER: { type: 'string', role: 'info.serial' },
+            FIRMWARE_VERSION: { type: 'string', role: 'info.firmware' },
             ARTICLE_NUMBER: { type: 'string', role: 'text' },
             COUNTRY: { type: 'string', role: 'text' },
             FILTER_LIFETIME: { type: 'number', role: 'level', unit: 'days', write: true },
@@ -176,54 +185,22 @@ class Comfoairq extends utils.Adapter {
                                 this.connected = true;
                             }
 
-                            const sensorId = data.result.data.pdid;
-                            const sensorName = data.result.data.name;
-                            const sensorNameClean = this.cleanNamespace(sensorName.replace('SENSOR', ''));
-                            let sensorValue = data.result.data.data;
-
-                            // 32-bit values (e.g. seconds until next change) are provided as raw buffer
-                            if (Buffer.isBuffer(sensorValue) && sensorValue.length == 4) {
-                                sensorValue = sensorValue.readInt32LE(0);
-                            }
-
-                            if (sensorName && !isNaN(sensorValue)) {
-                                await this.extendObject(`sensor.${sensorNameClean}`, {
-                                    type: 'state',
-                                    common: {
-                                        name: `${sensorName} (${sensorId})`,
-                                        type: 'number',
-                                        role: 'value',
-                                        unit: this.sensorMeta?.[sensorId]?.unit,
-                                        read: true,
-                                        write: false,
-                                    },
-                                    native: {
-                                        sensorId: sensorId,
-                                    },
-                                });
-
-                                await this.setSensorValue(sensorId, `sensor.${sensorNameClean}`, sensorValue);
-                            }
+                            await this.updateSensor(data.result.data);
+                        } else if (data.kind == 32) {
+                            // 32 = CnNodeNotification (nodes on the ComfoNet bus, announced after StartSession)
+                            await this.updateNode(data.result.data);
                         } else if (data.kind == 53) {
                             // 53 = StartSessionConfirm (also sent after an automatic reconnect of the library)
                             await this.setState('info.connection', { val: true, ack: true });
                             this.connected = true;
-                        } else if (data.kind == 68) {
-                            // 68 = VersionConfirm
-                            await this.setState('version.comfonet', {
-                                val: data.result.data.comfoNetVersion.toString(),
-                                ack: true,
-                            });
-                            await this.setState('version.serial', {
-                                val: data.result.data.serialNumber.toString(),
-                                ack: true,
-                            });
-                            await this.setState('version.gateway', {
-                                val: data.result.data.gatewayVersion.toString(),
-                                ack: true,
-                            });
                         }
                     }
+                });
+
+                this.log.debug('register alarm handler...');
+                this.zehnder.on('alarm', async alarm => {
+                    this.log.debug(`alarm: ${JSON.stringify(alarm)}`);
+                    await this.updateAlarm(alarm);
                 });
 
                 this.log.debug('register disconnect handler...');
@@ -236,35 +213,10 @@ class Comfoairq extends utils.Adapter {
                     this.connected = false;
                 });
 
-                try {
-                    this.log.debug('register the app...');
-                    const registerAppResult = await this.zehnder.RegisterApp();
-                    this.log.debug(`registerAppResult: ${JSON.stringify(registerAppResult)}`);
-
-                    // Start the session
-                    this.log.debug('startSession');
-                    const startSessionResult = await this.zehnder.StartSession(true);
-                    this.log.debug(`startSessionResult: ${JSON.stringify(startSessionResult)}`);
-
-                    for (const sensor of this.sensors) {
-                        const registerResult = await this.zehnder.RegisterSensor(sensor);
-                        this.log.debug(`Registered sensor "${sensor}" with result: ${JSON.stringify(registerResult)}`);
-                    }
-
-                    await this.zehnder.VersionRequest();
-                } catch (err) {
-                    this.log.error(`Unable to start session: ${err}`);
-                    return;
-                }
-
-                await this.setState('info.connection', { val: true, ack: true });
-                this.connected = true;
-
                 this.subscribeStates('command.*');
                 this.subscribeStates('property.*');
 
-                await this.refreshProperties();
-                this.refreshPropertiesInterval = this.setInterval(() => this.refreshProperties(), 60 * 60 * 1000);
+                await this.connect();
             } else {
                 this.log.warn('No active sensors found in configuration - stopping');
             }
@@ -274,12 +226,182 @@ class Comfoairq extends utils.Adapter {
     }
 
     /**
+     * Starts the session and registers the sensors. Retries every minute until the first session was started -
+     * afterwards the library reconnects automatically
+     */
+    async connect() {
+        this.connectTimeout = null;
+
+        try {
+            // fails e.g. with a wrong PIN - not required if the app is already registered
+            this.log.debug('register the app...');
+            await this.zehnder.RegisterApp();
+        } catch (err) {
+            this.log.debug(`Unable to register the app: ${err}`);
+        }
+
+        try {
+            this.log.debug('startSession');
+            const startSessionResult = await this.zehnder.StartSession(true);
+            this.log.debug(`startSessionResult: ${JSON.stringify(startSessionResult)}`);
+
+            for (const sensor of this.sensors) {
+                await this.zehnder.RegisterSensor(sensor);
+                this.log.debug(`Registered sensor "${sensor}"`);
+            }
+        } catch (err) {
+            if (err?.code === 'NOT_ALLOWED') {
+                this.log.error(
+                    `Unable to start session - app is not registered at the LAN C, please check the PIN: ${err}`,
+                );
+                return;
+            }
+
+            this.log.warn(`Unable to start session (retry in 60 seconds): ${err}`);
+            this.connectTimeout = this.setTimeout(() => this.connect(), 60 * 1000);
+            return;
+        }
+
+        await this.setState('info.connection', { val: true, ack: true });
+        this.connected = true;
+
+        try {
+            const version = await this.zehnder.VersionRequest();
+            this.log.debug(`version: ${JSON.stringify(version)}`);
+
+            await this.setState('version.comfonet', { val: version.comfoNetVersion, ack: true });
+            await this.setState('version.serial', { val: version.serialNumber, ack: true });
+            await this.setState('version.gateway', { val: version.gatewayVersion, ack: true });
+        } catch (err) {
+            this.log.warn(`Unable to read version: ${err}`);
+        }
+
+        await this.refreshProperties();
+        this.refreshPropertiesInterval = this.setInterval(() => this.refreshProperties(), 60 * 60 * 1000);
+    }
+
+    /**
+     * Creates / updates sensor.<camelCaseName> of a CnRpdoNotification
+     *
+     * @param {{ pdid: number, name: string, data: number | boolean | string[] | null | Buffer }} sensor decoded sensor value of the library
+     */
+    async updateSensor(sensor) {
+        const sensorId = sensor.pdid;
+        const meta = this.sensorMeta?.[sensorId];
+
+        if (!sensor.name) {
+            return;
+        }
+
+        const id = `sensor.${this.cleanNamespace(sensor.name.replace('SENSOR', ''))}`;
+        const name = `${sensor.name} (${sensorId})`;
+
+        if (typeof sensor.data === 'boolean') {
+            await this.createReadOnlyState(id, name, 'boolean', 'indicator', undefined, { sensorId });
+            await this.setSensorValue(sensorId, id, sensor.data);
+        } else if (typeof sensor.data === 'number') {
+            const value = meta?.factor ? Math.round(sensor.data * meta.factor * 1000) / 1000 : sensor.data;
+
+            await this.createReadOnlyState(id, name, 'number', 'value', meta?.unit, { sensorId });
+            await this.setSensorValue(sensorId, id, value);
+        } else if (Array.isArray(sensor.data) || sensor.data === null) {
+            // e.g. list of active airflow constraints (null = not available)
+            await this.createReadOnlyState(id, name, 'string', 'text', undefined, { sensorId });
+            await this.setSensorValue(sensorId, id, sensor.data ? sensor.data.join(', ') : null);
+        }
+        // otherwise unknown format (raw buffer)
+    }
+
+    /**
+     * Creates / updates node.<nodeId>.* of a CnNodeNotification
+     *
+     * @param {{ nodeId: number, productId: number, productName: string, zoneId: number, mode: string, offline: boolean }} node node announced by the device
+     */
+    async updateNode(node) {
+        const id = `node.${node.nodeId}`;
+
+        await this.extendObject(id, {
+            type: 'channel',
+            common: {
+                name: `${node.productName} (${node.nodeId})`,
+            },
+            native: {
+                nodeId: node.nodeId,
+            },
+        });
+
+        await this.createReadOnlyState(`${id}.productId`, 'Product ID', 'number', 'value');
+        await this.setState(`${id}.productId`, { val: node.productId, ack: true });
+
+        await this.createReadOnlyState(`${id}.productName`, 'Product name', 'string', 'text');
+        await this.setState(`${id}.productName`, { val: node.productName, ack: true });
+
+        await this.createReadOnlyState(`${id}.zone`, 'Zone', 'number', 'value');
+        await this.setState(`${id}.zone`, { val: node.zoneId ?? null, ack: true });
+
+        await this.createReadOnlyState(`${id}.mode`, 'Mode', 'string', 'text');
+        await this.setState(`${id}.mode`, { val: node.mode, ack: true });
+
+        await this.createReadOnlyState(`${id}.online`, 'Online', 'boolean', 'indicator.reachable');
+        await this.setState(`${id}.online`, { val: !node.offline, ack: true });
+    }
+
+    /**
+     * Updates node.<nodeId>.* of a CnAlarmNotification (active errors of a node)
+     *
+     * @param {{ nodeId: number, serialNumber: string, firmwareVersion: string | null, errors: Record<string, string> }} alarm alarm of the library
+     */
+    async updateAlarm(alarm) {
+        const id = `node.${alarm.nodeId}`;
+        const errors = Object.values(alarm.errors || {});
+
+        if (errors.length > 0) {
+            this.log.warn(`Node ${alarm.nodeId} reports errors: ${errors.join(', ')}`);
+        }
+
+        await this.createReadOnlyState(`${id}.serialNumber`, 'Serial number', 'string', 'info.serial');
+        await this.setState(`${id}.serialNumber`, { val: alarm.serialNumber ?? null, ack: true });
+
+        await this.createReadOnlyState(`${id}.firmwareVersion`, 'Firmware version', 'string', 'info.firmware');
+        await this.setState(`${id}.firmwareVersion`, { val: alarm.firmwareVersion, ack: true });
+
+        await this.createReadOnlyState(`${id}.errors`, 'Active errors', 'string', 'text');
+        await this.setState(`${id}.errors`, { val: errors.join(', '), ack: true });
+
+        await this.createReadOnlyState(`${id}.errorCount`, 'Number of active errors', 'number', 'value');
+        await this.setState(`${id}.errorCount`, { val: errors.length, ack: true });
+    }
+
+    /**
+     * @param {string} id state id
+     * @param {string} name state name
+     * @param {ioBroker.CommonType} type state type
+     * @param {string} role state role
+     * @param {string} [unit] state unit
+     * @param {Record<string, number>} [native] native part of the object
+     */
+    async createReadOnlyState(id, name, type, role, unit, native = {}) {
+        await this.extendObject(id, {
+            type: 'state',
+            common: {
+                name,
+                type,
+                role,
+                unit,
+                read: true,
+                write: false,
+            },
+            native,
+        });
+    }
+
+    /**
      * Updates a sensor state at most every 2 seconds. Values received in between are not dropped:
      * the latest one is written when the pause ends (e.g. the correct value right after an invalid one)
      *
      * @param {number} sensorId PDID of the sensor
      * @param {string} id state id
-     * @param {number} value sensor value
+     * @param {ioBroker.StateValue} value sensor value
      */
     async setSensorValue(sensorId, id, value) {
         if (Object.prototype.hasOwnProperty.call(this.pausedSensorValues, sensorId)) {
@@ -347,7 +469,7 @@ class Comfoairq extends utils.Adapter {
 
             let value;
             if (meta.write && meta.type === 'number' && !meta.states) {
-                const range = await this.zehnder.GetPropertyRange(COMFOAIR_NODE, name);
+                const range = await this.zehnder.GetPropertyRange(VENTILATION_NODE, name);
                 this.log.debug(`[property] ${name}: ${JSON.stringify(range)}`);
 
                 value = range.value;
@@ -355,7 +477,7 @@ class Comfoairq extends utils.Adapter {
                 common.max = range.max;
                 common.step = range.step;
             } else {
-                value = await this.zehnder.GetProperty(COMFOAIR_NODE, name);
+                value = await this.zehnder.GetProperty(VENTILATION_NODE, name);
                 this.log.debug(`[property] ${name}: ${JSON.stringify(value)}`);
             }
 
@@ -404,16 +526,16 @@ class Comfoairq extends utils.Adapter {
 
                         if (command === 'boostDuration') {
                             this.log.debug(`Sending boost for ${seconds} seconds`);
-                            await this.zehnder.SetBoost(COMFOAIR_NODE, seconds);
+                            await this.zehnder.SetBoost(VENTILATION_NODE, seconds);
                         } else {
                             this.log.debug(`Sending away for ${seconds} seconds`);
-                            await this.zehnder.SetAway(COMFOAIR_NODE, seconds);
+                            await this.zehnder.SetAway(VENTILATION_NODE, seconds);
                         }
 
                         await this.setState(idNoNamespace, { val: minutes, ack: true });
                     } else if (this.commands[command]) {
                         this.log.debug(`Sending command: ${this.commands[command]}`);
-                        await this.zehnder.SendCommand(COMFOAIR_NODE, this.commands[command]);
+                        await this.zehnder.SendCommand(VENTILATION_NODE, this.commands[command]);
                     }
                 } else if (idNoNamespace.startsWith('property.')) {
                     const obj = await this.getObjectAsync(idNoNamespace);
@@ -421,7 +543,7 @@ class Comfoairq extends utils.Adapter {
 
                     if (name && this.propertyMeta[name]?.write) {
                         this.log.debug(`Setting property ${name} to ${state.val}`);
-                        await this.zehnder.SetProperty(COMFOAIR_NODE, name, Number(state.val));
+                        await this.zehnder.SetProperty(VENTILATION_NODE, name, Number(state.val));
                         await this.delay(1000);
                         await this.readProperty(name, 3);
                     }
@@ -509,6 +631,11 @@ class Comfoairq extends utils.Adapter {
             if (this.refreshPropertiesInterval) {
                 this.clearInterval(this.refreshPropertiesInterval);
                 this.refreshPropertiesInterval = null;
+            }
+
+            if (this.connectTimeout) {
+                this.clearTimeout(this.connectTimeout);
+                this.connectTimeout = null;
             }
 
             if (this.zehnder) {

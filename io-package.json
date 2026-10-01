@@ -202,6 +202,8 @@
     "sensor_192": false,
     "sensor_208": false,
     "sensor_209": false,
+    "sensor_210": false,
+    "sensor_211": false,
     "sensor_212": false,
     "sensor_213": false,
     "sensor_214": false,
@@ -217,6 +219,7 @@
     "sensor_226": false,
     "sensor_227": false,
     "sensor_228": false,
+    "sensor_230": false,
     "sensor_274": false,
     "sensor_275": false,
     "sensor_276": false,
@@ -229,11 +232,17 @@
     "sensor_294": false,
     "sensor_337": false,
     "sensor_338": false,
+    "sensor_369": false,
+    "sensor_370": false,
+    "sensor_371": false,
+    "sensor_372": false,
     "sensor_384": false,
     "sensor_400": false,
     "sensor_416": false,
     "sensor_417": false,
     "sensor_418": false,
+    "sensor_419": false,
+    "sensor_784": false,
     "sensor_802": false
   },
   "objects": [],
@@ -1071,6 +1080,30 @@
       "native": {}
     },
     {
+      "_id": "command.errorsReset",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Reset errors",
+          "de": "Fehler zurücksetzen",
+          "ru": "Сбросить ошибки",
+          "pt": "Redefinir erros",
+          "nl": "Fouten resetten",
+          "fr": "Réinitialiser les erreurs",
+          "it": "Reimposta errori",
+          "es": "Restablecer errores",
+          "pl": "Resetuj błędy",
+          "uk": "Скинути помилки",
+          "zh-cn": "重置错误"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
       "_id": "sensor",
       "type": "channel",
       "common": {
@@ -1105,6 +1138,26 @@
           "pl": "Ustawienia",
           "uk": "Налаштування",
           "zh-cn": "设置"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "node",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Connected devices (ComfoNet)",
+          "de": "Angeschlossene Geräte (ComfoNet)",
+          "ru": "Подключенные устройства (ComfoNet)",
+          "pt": "Dispositivos conectados (ComfoNet)",
+          "nl": "Aangesloten apparaten (ComfoNet)",
+          "fr": "Appareils connectés (ComfoNet)",
+          "it": "Dispositivi collegati (ComfoNet)",
+          "es": "Dispositivos conectados (ComfoNet)",
+          "pl": "Podłączone urządzenia (ComfoNet)",
+          "uk": "Підключені пристрої (ComfoNet)",
+          "zh-cn": "已连接设备 (ComfoNet)"
         }
       },
       "native": {}

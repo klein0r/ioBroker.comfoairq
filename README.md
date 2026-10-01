@@ -56,6 +56,14 @@ Development of this ioBroker Adapter was possible on the work performed by:
 * (@klein0r) Fixed crash (ERR_OUT_OF_RANGE) when a message from the gateway is split across multiple TCP packets (comfoairq library 1.0.1)
 * (@klein0r) Connection state is set again when sensor values are received
 * (@klein0r) Sensor values received within the 2 second update limit are no longer dropped - the latest value is written afterwards
+* (@klein0r) Updated comfoairq library to 2.0.0
+* (@klein0r) Added connected devices of the ComfoNet bus (`node.*`) with product, zone, mode - and serial number, firmware version and active errors (alarms)
+* (@klein0r) Added command to reset errors
+* (@klein0r) Added device name, serial number and firmware version of the ventilation unit (`property.*`)
+* (@klein0r) Gateway and ComfoNet version are shown as readable version (e.g. R1.5.1)
+* (@klein0r) Commands and settings are sent to the ventilation unit announced by the device (e.g. ComfoAir Flex)
+* (@klein0r) Added sensors: heating / cooling season, airflow constraints, analog inputs, subsoil heat exchanger present, ComfoCool state
+* (@klein0r) Retry to start the session every minute if the LAN C is not reachable on startup
 
 ### 0.6.1 (2026-10-01)
 

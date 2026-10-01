@@ -146,6 +146,16 @@
                     "label": "SENSOR_OPERATING_MODE (56)",
                     "noTranslation": true
                 },
+                "sensor_230": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_AIRFLOW_CONSTRAINTS (230)",
+                    "noTranslation": true
+                },
                 "sensor_337": {
                     "type": "checkbox",
                     "xs": 12,
@@ -741,6 +751,26 @@
                     "label": "SENSOR_CURRENT_RMOT (209)",
                     "noTranslation": true
                 },
+                "sensor_210": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_HEATING_SEASON (210)",
+                    "noTranslation": true
+                },
+                "sensor_211": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_COOLING_SEASON (211)",
+                    "noTranslation": true
+                },
                 "sensor_224": {
                     "type": "checkbox",
                     "xs": 12,
@@ -781,6 +811,46 @@
                     "label": "SENSOR_FROSTPROTECTION_UNBALANCE (228)",
                     "noTranslation": true
                 },
+                "sensor_369": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_ANALOG_INPUT_1 (369)",
+                    "noTranslation": true
+                },
+                "sensor_370": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_ANALOG_INPUT_2 (370)",
+                    "noTranslation": true
+                },
+                "sensor_371": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_ANALOG_INPUT_3 (371)",
+                    "noTranslation": true
+                },
+                "sensor_372": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_ANALOG_INPUT_4 (372)",
+                    "noTranslation": true
+                },
                 "sensor_418": {
                     "type": "checkbox",
                     "xs": 12,
@@ -789,6 +859,26 @@
                     "lg": 4,
                     "xl": 3,
                     "label": "SENSOR_SUBSOIL_STATE (418)",
+                    "noTranslation": true
+                },
+                "sensor_419": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_SUBSOIL_PRESENT (419)",
+                    "noTranslation": true
+                },
+                "sensor_784": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_COMFOCOOL_STATE (784)",
                     "noTranslation": true
                 }
             }
