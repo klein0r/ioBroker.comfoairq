@@ -1,12 +1,10 @@
 {
-    "Broadcast Address": "Трансляційна адреса",
     "Default PIN is 0000 (can be changed in the app)": "PIN-код за умовчанням 0000 (можна змінити в додатку)",
     "Default Port is 56747": "Стандартний порт 56747",
     "Device connection": "Підключення пристрою",
     "Device discovery": "Відкриття пристрою",
     "IP or hostname of your Zehnder ComfoConnect LAN C": "IP-адреса або ім’я хоста вашого Zehnder ComfoConnect LAN C",
     "IP-Adress / Hostname": "IP-адреса / ім'я хоста",
-    "Leave empty to search on all network interfaces": "Залиште порожнім для пошуку на всіх мережевих інтерфейсах",
     "Options": "Опції",
     "PIN": "PIN-код",
     "Port": "Порт",

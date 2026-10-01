@@ -415,17 +415,30 @@ class Comfoairq extends utils.Adapter {
     async onMessage(msg) {
         if (typeof msg === 'object' && msg.message) {
             if (msg.command === 'wizard') {
+                const host = String(msg.message.host || '').trim();
+                const port = Number(msg.message.port) || undefined;
+
                 this.log.debug(
-                    `[onMessage] wizard started on ${msg.message.multicastAddr || 'all interfaces'}:${msg.message.port} -> ${JSON.stringify(msg)}`,
+                    `[onMessage] wizard started on all interfaces${host ? ` and ${host}` : ''} (port ${port}) -> ${JSON.stringify(msg)}`,
                 );
 
                 let response;
                 try {
-                    const devices = await comfoconnect.discover({
-                        address: msg.message.multicastAddr || undefined,
-                        port: Number(msg.message.port) || undefined,
-                        timeout: 5000,
-                    });
+                    // Broadcast on all interfaces - and unicast to the configured host (e.g. other subnet / docker)
+                    const searches = [comfoconnect.discover({ port, timeout: 5000 })];
+                    if (host) {
+                        searches.push(comfoconnect.discover({ address: host, port, timeout: 5000 }));
+                    }
+
+                    const devices = [];
+                    for (const device of (await Promise.all(searches)).flat()) {
+                        if (!devices.some(d => d.comfouuid === device.comfouuid)) {
+                            devices.push(device);
+                        }
+                    }
+
+                    // Prefer the configured host
+                    devices.sort((a, b) => Number(b.comfoair === host) - Number(a.comfoair === host));
 
                     this.log.info(
                         `[discovery] Device discovery finished - found ${devices.length} device(s): ${JSON.stringify(devices)}`,

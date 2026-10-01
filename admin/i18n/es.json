@@ -1,12 +1,10 @@
 {
-    "Broadcast Address": "Dirección de Difusión",
     "Default PIN is 0000 (can be changed in the app)": "El PIN predeterminado es 0000 (se puede cambiar en la aplicación)",
     "Default Port is 56747": "El puerto predeterminado es 56747",
     "Device connection": "Conexión del dispositivo",
     "Device discovery": "Descubrimiento de dispositivos",
     "IP or hostname of your Zehnder ComfoConnect LAN C": "IP o nombre de host de su Zehnder ComfoConnect LAN C",
     "IP-Adress / Hostname": "Dirección IP / Nombre de host",
-    "Leave empty to search on all network interfaces": "Dejar vacío para buscar en todas las interfaces de red",
     "Options": "Opciones",
     "PIN": "Número de PIN",
     "Port": "Puerto",

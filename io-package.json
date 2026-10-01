@@ -170,7 +170,6 @@
     "pin"
   ],
   "native": {
-    "multicastAddr": "",
     "port": "56747",
     "host": "",
     "uuid": "",
