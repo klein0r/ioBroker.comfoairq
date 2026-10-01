@@ -31,6 +31,13 @@ class Comfoairq extends utils.Adapter {
         this.stateChangeQueue = Promise.resolve();
 
         this.sensorMeta = {
+            16: { states: { 1: 'Normal', 2: 'Filter change', 7: 'Away' } },
+            18: { states: { 1: 'Normal', 2: 'Filter change in progress' } },
+            49: { states: { '-1': 'Auto', 1: 'Manual (limited)', 5: 'Manual (unlimited)', 6: 'Boost', 11: 'Away' } },
+            56: { states: { '-1': 'Auto', 1: 'Manual (limited)', 5: 'Manual (unlimited)' } },
+            65: { states: { 0: 'Away', 1: 'Low', 2: 'Medium', 3: 'High' } },
+            66: { states: { 0: 'Auto', 1: 'Activated', 2: 'Deactivated' } },
+            67: { states: { 0: 'Normal', 1: 'Cold', 2: 'Warm' } },
             81: { unit: 's' },
             82: { unit: 's' },
             86: { unit: 's' },
@@ -48,6 +55,7 @@ class Comfoairq extends utils.Adapter {
             145: { unit: 'kWh' },
             146: { unit: 'W' },
             192: { unit: 'days' },
+            208: { states: { 0: '°C', 1: '°F' } },
             209: { unit: '°C' },
             212: { unit: '°C' },
             213: { unit: 'W' },
@@ -59,6 +67,7 @@ class Comfoairq extends utils.Adapter {
             219: { unit: 'W' },
             220: { unit: '°C' },
             221: { unit: '°C' },
+            224: { states: { 2: 'l/s', 3: 'm³/h' } },
             227: { unit: '%' },
             274: { unit: '°C' },
             275: { unit: '°C' },
@@ -310,7 +319,7 @@ class Comfoairq extends utils.Adapter {
         } else if (typeof sensor.data === 'number') {
             const value = meta?.factor ? Math.round(sensor.data * meta.factor * 1000) / 1000 : sensor.data;
 
-            await this.createReadOnlyState(id, name, 'number', 'value', meta?.unit, { sensorId });
+            await this.createReadOnlyState(id, name, 'number', 'value', meta?.unit, { sensorId }, meta?.states);
             await this.setSensorValue(sensorId, id, value);
         } else if (Array.isArray(sensor.data) || sensor.data === null) {
             // e.g. list of active airflow constraints (null = not available)
@@ -387,8 +396,9 @@ class Comfoairq extends utils.Adapter {
      * @param {string} role state role
      * @param {string} [unit] state unit
      * @param {Record<string, number>} [native] native part of the object
+     * @param {Record<string, string>} [states] value -> display text
      */
-    async createReadOnlyState(id, name, type, role, unit, native = {}) {
+    async createReadOnlyState(id, name, type, role, unit, native = {}, states = undefined) {
         await this.extendObject(id, {
             type: 'state',
             common: {
@@ -396,6 +406,7 @@ class Comfoairq extends utils.Adapter {
                 type,
                 role,
                 unit,
+                states,
                 read: true,
                 write: false,
             },
