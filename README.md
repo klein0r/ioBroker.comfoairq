@@ -53,6 +53,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
 * (@klein0r) Added settings (`property.*`): filter lifetime / warning, fan flow per level, RMOT heating / cooling limit, sensor based ventilation - and device information (model name, article number, country)
 * (@klein0r) Added new sensors (e.g. outdoor air temperature, supply air temperature, filter change state, seconds until next change)
 * (@klein0r) Connection state is restored after an automatic reconnect
+* (@klein0r) Fixed crash (ERR_OUT_OF_RANGE) when a message from the gateway is split across multiple TCP packets (comfoairq library 1.0.1)
 
 ### 0.6.1 (2026-10-01)
 
