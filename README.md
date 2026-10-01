@@ -35,7 +35,7 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 Development of this ioBroker Adapter was possible on the work performed by:
 
 * Jan Van Belle (https://github.com/herrJones/node-comfoairq)
-* Michael Arnauts (https://github.com/michaelarnauts/comfoconnect)
+* Michael Arnauts (https://github.com/michaelarnauts/aiocomfoconnect)
 * Marco Hoyer (https://github.com/marco-hoyer/zcan) and its forks on github (djwlindenaar, decontamin4t0R)
 
 ## Changelog
@@ -55,6 +55,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
 * (@klein0r) Connection state is restored after an automatic reconnect
 * (@klein0r) Fixed crash (ERR_OUT_OF_RANGE) when a message from the gateway is split across multiple TCP packets (comfoairq library 1.0.1)
 * (@klein0r) Connection state is set again when sensor values are received
+* (@klein0r) Sensor values received within the 2 second update limit are no longer dropped - the latest value is written afterwards
 
 ### 0.6.1 (2026-10-01)
 

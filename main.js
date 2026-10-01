@@ -25,6 +25,7 @@ class Comfoairq extends utils.Adapter {
         this.sensors = [];
 
         this.pausedSensorValues = {};
+        this.pendingSensorValues = {};
         this.refreshPropertiesInterval = null;
 
         this.sensorMeta = {
@@ -201,16 +202,7 @@ class Comfoairq extends utils.Adapter {
                                     },
                                 });
 
-                                if (!Object.prototype.hasOwnProperty.call(this.pausedSensorValues, sensorId)) {
-                                    await this.setState(`sensor.${sensorNameClean}`, {
-                                        val: sensorValue,
-                                        ack: true,
-                                    });
-
-                                    this.pausedSensorValues[sensorId] = this.setTimeout(() => {
-                                        delete this.pausedSensorValues[sensorId];
-                                    }, 2000);
-                                }
+                                await this.setSensorValue(sensorId, `sensor.${sensorNameClean}`, sensorValue);
                             }
                         } else if (data.kind == 53) {
                             // 53 = StartSessionConfirm (also sent after an automatic reconnect of the library)
@@ -279,6 +271,33 @@ class Comfoairq extends utils.Adapter {
         } else {
             this.log.warn('Instance configuration incomplete - please check configuration and restart instance');
         }
+    }
+
+    /**
+     * Updates a sensor state at most every 2 seconds. Values received in between are not dropped:
+     * the latest one is written when the pause ends (e.g. the correct value right after an invalid one)
+     *
+     * @param {number} sensorId PDID of the sensor
+     * @param {string} id state id
+     * @param {number} value sensor value
+     */
+    async setSensorValue(sensorId, id, value) {
+        if (Object.prototype.hasOwnProperty.call(this.pausedSensorValues, sensorId)) {
+            this.pendingSensorValues[sensorId] = { id, value };
+            return;
+        }
+
+        await this.setState(id, { val: value, ack: true });
+
+        this.pausedSensorValues[sensorId] = this.setTimeout(async () => {
+            delete this.pausedSensorValues[sensorId];
+
+            const pending = this.pendingSensorValues[sensorId];
+            if (pending) {
+                delete this.pendingSensorValues[sensorId];
+                await this.setSensorValue(sensorId, pending.id, pending.value);
+            }
+        }, 2000);
     }
 
     cleanNamespace(id) {
