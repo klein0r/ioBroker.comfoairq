@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "comfoairq",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "news": {
+      "0.6.1": {
+        "en": "Updated dependencies\nadmin 7.8.23 and js-controller 6.0.11 (or later) are required",
+        "de": "Neue Abhängigkeiten\nadmin 7.8.23 und js-controller 6.0.11 (oder höher) sind nötig",
+        "ru": "Обновленные зависимости\nтребуются admin 7.8.23 и js-контроллер 6.0.11 (или более поздняя версия)",
+        "pt": "Dependências novas\nrequer admin 7.8.23 e js-controller 6.0.11 (ou posterior)",
+        "nl": "Bijgewerkte afhankelijkheden\nadmin 7.8.23 en js-controller 6.0.11 (of later) zijn vereist",
+        "fr": "Dépendances mises à jour\nadmin 7.8.23 et js-controller 6.0.11 (ou version ultérieure) sont requis",
+        "it": "Dipendenze nuove\nsono necessari admin 7.8.23 e js-controller 6.0.11 (o successivo)",
+        "es": "Dependencias actualizadas\nSe necesitan admin 7.8.23 y js-controller 6.0.11 (o posterior)",
+        "pl": "Zaktualizowane zależności\nadmin 7.8.23 i js-controller 6.0.11 (lub nowszy) są wymagane",
+        "uk": "Оновлені залежності\nадміністратор 7.8.23 та js-контролер 6.0.11 (або новішої версії) потрібні",
+        "zh-cn": "更新的依赖关系\n需要管理员 7.8.23 和 js-controller 6.0.11（或更高版本）"
+      },
       "0.6.0": {
         "en": "Adapter requires node.js >= 22 now\nadmin 7.6.20 and js-controller 6.0.11 (or later) are required\nUpdated dependencies",
         "de": "Adapter benötigt node.js >= 22 jetzt\nadmin 7.6.20 und js-controller 6.0.11 (oder später) sind erforderlich\nAktualisierte Abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "Przetłumaczono wszystkie obiekty\nZaktualizowane zależności\nDodano wskazówkę dotyczącą konfiguracji Admin 4\nZaktualizowane role stanowe\nZaktualizowane zależności",
         "zh-cn": "翻译所有对象\n更新的依赖项\n添加了 Admin 4 配置的提示\n更新了状态角色\n更新的依赖项",
         "uk": "Перекладено всі об'єкти\nОновлені залежності\nДодано підказку для конфігурації Admin 4\nОновлені ролі стану\nОновлені залежності"
-      },
-      "0.1.0": {
-        "en": "Admin 5 UI",
-        "de": "Admin 5-Benutzeroberfläche",
-        "ru": "Админ 5 UI",
-        "pt": "Admin 5 UI",
-        "nl": "Admin 5 gebruikersinterface",
-        "fr": "Interface utilisateur d'administration 5",
-        "it": "Admin 5 UI",
-        "es": "Interfaz de usuario de administrador 5",
-        "pl": "Interfejs administratora 5",
-        "zh-cn": "管理 5 用户界面",
-        "uk": "Інтерфейс адміністратора 5"
       }
     },
     "titleLang": {

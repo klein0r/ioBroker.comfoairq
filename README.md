@@ -44,7 +44,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.6.1 (2026-10-01)
 
 * (@klein0r) Updated dependencies
 * (@klein0r) admin 7.8.23 and js-controller 6.0.11 (or later) are required
@@ -73,14 +73,6 @@ NodeJS >= 18.x and js-controller >= 5 is required
 * (klein0r) Added icons to admin tabs
 * (klein0r) Group sensors in admin config
 * (klein0r) Limit sensor value refresh interval
-
-### 0.3.0 (2022-12-14)
-
-NodeJS 14.x is required (NodeJS 12.x is EOL)
-
-* (klein0r) Updated depedency for js-controller to 4.0.15
-* (klein0r) Dropped Admin 5 support
-* (klein0r) Added Ukrainian language
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
