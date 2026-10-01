@@ -63,6 +63,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
 * (@klein0r) Gateway and ComfoNet version are shown as readable version (e.g. R1.5.1)
 * (@klein0r) Commands and settings are sent to the ventilation unit announced by the device (e.g. ComfoAir Flex)
 * (@klein0r) Added sensors: heating / cooling season, airflow constraints, analog inputs, subsoil heat exchanger present, ComfoCool state
+* (@klein0r) Added ground heat exchanger sensors 416 / 417 / 418 (fixes #28)
 * (@klein0r) Retry to start the session every minute if the LAN C is not reachable on startup
 
 ### 0.6.1 (2026-10-01)

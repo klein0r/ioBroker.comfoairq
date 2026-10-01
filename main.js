@@ -77,6 +77,7 @@ class Comfoairq extends utils.Adapter {
             400: { unit: '°C' },
             416: { unit: '°C' },
             417: { unit: '°C' },
+            418: { unit: '%' },
             802: { unit: '°C' },
         };
 
