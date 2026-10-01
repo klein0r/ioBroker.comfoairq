@@ -46,18 +46,17 @@ Development of this ioBroker Adapter was possible on the work performed by:
 -->
 ### **WORK IN PROGRESS**
 
+* (@klein0r) Updated comfoairq library to 2.1.0
 * (@klein0r) Updated README: multiple simultaneous connections are supported since LAN C firmware U1.2.6
-* (@klein0r) Updated comfoairq library to 1.0.0
 * (@klein0r) Device discovery searches on all network interfaces (and directly on the configured IP address) - removed broadcast address option
 * (@klein0r) Added commands: boost 60 / 90 minutes / unlimited, boost and away mode with custom duration, end away mode, extract only ventilation mode, filter change
 * (@klein0r) Added settings (`property.*`): filter lifetime / warning, fan flow per level, RMOT heating / cooling limit, sensor based ventilation - and device information (model name, article number, country)
 * (@klein0r) Added new sensors (e.g. outdoor air temperature, supply air temperature, filter change state, seconds until next change)
 * (@klein0r) Connection state is restored after an automatic reconnect
 * (@klein0r) Added value texts (`states`) for mode sensors (e.g. operating mode, fan speed mode, bypass activation mode)
-* (@klein0r) Fixed crash (ERR_OUT_OF_RANGE) when a message from the gateway is split across multiple TCP packets (comfoairq library 1.0.1)
+* (@klein0r) Fixed crash (ERR_OUT_OF_RANGE) when a message from the gateway is split across multiple TCP packets
 * (@klein0r) Connection state is set again when sensor values are received
 * (@klein0r) Sensor values received within the 2 second update limit are no longer dropped - the latest value is written afterwards
-* (@klein0r) Updated comfoairq library to 2.0.0
 * (@klein0r) Added connected devices of the ComfoNet bus (`node.*`) with product, zone, mode - and serial number, firmware version and active errors (alarms)
 * (@klein0r) Added command to reset errors
 * (@klein0r) Added device name, serial number and firmware version of the ventilation unit (`property.*`)
