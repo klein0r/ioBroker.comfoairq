@@ -27,7 +27,7 @@
                     "lg": 5,
                     "xl": 5,
                     "label": "Broadcast Address",
-                    "help": "Broadcast address of your network"
+                    "help": "Leave empty to search on all network interfaces"
                 },
                 "port": {
                     "type": "number",
@@ -156,6 +156,26 @@
                     "label": "SENSOR_OPERATING_MODE (56)",
                     "noTranslation": true
                 },
+                "sensor_337": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FAN_ACTIVE_ENTRIES (337)",
+                    "noTranslation": true
+                },
+                "sensor_338": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_BYPASS_ACTIVE_ENTRIES (338)",
+                    "noTranslation": true
+                },
                 "_headerSensorsFans": {
                     "newLine": true,
                     "type": "header",
@@ -177,6 +197,26 @@
                     "label": "SENSOR_FAN_SPEED_MODE (65)",
                     "noTranslation": true
                 },
+                "sensor_70": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FAN_MODE_SUPPLY (70)",
+                    "noTranslation": true
+                },
+                "sensor_71": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FAN_MODE_EXHAUST (71)",
+                    "noTranslation": true
+                },
                 "sensor_81": {
                     "type": "checkbox",
                     "xs": 12,
@@ -185,6 +225,26 @@
                     "lg": 4,
                     "xl": 3,
                     "label": "SENSOR_FAN_NEXT_CHANGE (81)",
+                    "noTranslation": true
+                },
+                "sensor_86": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FAN_MODE_SUPPLY_NEXT_CHANGE (86)",
+                    "noTranslation": true
+                },
+                "sensor_87": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FAN_MODE_EXHAUST_NEXT_CHANGE (87)",
                     "noTranslation": true
                 },
                 "sensor_117": {
@@ -247,6 +307,16 @@
                     "label": "SENSOR_FAN_SUPPLY_SPEED (122)",
                     "noTranslation": true
                 },
+                "sensor_226": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FAN_SPEED_MODE_MODULATED (226)",
+                    "noTranslation": true
+                },
                 "_headerSensorsTemperatures": {
                     "newLine": true,
                     "type": "header",
@@ -257,6 +327,26 @@
                     "md": 12,
                     "lg": 12,
                     "xl": 12
+                },
+                "sensor_212": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_TARGET_TEMPERATURE (212)",
+                    "noTranslation": true
+                },
+                "sensor_220": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_TEMPERATURE_OUTDOOR_AIR (220)",
+                    "noTranslation": true
                 },
                 "sensor_221": {
                     "type": "checkbox",
@@ -298,6 +388,76 @@
                     "label": "SENSOR_TEMPERATURE_OUTDOOR (276)",
                     "noTranslation": true
                 },
+                "sensor_277": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_TEMPERATURE_AFTER_PREHEATER (277)",
+                    "noTranslation": true
+                },
+                "sensor_278": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_TEMPERATURE_SUPPLY_AIR (278)",
+                    "noTranslation": true
+                },
+                "sensor_384": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_TEMPERATURE_AFTER_POSTHEATER (384)",
+                    "noTranslation": true
+                },
+                "sensor_400": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_TEMPERATURE_BEFORE_POSTHEATER (400)",
+                    "noTranslation": true
+                },
+                "sensor_416": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_SUBSOIL_TEMPERATURE_OUTDOOR (416)",
+                    "noTranslation": true
+                },
+                "sensor_417": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_SUBSOIL_TEMPERATURE_GROUND (417)",
+                    "noTranslation": true
+                },
+                "sensor_802": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_COMFOCOOL_TEMPERATURE_CONDENSOR (802)",
+                    "noTranslation": true
+                },
                 "_headerSensorsHumidities": {
                     "newLine": true,
                     "type": "header",
@@ -337,6 +497,16 @@
                     "lg": 4,
                     "xl": 3,
                     "label": "SENSOR_HUMIDITY_OUTDOOR (292)",
+                    "noTranslation": true
+                },
+                "sensor_293": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_HUMIDITY_AFTER_PREHEATER (293)",
                     "noTranslation": true
                 },
                 "sensor_294": {
@@ -480,6 +650,16 @@
                     "label": "SENSOR_AVOIDED_COOLING_TOTAL (218)",
                     "noTranslation": true
                 },
+                "sensor_219": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_AVOIDED_COOLING_CURRENT_TARGET (219)",
+                    "noTranslation": true
+                },
                 "_headerSensorsOther": {
                     "newLine": true,
                     "type": "header",
@@ -501,7 +681,16 @@
                     "label": "SENSOR_AWAY_INDICATOR (16)",
                     "noTranslation": true
                 },
-
+                "sensor_18": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FILTER_CHANGE_STATE (18)",
+                    "noTranslation": true
+                },
                 "sensor_66": {
                     "type": "checkbox",
                     "xs": 12,
@@ -522,7 +711,16 @@
                     "label": "SENSOR_TEMPERATURE_PROFILE (67)",
                     "noTranslation": true
                 },
-
+                "sensor_82": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_BYPASS_NEXT_CHANGE (82)",
+                    "noTranslation": true
+                },
                 "sensor_192": {
                     "type": "checkbox",
                     "xs": 12,
@@ -531,6 +729,16 @@
                     "lg": 4,
                     "xl": 3,
                     "label": "SENSOR_DAYS_TO_REPLACE_FILTER (192)",
+                    "noTranslation": true
+                },
+                "sensor_208": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_UNIT_TEMPERATURE (208)",
                     "noTranslation": true
                 },
                 "sensor_209": {
@@ -543,6 +751,26 @@
                     "label": "SENSOR_CURRENT_RMOT (209)",
                     "noTranslation": true
                 },
+                "sensor_224": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_UNIT_AIRFLOW (224)",
+                    "noTranslation": true
+                },
+                "sensor_225": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_COMFORTCONTROL_MODE (225)",
+                    "noTranslation": true
+                },
                 "sensor_227": {
                     "type": "checkbox",
                     "xs": 12,
@@ -551,6 +779,26 @@
                     "lg": 4,
                     "xl": 3,
                     "label": "SENSOR_BYPASS_STATE (227)",
+                    "noTranslation": true
+                },
+                "sensor_228": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_FROSTPROTECTION_UNBALANCE (228)",
+                    "noTranslation": true
+                },
+                "sensor_418": {
+                    "type": "checkbox",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 3,
+                    "label": "SENSOR_SUBSOIL_STATE (418)",
                     "noTranslation": true
                 }
             }

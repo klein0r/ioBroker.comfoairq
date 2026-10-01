@@ -170,18 +170,24 @@
     "pin"
   ],
   "native": {
-    "multicastAddr": "192.168.1.255",
+    "multicastAddr": "",
     "port": "56747",
     "host": "",
     "uuid": "",
     "pin": "0000",
     "sensor_16": false,
+    "sensor_18": false,
     "sensor_49": false,
     "sensor_56": false,
     "sensor_65": false,
     "sensor_66": false,
     "sensor_67": false,
+    "sensor_70": false,
+    "sensor_71": false,
     "sensor_81": false,
+    "sensor_82": false,
+    "sensor_86": false,
+    "sensor_87": false,
     "sensor_117": false,
     "sensor_118": false,
     "sensor_119": false,
@@ -195,22 +201,41 @@
     "sensor_145": false,
     "sensor_146": false,
     "sensor_192": false,
+    "sensor_208": false,
     "sensor_209": false,
+    "sensor_212": false,
     "sensor_213": false,
     "sensor_214": false,
     "sensor_215": false,
     "sensor_216": false,
     "sensor_217": false,
     "sensor_218": false,
+    "sensor_219": false,
+    "sensor_220": false,
     "sensor_221": false,
+    "sensor_224": false,
+    "sensor_225": false,
+    "sensor_226": false,
     "sensor_227": false,
+    "sensor_228": false,
     "sensor_274": false,
     "sensor_275": false,
     "sensor_276": false,
+    "sensor_277": false,
+    "sensor_278": false,
     "sensor_290": false,
     "sensor_291": false,
     "sensor_292": false,
-    "sensor_294": false
+    "sensor_293": false,
+    "sensor_294": false,
+    "sensor_337": false,
+    "sensor_338": false,
+    "sensor_384": false,
+    "sensor_400": false,
+    "sensor_416": false,
+    "sensor_417": false,
+    "sensor_418": false,
+    "sensor_802": false
   },
   "objects": [],
   "instanceObjects": [
@@ -526,6 +551,78 @@
       "native": {}
     },
     {
+      "_id": "command.fanBoost60m",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Fan Boost - 60 minutes",
+          "de": "Lüfter Boost - 60 Minuten",
+          "ru": "Ускорение вентилятора - 60 минут",
+          "pt": "Impulso do ventilador - 60 minutos",
+          "nl": "Ventilatorboost - 60 minuten",
+          "fr": "Boost du ventilateur - 60 minutes",
+          "it": "Boost ventola - 60 minuti",
+          "es": "Impulso del ventilador - 60 minutos",
+          "pl": "Wzmocnienie wentylatora - 60 minut",
+          "uk": "Посилення вентилятора - 60 хвилин",
+          "zh-cn": "风扇增强 - 60 分钟"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.fanBoost90m",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Fan Boost - 90 minutes",
+          "de": "Lüfter Boost - 90 Minuten",
+          "ru": "Ускорение вентилятора - 90 минут",
+          "pt": "Impulso do ventilador - 90 minutos",
+          "nl": "Ventilatorboost - 90 minuten",
+          "fr": "Boost du ventilateur - 90 minutes",
+          "it": "Boost ventola - 90 minuti",
+          "es": "Impulso del ventilador - 90 minutos",
+          "pl": "Wzmocnienie wentylatora - 90 minut",
+          "uk": "Посилення вентилятора - 90 хвилин",
+          "zh-cn": "风扇增强 - 90 分钟"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.fanBoostUnlimited",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Fan Boost - unlimited",
+          "de": "Lüfter Boost - unbegrenzt",
+          "ru": "Ускорение вентилятора - без ограничения",
+          "pt": "Impulso do ventilador - ilimitado",
+          "nl": "Ventilatorboost - onbeperkt",
+          "fr": "Boost du ventilateur - illimité",
+          "it": "Boost ventola - illimitato",
+          "es": "Impulso del ventilador - ilimitado",
+          "pl": "Wzmocnienie wentylatora - bez ograniczeń",
+          "uk": "Посилення вентилятора - без обмежень",
+          "zh-cn": "风扇增强 - 无限制"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
       "_id": "command.fanBoostEnd",
       "type": "state",
       "common": {
@@ -540,6 +637,82 @@
           "es": "Fan Boost - Fin",
           "pl": "Doładowanie wentylatora – koniec",
           "zh-cn": "风扇加速 - 结束"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.boostDuration",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Fan Boost - duration in minutes (-1 = unlimited)",
+          "de": "Lüfter Boost - Dauer in Minuten (-1 = unbegrenzt)",
+          "ru": "Ускорение вентилятора - длительность в минутах (-1 = без ограничения)",
+          "pt": "Impulso do ventilador - duração em minutos (-1 = ilimitado)",
+          "nl": "Ventilatorboost - duur in minuten (-1 = onbeperkt)",
+          "fr": "Boost du ventilateur - durée en minutes (-1 = illimité)",
+          "it": "Boost ventola - durata in minuti (-1 = illimitato)",
+          "es": "Impulso del ventilador - duración en minutos (-1 = ilimitado)",
+          "pl": "Wzmocnienie wentylatora - czas w minutach (-1 = bez ograniczeń)",
+          "uk": "Посилення вентилятора - тривалість у хвилинах (-1 = без обмежень)",
+          "zh-cn": "风扇增强 - 持续时间（分钟，-1 = 无限制）"
+        },
+        "type": "number",
+        "role": "level.timer",
+        "unit": "min",
+        "min": -1,
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.awayDuration",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Away mode - duration in minutes (-1 = unlimited)",
+          "de": "Abwesenheitsmodus - Dauer in Minuten (-1 = unbegrenzt)",
+          "ru": "Режим отсутствия - длительность в минутах (-1 = без ограничения)",
+          "pt": "Modo ausente - duração em minutos (-1 = ilimitado)",
+          "nl": "Afwezigheidsmodus - duur in minuten (-1 = onbeperkt)",
+          "fr": "Mode absence - durée en minutes (-1 = illimité)",
+          "it": "Modalità assenza - durata in minuti (-1 = illimitato)",
+          "es": "Modo ausente - duración en minutos (-1 = ilimitado)",
+          "pl": "Tryb nieobecności - czas w minutach (-1 = bez ograniczeń)",
+          "uk": "Режим відсутності - тривалість у хвилинах (-1 = без обмежень)",
+          "zh-cn": "离家模式 - 持续时间（分钟，-1 = 无限制）"
+        },
+        "type": "number",
+        "role": "level.timer",
+        "unit": "min",
+        "min": -1,
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.awayEnd",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Away mode - end",
+          "de": "Abwesenheitsmodus - beenden",
+          "ru": "Режим отсутствия - завершить",
+          "pt": "Modo ausente - terminar",
+          "nl": "Afwezigheidsmodus - beëindigen",
+          "fr": "Mode absence - terminer",
+          "it": "Modalità assenza - termina",
+          "es": "Modo ausente - finalizar",
+          "pl": "Tryb nieobecności - zakończ",
+          "uk": "Режим відсутності - завершити",
+          "zh-cn": "离家模式 - 结束"
         },
         "type": "boolean",
         "role": "button",
@@ -632,6 +805,54 @@
           "es": "Modo de ventilación: equilibrado",
           "pl": "Tryb wentylacji — zrównoważony",
           "zh-cn": "排气模式 - 平衡"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.ventmodeExtract",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Ventilation mode - Extract only",
+          "de": "Lüftungsmodus - Nur Abluft",
+          "ru": "Режим вентиляции - только вытяжка",
+          "pt": "Modo de ventilação - apenas extração",
+          "nl": "Ventilatiemodus - alleen afvoer",
+          "fr": "Mode de ventilation - extraction uniquement",
+          "it": "Modalità ventilazione - solo estrazione",
+          "es": "Modo de ventilación - solo extracción",
+          "pl": "Tryb wentylacji - tylko wywiew",
+          "uk": "Режим вентиляції - лише витяжка",
+          "zh-cn": "通风模式 - 仅排风"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.ventmodeExtractOff",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Ventilation mode - Extract only off",
+          "de": "Lüftungsmodus - Nur Abluft aus",
+          "ru": "Режим вентиляции - только вытяжка выкл.",
+          "pt": "Modo de ventilação - apenas extração desligado",
+          "nl": "Ventilatiemodus - alleen afvoer uit",
+          "fr": "Mode de ventilation - extraction uniquement désactivée",
+          "it": "Modalità ventilazione - solo estrazione disattivata",
+          "es": "Modo de ventilación - solo extracción desactivado",
+          "pl": "Tryb wentylacji - tylko wywiew wył.",
+          "uk": "Режим вентиляції - лише витяжка вимк.",
+          "zh-cn": "通风模式 - 关闭仅排风"
         },
         "type": "boolean",
         "role": "button",
@@ -779,6 +1000,78 @@
       "native": {}
     },
     {
+      "_id": "command.filterChangeStart",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Filter change - start",
+          "de": "Filterwechsel - starten",
+          "ru": "Замена фильтра - начать",
+          "pt": "Troca de filtro - iniciar",
+          "nl": "Filtervervanging - starten",
+          "fr": "Changement de filtre - démarrer",
+          "it": "Cambio filtro - avvia",
+          "es": "Cambio de filtro - iniciar",
+          "pl": "Wymiana filtra - rozpocznij",
+          "uk": "Заміна фільтра - почати",
+          "zh-cn": "更换滤网 - 开始"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.filterChangeComplete",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Filter change - complete (resets filter counter)",
+          "de": "Filterwechsel - abschließen (setzt Filterzähler zurück)",
+          "ru": "Замена фильтра - завершить (сбрасывает счетчик фильтра)",
+          "pt": "Troca de filtro - concluir (reinicia o contador do filtro)",
+          "nl": "Filtervervanging - voltooien (reset filterteller)",
+          "fr": "Changement de filtre - terminer (réinitialise le compteur du filtre)",
+          "it": "Cambio filtro - completa (azzera il contatore del filtro)",
+          "es": "Cambio de filtro - completar (restablece el contador del filtro)",
+          "pl": "Wymiana filtra - zakończ (resetuje licznik filtra)",
+          "uk": "Заміна фільтра - завершити (скидає лічильник фільтра)",
+          "zh-cn": "更换滤网 - 完成（重置滤网计数器）"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.filterChangeAbort",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Filter change - abort",
+          "de": "Filterwechsel - abbrechen",
+          "ru": "Замена фильтра - отменить",
+          "pt": "Troca de filtro - cancelar",
+          "nl": "Filtervervanging - annuleren",
+          "fr": "Changement de filtre - annuler",
+          "it": "Cambio filtro - annulla",
+          "es": "Cambio de filtro - cancelar",
+          "pl": "Wymiana filtra - przerwij",
+          "uk": "Заміна фільтра - скасувати",
+          "zh-cn": "更换滤网 - 取消"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
       "_id": "sensor",
       "type": "channel",
       "common": {
@@ -793,6 +1086,26 @@
           "es": "Sensor",
           "pl": "Czujnik",
           "zh-cn": "传感器"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "property",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Settings",
+          "de": "Einstellungen",
+          "ru": "Настройки",
+          "pt": "Configurações",
+          "nl": "Instellingen",
+          "fr": "Paramètres",
+          "it": "Impostazioni",
+          "es": "Ajustes",
+          "pl": "Ustawienia",
+          "uk": "Налаштування",
+          "zh-cn": "设置"
         }
       },
       "native": {}

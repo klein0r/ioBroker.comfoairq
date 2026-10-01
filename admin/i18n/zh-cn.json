@@ -1,12 +1,12 @@
 {
     "Broadcast Address": "广播地址",
-    "Broadcast address of your network": "您网络的广播地址",
     "Default PIN is 0000 (can be changed in the app)": "默认 PIN 为 0000（可在应用程序中更改）",
     "Default Port is 56747": "默认端口为 56747",
     "Device connection": "设备连接",
     "Device discovery": "设备发现",
     "IP or hostname of your Zehnder ComfoConnect LAN C": "您的 Zehnder ComfoConnect LAN C 的 IP 或主机名",
     "IP-Adress / Hostname": "IP地址/主机名",
+    "Leave empty to search on all network interfaces": "留空以在所有网络接口上搜索",
     "Options": "选项",
     "PIN": "密码",
     "Port": "港口",

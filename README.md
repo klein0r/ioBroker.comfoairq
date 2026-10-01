@@ -44,6 +44,15 @@ Development of this ioBroker Adapter was possible on the work performed by:
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Updated comfoairq library to 1.0.0
+* (@klein0r) Device discovery searches on all network interfaces if no broadcast address is configured
+* (@klein0r) Added commands: boost 60 / 90 minutes / unlimited, boost and away mode with custom duration, end away mode, extract only ventilation mode, filter change
+* (@klein0r) Added settings (`property.*`): filter lifetime / warning, fan flow per level, RMOT heating / cooling limit, sensor based ventilation - and device information (model name, article number, country)
+* (@klein0r) Added new sensors (e.g. outdoor air temperature, supply air temperature, filter change state, seconds until next change)
+* (@klein0r) Connection state is restored after an automatic reconnect
+
 ### 0.6.1 (2026-10-01)
 
 * (@klein0r) Updated dependencies
