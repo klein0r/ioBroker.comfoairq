@@ -44,6 +44,11 @@ Development of this ioBroker Adapter was possible on the work performed by:
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Added installer code and installer mode (read only, `property.*`)
+* (@klein0r) Added buttons to switch the installer mode on / off
+
 ### 1.0.0 (2026-10-01)
 
 * (@klein0r) Updated comfoairq library to 2.1.0

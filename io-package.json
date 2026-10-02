@@ -1172,6 +1172,54 @@
       "native": {}
     },
     {
+      "_id": "command.installerModeOn",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Installer mode - on",
+          "de": "Installateurmodus - ein",
+          "ru": "Режим монтажника - вкл.",
+          "pt": "Modo instalador - ligado",
+          "nl": "Installateursmodus - aan",
+          "fr": "Mode installateur - activé",
+          "it": "Modalità installatore - attiva",
+          "es": "Modo instalador - activado",
+          "pl": "Tryb instalatora - wł.",
+          "uk": "Режим монтажника - увімк.",
+          "zh-cn": "安装人员模式 - 开启"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "command.installerModeOff",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Installer mode - off",
+          "de": "Installateurmodus - aus",
+          "ru": "Режим монтажника - выкл.",
+          "pt": "Modo instalador - desligado",
+          "nl": "Installateursmodus - uit",
+          "fr": "Mode installateur - désactivé",
+          "it": "Modalità installatore - disattiva",
+          "es": "Modo instalador - desactivado",
+          "pl": "Tryb instalatora - wył.",
+          "uk": "Режим монтажника - вимк.",
+          "zh-cn": "安装人员模式 - 关闭"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
       "_id": "sensor",
       "type": "channel",
       "common": {

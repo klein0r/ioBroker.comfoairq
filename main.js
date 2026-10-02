@@ -129,6 +129,12 @@ class Comfoairq extends utils.Adapter {
             ventmodeExtractDuration: { mode: 'extract' },
         };
 
+        // command.<state> -> SetProperty with a fixed value
+        this.propertyCommands = {
+            installerModeOn: { name: 'INSTALLER_MODE', value: 2 },
+            installerModeOff: { name: 'INSTALLER_MODE', value: 0 },
+        };
+
         // property name of the library -> state definition (created as property.<camelCaseName>)
         const offAutoOn = { 0: 'off', 1: 'auto', 2: 'on' };
         this.propertyMeta = {
@@ -138,6 +144,8 @@ class Comfoairq extends utils.Adapter {
             FIRMWARE_VERSION: { type: 'string', role: 'info.firmware' },
             ARTICLE_NUMBER: { type: 'string', role: 'text' },
             COUNTRY: { type: 'string', role: 'text' },
+            INSTALLER_CODE: { type: 'string', role: 'text' },
+            INSTALLER_MODE: { type: 'number', role: 'value', states: { 0: 'off', 2: 'on' } },
             FILTER_LIFETIME: { type: 'number', role: 'level', unit: 'days', write: true },
             FILTER_WARNING: { type: 'number', role: 'level', unit: 'days', write: true },
             FAN_FLOW_AWAY: { type: 'number', role: 'level', unit: 'm³/h', write: true },
@@ -589,6 +597,12 @@ class Comfoairq extends utils.Adapter {
                     if (!fixedMinutes) {
                         await this.setState(idNoNamespace, { val: minutes, ack: true });
                     }
+                } else if (this.propertyCommands[command]) {
+                    const { name, value } = this.propertyCommands[command];
+                    this.log.debug(`Setting property ${name} to ${value}`);
+                    await this.zehnder.SetProperty(VENTILATION_NODE, name, value);
+                    await this.delay(1000);
+                    await this.readProperty(name, 3);
                 } else if (this.commands[command]) {
                     this.log.debug(`Sending command: ${this.commands[command]}`);
                     await this.zehnder.SendCommand(VENTILATION_NODE, this.commands[command]);
