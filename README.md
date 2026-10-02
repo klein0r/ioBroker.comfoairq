@@ -24,7 +24,9 @@ Connect your Zehnder ComfoAirQ over ComfoConnect LAN C
 
 *Tested with ComfoAirQ 350*
 
-**Important:** ComfoConnect LAN C firmware versions before U1.2.6 support just 1 single client - you cannot use the ComfoControl App and the ioBroker adapter at the same time. Since firmware U1.2.6, multiple simultaneous connections are supported.
+> [!NOTE]
+> ComfoConnect LAN C firmware versions before U1.2.6 support just 1 single client - you cannot use the ComfoControl App and the ioBroker adapter at the same time.
+> Since firmware U1.2.6, multiple simultaneous connections are supported.
 
 ## Sponsored by
 
