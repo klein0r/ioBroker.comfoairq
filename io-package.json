@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "comfoairq",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "Added installer code and installer mode (read only, `property.*`)\nAdded buttons to switch the installer mode on / off",
+        "de": "Installationscode und Modus hinzugefügt (nur lesen, `property.*`)\nKnöpfe zum Ein-/Ausschalten des Installermodus",
+        "ru": "Добавлен код инсталлятора и режим инсталлятора (только для чтения, `property.*`)\nДобавлены кнопки для включения/выключения режима инсталлятора",
+        "pt": "Código e modo de instalação adicionados (somente leitura, `property.*`)\nNovos botões para ligar/desligar o instalador",
+        "nl": "Installatiecode en installatiemodus toegevoegd (alleen lezen, `eigenschap.*`)\nKnoppen toegevoegd om de installatiemodus aan of uit te schakelen",
+        "fr": "Code et mode Installer ajoutés (lecture seule, `property.*`)\nAjout de boutons pour activer/désactiver le mode installateur",
+        "it": "Aggiunti codice e modalità (sola lettura, `proprietà.*`)\nAggiunti pulsanti per attivare/disattivare",
+        "es": "Se han añadido el código y el modo de instalación (solo lectura, `propiedad.*`)\nSe han añadido botones para activar/desactivar el modo instalador",
+        "pl": "Dodano kod instalatora i tryb instalatora (tylko do odczytu, `property.*`)\nDodano przyciski do włączania/wyłączania trybu instalatora",
+        "uk": "Додано код інсталятора та режим інсталятора (тільки для читання, `property.*`)\nДодані кнопки для включення/вимкнення режиму інсталятора",
+        "zh-cn": "添加了安装程序代码和安装程序模式（只读，`property.*`）\n添加了用于打开/关闭安装程序模式的按钮"
+      },
       "1.0.0": {
         "en": "Updated comfoairq library to 2.1.0\nUpdated README: multiple simultaneous connections are supported since LAN C firmware U1.2.6\nDevice discovery searches on all network interfaces (and directly on the configured IP address) - removed broadcast address option\nAdded commands: boost 60 / 90 minutes / unlimited, boost and away mode with custom duration, end away mode, extract only ventilation mode, filter change\nAdded settings (`property.*`): filter lifetime / warning, fan flow per level, RMOT heating / cooling limit, sensor based ventilation - and device information (model name, article number, country)\nAdded new sensors (e.g. outdoor air temperature, supply air temperature, filter change state, seconds until next change)\nConnection state is restored after an automatic reconnect\nAdded value texts (`states`) for mode sensors (e.g. operating mode, fan speed mode, bypass activation mode)\nFixed crash (ERR_OUT_OF_RANGE) when a message from the gateway is split across multiple TCP packets\nConnection state is set again when sensor values are received\nSensor values received within the 2 second update limit are no longer dropped - the latest value is written afterwards\nAdded connected devices of the ComfoNet bus (`node.*`) with product, zone, mode - and serial number, firmware version and active errors (alarms)\nAdded command to reset errors\nAdded device name, serial number and firmware version of the ventilation unit (`property.*`)\nGateway and ComfoNet version are shown as readable version (e.g. R1.5.1)\nCommands and settings are sent to the ventilation unit announced by the device (e.g. ComfoAir Flex)\nAdded sensors: heating / cooling season, airflow constraints, analog inputs, subsoil heat exchanger present, ComfoCool state\nAdded ground heat exchanger sensors 416 / 417 / 418 (fixes #28)\nAdded duration (1 - 24 hours) for supply only / extract only ventilation mode (fixes #45)\nRetry to start the session every minute if the LAN C is not reachable on startup",
         "de": "Comfoairq Library auf 2.1.0 aktualisiert\nREADME aktualisiert: Seit LAN C-Firmware U1.2.6 werden mehrere Verbindungen unterstützt\nGerätesuche auf allen Netzwerkschnittstellen (und direkt auf der konfigurierten IP-Adresse) — Sendeadresse entfernt\nBefehle hinzugefügt: Boost 60/90 Minuten/Unlimited, Boost- und Away-Modus mit eigener Dauer, End Away, Abluftmodus, Filterwechsel\nEinstellungen hinzugefügt (`property.*`): Filterlaufzeit/Warnung, Lüfterstrom pro Stufe, RMOT-Heiz-/Kühllimit, Sensorlüftung — und Geräteinformationen (Modellname, Artikelnummer, Land)\nNeue Sensoren hinzugefügt (z. B. Außentemperatur, Zulufttemperatur, Filterwechsel, Sekunden bis zur nächsten Änderung)\nNach einer automatischen Verbindung ist die Verbindung wieder da\nMehrwerttexte (`States`) für Modussensoren (z. B. Betriebsmodus, Lüfterdrehzahl, Bypassmodus)\nAbsturz behoben (ERR_OUT_OF_RANGE), wenn eine Gateway-Nachricht auf mehrere TCP-Pakete aufgeteilt wurde\nBeim Empfang der Sensorwerte ist der Verbindungsstatus neu\nSensorwerte, die innerhalb der 2-Sekunden-Frist eingehen, fallen nicht mehr — der letzte Wert wird danach geschrieben\nVerbundene Geräte des ComfoNet-Busses (`Node.*`) mit Produkt, Zone, Modus und Seriennummer, Firmware-Version und Alarmen hinzugefügt\nBefehl zum Zurücksetzen hinzugefügt\nGerätename, Seriennummer und Firmware des Lüftungsgeräts hinzugefügt (`property.*`)\nGateway und ComfoNet-Version werden lesbar angezeigt (z. B. R1.5.1)\nBefehle und Einstellungen werden vom Gerät an das Lüftungsgerät gesendet (z. B. ComfoAir Flex)\nFühler hinzugefügt: Heiz-/Kühlperiode, Luftstrombegrenzung, Analogeingänge, Erdwärmetauscher, ComfoCool-Zustand\nBodenwärmetauscher-Sensoren 416/417/418 hinzugefügt (behebt #28)\nDauer (1—24 Stunden) für Zuluft-/Abluftbetrieb hinzugefügt (Fixes #45)\nStarte die Sitzung jede Minute erneut, falls LAN C nicht erreichbar ist",
@@ -80,19 +93,6 @@
         "pl": "NodeJS > = 18.x i kontroler js- > = 5 jest wymagane\n\n* Dodano ikony do kart admin\n* Czujniki grupowe w konfiguracji admin\n* Limit wartości czujnika odświeżania interwał",
         "uk": "NodeJS >= 18.x та js-controller >= 5 обов'язково\n\n* Додано іконки для вкладок адміністратора\n* Датчики групи в налаштуваннях адміністратора\n* інтервал оновлення значення датчика",
         "zh-cn": "节点JS18x和js控制器QQ 需要5个\n\n* 添加到管理标签的图标\n* 管理员配置中的组传感器\n* 限制传感器值刷新间隔"
-      },
-      "0.3.0": {
-        "en": "NodeJS 14.x is required (NodeJS 12.x is EOL)\n\n* Updated depedency for js-controller to 4.0.15\n* Dropped Admin 5 support\n* Added Ukrainian language",
-        "de": "NodeJS 14.x ist erforderlich (NodeJS 12.x ist EOL)\n\n* Aktualisierte Depedanz für js-Controller auf 4.0.15\n* Dropped Admin 5 Unterstützung\n* Hinzugefügt Ukrainische Sprache",
-        "ru": "NodeJS 14.x требуется (NodeJS 12.x EOL)\n\n* Обновленная депедентность для js-контроллера до 4.0.15\n* Dropped Admin 5 поддержка\n* Добавлен украинский язык",
-        "pt": "NodeJS 14.x é necessário (NodeJS 12.x é EOL)\n\n* Depedência atualizada para js-controller para 4.0.15\n* Suporte de Admin 5 Dropped\n* Adicionado idioma ucraniano",
-        "nl": "NodeJS 14.x is vereist (NodeJS 12.x is EOL)\n\n♪ Verhoogde afleiding voor JS-controller tot 4.015\n♪ Dropped Admin 5 support\n♪ Added Oekraïense taal",
-        "fr": "NodeJS 14.x est nécessaire (NodeJS 12.x est EOL)\n\n* Mise à jour depedency for js-controller à 4.0.15\n* Soutien Dropped Admin 5\n* Ajout de la langue ukrainienne",
-        "it": "NodeJS 14.x è richiesto (NodeJS 12.x è EOL)\n\n# Dispedenza aggiornata per js-controller a 4.0.15\n* Sostegno di amministrazione goccia 5\n* Aggiunto lingua ucraina",
-        "es": "NodeJS 14.x es necesario (NodeJS 12.x es EOL)\n\n* Dispersión actualizada para js-controller a 4.0.15\n* Soporte de Admin 5\n* Lenguado ucraniano añadido",
-        "pl": "NodeJS 14.x jest wymagana (NodeJS 12.x is EOL)\n\n* Zawartość dla js-kontrolatora do 4,0,15\n* Dropped Admin 5 support\nJęzyk ukraiński",
-        "uk": "NodeJS 14.x (NodeJS 12.x EOL)\n\nІм'я * Оновлена схильність до js-controller до 4.0.15\n* Підтримка Dropped Admin 5\n* Додано українську мову",
-        "zh-cn": "不需要14.JS14x(Node JS 12x is EOL))\n\n* A/64/50。 控制巴士的最新缺陷\n* Dro Admin 5支助\n* 增加乌克兰语"
       }
     },
     "titleLang": {

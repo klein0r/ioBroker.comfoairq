@@ -1,4 +1,11 @@
 # Older changes
+## 0.5.0 (2025-04-14)
+
+NodeJS >= 20.x and js-controller >= 6 is required
+
+* (@klein0r) Added messagebox for device discovery via admin
+* (@klein0r) Added responsive admin layout
+
 ## 0.4.0 (2024-03-28)
 
 NodeJS >= 18.x and js-controller >= 5 is required

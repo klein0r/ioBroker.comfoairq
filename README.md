@@ -46,7 +46,7 @@ Development of this ioBroker Adapter was possible on the work performed by:
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.1.0 (2026-10-02)
 
 * (@klein0r) Added installer code and installer mode (read only, `property.*`)
 * (@klein0r) Added buttons to switch the installer mode on / off
@@ -88,13 +88,6 @@ Development of this ioBroker Adapter was possible on the work performed by:
 ### 0.5.1 (2025-04-14)
 
 * (@klein0r) Updated dependencies
-
-### 0.5.0 (2025-04-14)
-
-NodeJS >= 20.x and js-controller >= 6 is required
-
-* (@klein0r) Added messagebox for device discovery via admin
-* (@klein0r) Added responsive admin layout
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
